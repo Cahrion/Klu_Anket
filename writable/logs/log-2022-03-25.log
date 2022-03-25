@@ -1,0 +1,6 @@
+CRITICAL - 2022-03-25 18:08:59 --> The framework needs the following extension(s) installed and loaded: intl.
+#0 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(219): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('intl')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(177): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+#2 C:\xampp\htdocs\Klu_Anket\system\bootstrap.php(146): CodeIgniter\CodeIgniter->initialize()
+#3 C:\xampp\htdocs\Klu_Anket\public\index.php(28): require('C:\\xampp\\htdocs...')
+#4 {main}
