@@ -5,7 +5,7 @@ namespace App\Controllers;
 use \CodeIgniter\Controller;
 use App\Models\IslemModel;
 use App\Models\AyarModel;
-
+\Config\Services::session();
 // Database işlemlerinin hepsini yapmak için kullanılan yazılım alanı
 
 class Data extends Controller
@@ -29,13 +29,16 @@ class Data extends Controller
             $CtrlM  = new IslemModel();
             
             if($CtrlM->getControlMembers($gelenEmail)){
+                
                 $_SESSION["Yonetici"]	=	$gelenEmail;
                 // Buralarda CURL bağlantısıyla true geldiğini varsayıyorum ve yeni sayfaya aktarıyorum.
                 // Şifre yapıları elimizde olmayacağından dolayı veritabanında da sadece email adresi bıraktım.
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                exit();
 
             }else{
                 // İletişime Geçin Sayfasına Yönlendirilicek.
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/Home/Iletisim");
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/Home/Iletisim");
                 exit();
             }
         }else{

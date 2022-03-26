@@ -1,0 +1,16 @@
+CRITICAL - 2022-03-26 01:53:25 --> Undefined variable $config
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\Data.php(8): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 8)
+#1 C:\xampp\htdocs\Klu_Anket\system\Router\Router.php(518): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('data')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('data')
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-03-26 01:53:38 --> Undefined variable $config
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\Data.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 16)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\Data->index()
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
