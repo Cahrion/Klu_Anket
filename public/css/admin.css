@@ -1,0 +1,35 @@
+.adminButton{
+    text-align: right;
+    padding: 5px;
+}
+.adminButton a{
+	font-family: Arial, "Helvatica Neue", Helvatica, sans-serif;
+	color: rgba(78, 27, 167, 0.831);
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-decoration: none;
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    transition: all 1s;
+}
+.adminButton a:link,.adminButton a:active,.adminButton a:visited{
+	font-family: Arial, "Helvatica Neue", Helvatica, sans-serif;
+	color: rgba(78, 27, 167, 0.831);
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-decoration: none;
+}
+.adminButton a:hover{
+	font-family: Arial, "Helvatica Neue", Helvatica, sans-serif;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-decoration: none;
+    cursor: pointer;
+    background-color: grey;
+    color: white;
+    border: 1px solid white;
+}

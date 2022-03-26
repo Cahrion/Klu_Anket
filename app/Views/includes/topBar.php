@@ -9,7 +9,7 @@
         <div class='collapse navbar-collapse text-right' id='collapsibleNavbar'>
             <ul class='navbar-nav'>
                     <li class='nav-item text-muted'>
-                        <a href="anketler" class='navbar_options text-muted'>
+                        <a href="<?php echo $SiteLinki . "public/ownerController"?>" class='navbar_options text-muted'>
                             Anket Oluştur
                         </a>          
                     </li> 
@@ -22,7 +22,7 @@
                 if($yonetimBilgi->yonetimFaktoru){
                 ?>
                     <li class='nav-item'>
-                        <a href="<?php echo $SiteLinki . "public/ownerController/adminPanel"?>" class='navbar_options text-muted'>
+                        <a href="<?php echo $SiteLinki . "public/adminController"?>" class='navbar_options text-muted'>
                             Yönetici Ekle 
                         </a>          
                     </li>   

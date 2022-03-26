@@ -27,31 +27,6 @@ class ownerController extends Controller
             exit();
         }
     }
-    // Admin silme, ekleme ve güncelleme işlemlerini burada yapar.
-    public function adminPanel()
-    {
-        // Site Ayarlarını kullanmak amacıyla AyarModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
-        $Ayar  = new AyarModel();
-        if(isset($_SESSION["Yonetici"])){
-            // Kullanıcı bilgilerini kullanmak amacıyla IslemModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
-            $Islem  = new IslemModel();
-            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
-            if($yonetimBilgi->yonetimFaktoru){
-                $data = array(
-                    "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
-                    "yonetimBilgi" => $yonetimBilgi,
-                    "yoneticilerBilgi" => $Islem->getControlMembers()
-                );
-                return view('adminPanel', $data);
-            }else{
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
-                exit();
-            }
-        }else{
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
-            exit();
-        }
-    }
         // Çıkış yapma yapısı
     public function leave(){
         $Ayar  = new AyarModel();
