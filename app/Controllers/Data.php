@@ -28,7 +28,7 @@ class Data extends Controller
         if($gelenEmail != "" and $gelenPassword != ""){
             $CtrlM  = new IslemModel();
             
-            if($CtrlM->getControlMembers($gelenEmail)){
+            if($CtrlM->getControlMember($gelenEmail)){
                 
                 $_SESSION["Yonetici"]	=	$gelenEmail;
                 // Buralarda CURL bağlantısıyla true geldiğini varsayıyorum ve yeni sayfaya aktarıyorum.

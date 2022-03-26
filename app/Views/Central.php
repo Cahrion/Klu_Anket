@@ -10,18 +10,18 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<!-- Bootstrap CSS v5.0.2 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/Central.css">
-	<script src="js/Central.js"></script>
+	<link rel="stylesheet" href="<?php echo $SiteLinki . "public/";?>css/minRequire.css">
+	<link rel="stylesheet" href="<?php echo $SiteLinki . "public/";?>css/Central.css">
+	<script src="<?php echo $SiteLinki . "public/";?>js/Central.js"></script>
 </head>
 
 <body>
-	<div class="row">
-		<div class="col-2 leftBar">
-			<?php
-			include_once 'includes/leftBar.php';
-			?>
-		</div>
-		<div class="col-10">
+	<?php
+	include_once 'includes/topBar.php';
+	?>
+	<div class="row kluCenter">
+		<div class="col-2"></div>
+		<div class="col-8">
 			<!-- Anket bilgilerini seçiçek ve dolduracak		 -->
 			<div class="anketHeadCoverager mt-4">
 				<div class="baslik">
@@ -32,11 +32,11 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-2 col-md-3"></div>
-				<div class="col-8 col-md-6 mt-4 anketPlatform">
-					<div class="GroupCoverager">
+				<div class="col-0 col-sm-2"></div>
+				<div class="col-12 col-sm-8 anketPlatform">
+					<div class="GroupCoverager mt-4">
 						<div class="anketGroupHeadCoverager">
-							<div class="renkAlani"></div>
+                			<div class="renkAlani" onclick='renkAlani(this)'></div>
 							<div class="baslik">
 								<input type="text" value="Group Başlığı">
 							</div>
@@ -58,17 +58,17 @@
 								</div>
 							</div>
 							<!-- Kullanıcı soru ekleme alanı -->
-							<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> + </span>
+							<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> S </span>
+							<span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
 							<!-- 
-							<span class="anketIcerigiEkle"></span>
 							<span class="anketIcerigiEkle"></span> -->
 						</div>
 					</div>
 				</div>
-				<div class="col-2 col-md-3"></div>
+				<div class="col-0 col-sm-2"></div>
 			</div>
-
 		</div>
+		<div class="col-2"></div>
 	</div>
 	<?php
 	include_once 'includes/footer.php';

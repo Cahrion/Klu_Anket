@@ -14,3 +14,48 @@ CRITICAL - 2022-03-26 01:53:38 --> Undefined variable $config
 #3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #5 {main}
+CRITICAL - 2022-03-26 09:16:17 --> Undefined property: CodeIgniter\View\View::$Kullanici_model
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\includes\leftBar.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\xampp\\htdocs...', 29)
+#1 C:\xampp\htdocs\Klu_Anket\app\Views\Central.php(21): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('Central', Array, true)
+#5 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(19): view('Central', Array)
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->index()
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#8 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-03-26 09:17:59 --> include_once(topBar.php): Failed to open stream: No such file or directory
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\Central.php(19): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include_once(to...', 'C:\\xampp\\htdocs...', 19)
+#1 C:\xampp\htdocs\Klu_Anket\app\Views\Central.php(19): include_once()
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('Central', Array, true)
+#5 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(19): view('Central', Array)
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->index()
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#8 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-03-26 10:00:16 --> Undefined property: CodeIgniter\Database\MySQLi\Builder::$yonetimFaktoru
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\xampp\\htdocs...', 38)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->adminPanel()
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-26 10:01:14 --> Undefined property: CodeIgniter\Database\MySQLi\Builder::$yonetimFaktoru
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\xampp\\htdocs...', 38)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->adminPanel()
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-26 10:01:47 --> Undefined property: CodeIgniter\Database\MySQLi\Builder::$yonetimFaktoru
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\xampp\\htdocs...', 39)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->adminPanel()
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

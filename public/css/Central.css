@@ -5,6 +5,10 @@ input:focus{
     outline: none;
     border: none;
 }
+.GroupCoverager{
+    padding-bottom: 20px;
+    border-bottom: 2px dotted grey;
+}
 .anketHeadCoverager{
     padding: 10px;
     border: 1px solid grey;
@@ -64,16 +68,37 @@ input:focus{
     border: none;
 }
 .anketIcerigiEkle{
-    transition: all 1s;
     position: absolute;
     top: 10px;
     right: -50px;
+    width: auto;
+    min-width: 40px;
     border: 1px solid grey;
     border-radius: 5px;
-    width: auto;
     padding: 10px;
+    transition: all 1s;
+    text-align: center;
 }
 .anketIcerigiEkle:hover{
+    cursor: pointer;
+    background-color: grey;
+    color: white;
+    border: 1px solid white;
+    transform: scale(1.2);
+}
+.anketGroupEkle{
+    width: auto;
+    min-width: 40px;
+    position: absolute;
+    top: 70px;
+    right: -50px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 1s;
+    text-align: center;
+}
+.anketGroupEkle:hover{
     cursor: pointer;
     background-color: grey;
     color: white;
