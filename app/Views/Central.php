@@ -12,6 +12,89 @@
 		html{
 			overflow-x: hidden;
 		}
+		input:focus{
+			outline: none;
+			border: none;
+		}
+		.anketHeadCoverager{
+			padding: 10px;
+			border: 1px solid grey;
+			border-radius: 5px;
+			min-height: 150px;
+			width: 100%;
+			border-left: 4px solid blue;
+		}
+		.anketCoverager{
+			position: relative;
+			padding: 10px;
+			border: 1px solid grey;
+			border-radius: 5px;
+			min-height: 200px;
+			width: 100%;
+			border-left: 4px solid black;
+			margin-top: 20px;
+		}
+		.baslik{
+			border-bottom: 1px dotted grey;
+		}
+		.baslik input{
+			border: 0;
+			width: 100%;
+			height: 50px;
+			font-size: large;
+			font-weight: bold;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		.baslikMetni{
+			margin-top: 10px;
+		}
+		.baslikMetni textarea{
+			border: 0;
+			width: 100%;
+			height: 50px;
+			font-size: large;
+			font-weight: bold;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		.baslikMetni textarea:focus{
+			outline: none;
+			border: none;
+		}
+		.anketIcerigiEkle{
+			transition: all 1s;
+			position: absolute;
+			top: 10px;
+			right: -50px;
+			border: 1px solid grey;
+			border-radius: 5px;
+			width: auto;
+			padding: 10px;
+		}
+		.anketIcerigiEkle:hover{
+			cursor: pointer;
+			background-color: grey;
+			color: white;
+			border: 1px solid white;
+			transform: scale(1.2);
+		}
+		.anketSorular{
+			margin-top: 10px;
+		}
+		.anketSorular input{
+			width: 100%;
+			border: 0;
+			height: 50px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		.anketSorular input:hover{
+			border-bottom: 1px dotted grey;
+		}
+		.anketSorular input:focus{
+			border-bottom: 1px solid grey;
+		}
 	</style>
   </head>
   <body>
@@ -21,10 +104,43 @@
                 include_once 'includes/leftBar.php';
             ?>
         </div>
-		  <div class="col-8">
-				<!-- Anket kısmının geliceği yer kullanıcı istediği gibi anketibi burada dolduracak. -->
+		  <div class="col-10">
+				<!-- Anket bilgilerini seçiçek ve dolduracak		 -->
+				<div class="row">
+					<div class="col-2 col-md-3"></div>
+					<div class="col-8 col-md-6 mt-4">
+						<div class="anketHeadCoverager">
+							<div class="baslik">
+								<input type="text" value="ANKET BAŞLIĞI">
+							</div>
+							<div class="baslikMetni">
+								<textarea class="text-muted" cols="30" rows="10">Detay bilgisini giriniz</textarea>
+							</div>
+						</div>
+						<div class="anketCoverager">
+							<div class="baslik">
+								<input type="text" placeholder="Soru Başlığı">
+							</div>
+							<div class="anketSorular row">
+								<div class="col-10">
+									<input type="text" placeholder="Şıklar">
+								</div>
+								<!-- Kullanıcı şık ekleme alanı -->
+								<div class="col-2 text-center">
+									<button class="btn btn-primary">+</button>
+								</div>
+							</div>
+							<!-- Kullanıcı soru ekleme alanı -->
+							<span class="anketIcerigiEkle"> + </span>
+							<!-- 
+							<span class="anketIcerigiEkle"></span>
+							<span class="anketIcerigiEkle"></span> -->
+						</div>
+					</div>
+					<div class="col-2 col-md-3"></div>
+				</div>
+
 		  </div>
-		  <div class="col-2"></div>
 	  </div>
         <?php
             include_once 'includes/footer.php';

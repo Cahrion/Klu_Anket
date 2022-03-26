@@ -39,6 +39,9 @@
         <a href="...">Yönetici Ekle</a>
     </div> <!-- icerikler --> 
     <div class="text-center leftBarCoverager py-2 my-3">
+        <a href="...">Anketlerim</a>
+    </div> <!-- icerikler --> 
+    <div class="text-center leftBarCoverager py-2 my-3">
         <a href="...">Anket Ekle</a>
     </div> <!-- icerikler --> 
     <div class="text-center leftBarCoverager py-2 my-3">
