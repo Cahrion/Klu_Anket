@@ -28,6 +28,54 @@ class ownerController extends Controller
             exit();
         }
     }
+    public function anketler(){
+        $Ayar  = new AyarModel();
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            if ($yonetimBilgi->yonetimFaktoru) {
+                $data = array(
+                    "SiteLinki"     => $Ayar->get_Ayars("SiteLinki"),
+                    "yonetimBilgi"  => $yonetimBilgi,
+                    "anketKayitlari" => $Islem->getAnketProjects()
+                );
+                return view('adminAnketler', $data);
+            } else {
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                exit();
+            }
+        } else {
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            exit();
+        }
+    }
+    public function anketOnay($gelenID = ""){ // Anketi onaylıyoruz veya onay kaldırıyoruz.
+
+        helper("fonksiyonlar"); // Guvenlik filtresi fonksiyonunu kullanmak amaçlı
+        $Ayar  = new AyarModel();
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            if ($yonetimBilgi->yonetimFaktoru) { // Yonetimini sorguladık.
+                if($gelenID != ""){
+                    $gelenID    = GuvenlikFiltresi($gelenID);
+                    $gelenAnketVerisi = $Islem->getAnketProject($gelenID); // Anketi aldık.
+
+                    $gelenTersOnay  = $gelenAnketVerisi->onay?0:1; // Gelen veri eğer TRUE (1) ise TERNARY yapısından dolayı 0 olucak FALSE (0) ise yine 1 olacaktır.
+
+                    $Islem->setAnketProjectUpdOnay($gelenID, $gelenTersOnay);
+                }
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/anketler");
+                exit();
+            } else {
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                exit();
+            }
+        } else {
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            exit();
+        }
+    }
     public function anketAdd()
     {
         $Ayar  = new AyarModel();
@@ -136,7 +184,7 @@ class ownerController extends Controller
                 // Kişi kendi üyeliğinin dışında bir anketi silmeye çalışırsa onu engelleyelim
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
 
-                if ($yonetimBilgi->id == $anketBilgisi->yoneticiID) {
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
                     $Islem->setAnketProjectDel($gelenVeri); // ID değerine göre anketi sildik.
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
@@ -165,7 +213,7 @@ class ownerController extends Controller
                 // Kişi kendi üyeliğinin dışında bir anketi güncellemeye çalışırsa onu engelleyelim
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
 
-                if ($yonetimBilgi->id == $anketBilgisi->yoneticiID) {
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa güncelleme hakkı verdik.
                     $data = array(
                         "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
                         "yonetimBilgi" => $yonetimBilgi,
@@ -174,6 +222,40 @@ class ownerController extends Controller
                     return view('adminAnketGuncelle', $data);
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
+                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                    exit();
+                }
+            }
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+            exit();
+        } else {
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            exit();
+        }
+    }
+    public function adminAnketLinkOlustur($gelenVeri = ""){ // SEO yapısıyla linkler oluşturalım.
+        helper("fonksiyonlar");
+        $Ayar  = new AyarModel();
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            // Gelen veriyi güvenlik taramasından geçiriyoruz eğer gelmediyse geri gönderelim.
+            if ($gelenVeri != "") {
+                $gelenVeri          = GuvenlikFiltresi($gelenVeri);
+                $anketBilgisi = $Islem->getAnketProject($gelenVeri);
+                if($anketBilgisi->onay or $yonetimBilgi->yonetimFaktoru){ // Onaylı değilse anket linki oluşturulmasın. (Yonetici oluşturma hakkı verdik.)
+                    if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                        $seoLink = SEO($anketBilgisi->baslik, $anketBilgisi->id);
+
+                        header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/publicAnketler/Anketler/" . $seoLink);
+                        exit();
+                    } else {
+                        // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
+                        header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                        exit();
+                    }
+                }else{
+                    // Eğer kişi onaysız açmaya çalışıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
                     header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
                     exit();
                 }

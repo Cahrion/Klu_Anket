@@ -92,6 +92,18 @@ class IslemModel extends Model {
         $result = $db->table("anketler")->where($data)->update($newData);
         return $result;
     }
+    public function setAnketProjectUpdOnay($gelenAnketID, $gelenOnay){
+        // ID verisi girilerek güncelleme işlemi yapılabilir. (Email ve Faktor)
+        $db = \Config\Database::connect();
+        $data = array(
+            "id" => $gelenAnketID
+        );
+        $newData = array(
+            "onay" => $gelenOnay
+        );
+        $result = $db->table("anketler")->where($data)->update($newData);
+        return $result;
+    }
     public function getMyAnketProjects($gelenYonetici){
         $db = \Config\Database::connect();
         $data = array(
@@ -106,6 +118,11 @@ class IslemModel extends Model {
             "id" => $gelenID
         );
         $result = $db->table("anketler")->getwhere($data)->getRow();
+        return $result;
+    }
+    public function getAnketProjects(){
+        $db = \Config\Database::connect();
+        $result = $db->table("anketler")->get()->getResult();
         return $result;
     }
     public function setAnketProjectDel($gelenID){ // ID değerine göre anket verisi silinir.

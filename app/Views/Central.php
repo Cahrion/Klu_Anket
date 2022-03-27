@@ -67,7 +67,14 @@
 				</div>
 				<div class="col-0 col-sm-2"></div>
 			</div>
-			<button id="veriGonder" type="button" class="btn btn-primary mt-4">Gönder</button>
+			
+			<div class="row">
+				<div class="col-0 col-sm-2"></div>
+				<div class="col-12 col-sm-8" style="text-align:right">
+					<button id="veriGonder" type="button" class="btn btn-primary mt-4">Anketi Oluştur</button>
+				</div>
+				<div class="col-0 col-sm-2"></div>
+			</div>
 		</div>
 		<div class="col-2"></div>
 	</div>

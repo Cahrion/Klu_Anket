@@ -96,11 +96,18 @@
 					?>
 				</div>
 				<div class="col-0 col-sm-2"></div>
+				<div class="row">
+					<div class="col-0 col-sm-2"></div>
+					<div class="col-12 col-sm-8" style="text-align:right">
+						<button id="veriGuncelle" type="button" class="btn btn-primary mt-4">Anketi Güncelle</button>
+					</div>
+					<div class="col-0 col-sm-2"></div>
+				</div>
 			</div>
-			<button id="veriGuncelle" type="button" class="btn btn-primary mt-4">Gönder</button>
 		</div>
 		<div class="col-2"></div>
 	</div>
+	
 	<?php
 	include_once 'includes/footer.php';
 	?>

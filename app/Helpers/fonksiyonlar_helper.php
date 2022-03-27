@@ -127,8 +127,9 @@ function KonusmaAlaniOlustur(){
 	$Sonuc			=	substr(md5(uniqid(time())), 0, 40);
 	return $Sonuc;
 }
-function SEO($Deger){
-	$Icerik 			= trim($Deger);
+function SEO($Deger, $ID){
+	$degerIsimlendir 	= $Deger . " " . $ID;
+	$Icerik 			= trim($degerIsimlendir);
 	$Degisecekler 		= array("ç", "Ç", "ğ", "Ğ", "ı", "İ", "ö", "Ö", "ş", "Ş", "ü", "Ü");
 	$Degisenler	 		= array("c", "C", "g", "G", "i", "I", "o", "O", "s", "S", "u", "U");
 	$Icerik 			= str_replace($Degisecekler, $Degisenler, $Icerik);

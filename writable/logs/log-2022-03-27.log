@@ -179,3 +179,69 @@ CRITICAL - 2022-03-27 10:12:38 --> unserialize(): Argument #1 ($data) must be of
 #7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #9 {main}
+CRITICAL - 2022-03-27 13:40:49 --> syntax error, unexpected single-quoted string ">Onay Bekleniyor</a>";"
+#0 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#1 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketler', Array, true)
+#2 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(44): view('adminAnketler', Array)
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketler()
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-03-27 13:40:56 --> Undefined variable $anketKayitlarim
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketler.php(27): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 27)
+#1 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketler', Array, true)
+#4 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(44): view('adminAnketler', Array)
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketler()
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-27 13:42:38 --> Undefined variable $SiteLinkipublic
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketler.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 33)
+#1 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketler', Array, true)
+#4 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(44): view('adminAnketler', Array)
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketler()
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-27 14:56:58 --> Undefined variable $yonetimBilgi
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\includes\topBar.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 22)
+#1 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketGuncelle.php(20): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketGunce...', Array, true)
+#5 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(30): view('adminAnketGunce...', Array)
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->Anketler('anket-basligi-1...')
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#8 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-03-27 14:57:41 --> Undefined variable $yonetimBilgi
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\includes\topBar.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 22)
+#1 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketGuncelle.php(20): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketGunce...', Array, true)
+#5 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(30): view('adminAnketGunce...', Array)
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->Anketler('anket-basligi-1...')
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#8 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-03-27 14:58:32 --> Undefined variable $anketBilgisi
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketGuncelle.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 26)
+#1 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketGunce...', Array, true)
+#4 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(31): view('adminAnketGunce...', Array)
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->Anketler('anket-basligi-1...')
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

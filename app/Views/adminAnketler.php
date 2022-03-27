@@ -24,15 +24,19 @@
 		<div class="col-8 pt-3">
 			<div class="adminButton"><a href="<?php echo $SiteLinki . "public/ownerController"?>">+ Yeni Anket Ekle</a></div>
             <?php 
-					foreach($anketKayitlarim as $anketKaydi){ // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
+					foreach($anketKayitlari as $anketKaydi){ // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
 			?>	
 				<div class="row border border-secondary mt-2">
 					<div class="col-3 p-4"><b>Baslik</b> = <?php echo $anketKaydi->baslik; ?></div>
 					<?php
 						// Ternary yapısıyla anketin durumunu isimlendiriyorum.
-						$onayDurumu = $anketKaydi->onay?"Onaylandı":"Onay Bekleniyor";
+                        $onayDurumu     = $anketKaydi->onay?"Onaylandı":"Onaylanmadı";
+                        $onayRenk       = $anketKaydi->onay?"success":"danger";
+                        $title          = $anketKaydi->onay?"Onay kaldır.":"Onayla";
 					?>
-					<div class="col-3 p-4"><b>Onay Durumu</b> = <?php echo $onayDurumu; ?> </div>
+					<div class="col-3 pt-3"><b>Onay Durumu</b> = 
+                        <a class="btn btn-<?php echo $onayRenk;?>" href="<?php echo $SiteLinki ."public/ownerController/anketOnay/$anketKaydi->id"?>" role="button" title="<?php echo $title?>" ><?php echo $onayDurumu?></a>
+                    </div>
 					<div class="col-3 pt-3"><a class="btn btn-secondary" href="<?php echo $SiteLinki . "public/ownerController/adminAnketLinkOlustur/" . $anketKaydi->id?>" role="button">Link Oluştur</a></div>
 					<div class="col-3 p-4" style="text-align:right">
 						<a href="<?php 	echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Guncelleme20x20.png"?>" ></a>

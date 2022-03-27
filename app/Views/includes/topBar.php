@@ -26,6 +26,11 @@
                             Yönetici Ekle 
                         </a>          
                     </li>   
+                    <li class='nav-item'>
+                        <a href="<?php echo $SiteLinki . "public/ownerController/anketler"?>" class='navbar_options text-muted'>
+                            Bütün Anketler
+                        </a>          
+                    </li>  
                 <?php
                 }
                 ?>
