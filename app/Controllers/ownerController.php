@@ -66,6 +66,40 @@ class ownerController extends Controller
             exit();
         }
     }
+    public function anketUpdate()
+    {
+        $Ayar  = new AyarModel();
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            if ($_POST["queryName"]) {
+                $queryName = $_POST["queryName"];
+            } else {
+                $queryName = "";
+            }
+            if ($_POST["queryString"]) {
+                $gelenQuery = $_POST["queryString"];
+            } else {
+                $gelenQuery = "";
+            }
+            // Kullanıcı bilgilerini kullanmak amacıyla IslemModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
+            if ($queryName != "" and $gelenQuery != "") {
+                $gelenBaslik        = $queryName[0]; // [0] parametre göndermede baslik olarak gönderilmişti.
+                $gelenBaslikmetni   = $queryName[1]; // [1] parametre göndermede baslik metni olarak gönderilmişti.
+                $gelenID            = $queryName[2]; // [2] parametre göndermede anketin ID değeri olarak gönderilmişti.
+                $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
+
+                $Islem->setAnketProjectUpd($gelenID, $gelenBaslik, $gelenBaslikmetni, $gelenSerialize); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
+
+                echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
+            } else {
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                exit();
+            }
+        } else {
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            exit();
+        }
+    }
 
     public function adminAnket()
     {
@@ -104,6 +138,40 @@ class ownerController extends Controller
 
                 if ($yonetimBilgi->id == $anketBilgisi->yoneticiID) {
                     $Islem->setAnketProjectDel($gelenVeri); // ID değerine göre anketi sildik.
+                } else {
+                    // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
+                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                    exit();
+                }
+            }
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+            exit();
+        } else {
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            exit();
+        }
+    }
+    public function adminAnketGuncelle($gelenVeri = "")
+    {
+        helper("fonksiyonlar");
+        $Ayar  = new AyarModel();
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            // Gelen veriyi güvenlik taramasından geçiriyoruz eğer gelmediyse geri gönderelim.
+            if ($gelenVeri != "") {
+                $gelenVeri          = GuvenlikFiltresi($gelenVeri);
+
+                // Kişi kendi üyeliğinin dışında bir anketi güncellemeye çalışırsa onu engelleyelim
+                $anketBilgisi = $Islem->getAnketProject($gelenVeri);
+
+                if ($yonetimBilgi->id == $anketBilgisi->yoneticiID) {
+                    $data = array(
+                        "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
+                        "yonetimBilgi" => $yonetimBilgi,
+                        "anketBilgisi" => $anketBilgisi
+                    );
+                    return view('adminAnketGuncelle', $data);
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
                     header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");

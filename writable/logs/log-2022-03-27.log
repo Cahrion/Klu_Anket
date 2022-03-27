@@ -168,3 +168,14 @@ CRITICAL - 2022-03-27 08:04:41 --> Attempt to read property "yoneticiID" on null
 #3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #5 {main}
+CRITICAL - 2022-03-27 10:12:38 --> unserialize(): Argument #1 ($data) must be of type string, stdClass given
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketGuncelle.php(38): unserialize(Object(stdClass))
+#1 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketGunce...', Array, true)
+#4 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(140): view('adminAnketGunce...', Array)
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->adminAnketGuncelle('1')
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

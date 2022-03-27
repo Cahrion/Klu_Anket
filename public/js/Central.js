@@ -1,8 +1,9 @@
 function anketIcerigiEkle(node){
     $(node).css("display", "none");
     $(node).siblings("span").css("display", "none");
+    var myColor = $(node).parent().siblings(".anketGroupHeadCoverager").children(".renkAlani").css("background-color");
     var html = `
-        <div class="anketCoverager">
+        <div class="anketCoverager" style="border-left: 4px solid ` + myColor + `">
             <div class="baslik">
                 <input type="text" placeholder="Soru Başlığı">
             </div>
@@ -94,7 +95,7 @@ $(document).ready(function(){
             var groupElement                = $(value).children(".anketGroupHeadCoverager");
             var groupElementRenk            = $(groupElement).children(".renkAlani").css("background-color");
             var groupElementBaslik          = $(groupElement).children(".baslik").children("input").val();
-            var groupElementbaslikMetni     = $(groupElement).children(".baslikMetni").children("textarea").text();
+            var groupElementbaslikMetni     = $(groupElement).children(".baslikMetni").children("textarea").val();
             // document.write(groupElementRenk + "<br>" + groupElementBaslik + "<br>" + groupElementbaslikMetni); // Denedik ve geliyor olduğunu gördük
 
             var groupAnketGroup             = $(value).children(".anketCoverager"); // Birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
@@ -124,20 +125,68 @@ $(document).ready(function(){
         //     });
         // });
         
-        // Veriyi bir php dosyasına gönderiyoruz. ( Mola )
-        // Post yapısı çalışmadı (Biraz mola vermeye karar verdim)
-
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
-        var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").text(); // Anket Metni
+        var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
 
         $.post(window.location.href + '/anketAdd', {queryName: [anketBaslik,anketBaslikM],queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {
-            document.write(data);
+            window.location.href = window.location.href + '/adminAnket';
         }
         });
         
+        
+    });
+});
+
+$(document).ready(function(){
+    // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
+    $("#veriGuncelle").click(function(){
+        var UstGrup     = $(".GroupCoverager");
+        var UstList     = {};   // Liste ataması kullanarak sırayı karıştırmayalım
+        var OrtaList    = {};   // Liste ataması kullanarak sırayı karıştırmayalım
+        var AltList     = {};   // Liste ataması kullanarak sırayı karıştırmayalım
+
+        $.each(UstGrup, function(key, value){
+            var groupElement                = $(value).children(".anketGroupHeadCoverager");
+            var groupElementRenk            = $(groupElement).children(".renkAlani").css("background-color");
+            var groupElementBaslik          = $(groupElement).children(".baslik").children("input").val();
+            var groupElementbaslikMetni     = $(groupElement).children(".baslikMetni").children("textarea").val();
+            // document.write(groupElementRenk + "<br>" + groupElementBaslik + "<br>" + groupElementbaslikMetni); // Denedik ve geliyor olduğunu gördük
+
+            var groupAnketGroup             = $(value).children(".anketCoverager"); // Birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
+            $.each(groupAnketGroup, function(key, value){
+                var anketSoruBaslik         = $(value).children(".baslik").children("input").val();
+
+                var anketSoruSecenek        = $(value).children(".anketSecenekler") // Yine birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
+                $.each(anketSoruSecenek, function(key, value){
+                    var SecenekVerisi       = $(value).children(".col-10").children("input").val();
+                    AltList[key] = SecenekVerisi; // Ekleme işlemine küçük veriden başlıyoruz.
+                });
+                OrtaList[key] = [anketSoruBaslik, AltList]; // Ekliyoruz
+                AltList = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            });
+            var Iclist = [groupElementRenk, groupElementBaslik, groupElementbaslikMetni];
+            UstList[key] = [Iclist, OrtaList] // Ekliyoruz
+            OrtaList = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+        });
+        
+        var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
+        var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
+        var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
+        
+        $pathKonum  = window.location.pathname.split("/");
+        $originKonum = window.location.origin; 
+        $needKonum  = $originKonum +  "/" + $pathKonum[1] + "/" + $pathKonum[2] + "/" + $pathKonum[3];
+
+        $.post($needKonum + '/anketUpdate', {queryName: [anketBaslik,anketBaslikM,anketID],queryString: UstList}, function(data) 
+        {
+        if(data.length > 0)
+        {
+            window.location.href = $needKonum + '/adminAnket';
+        }
+        });
         
     });
 });

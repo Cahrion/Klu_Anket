@@ -77,6 +77,21 @@ class IslemModel extends Model {
         $result = $db->table("anketler")->insert($data);
         return $result;
     }
+
+    public function setAnketProjectUpd($gelenAnketID, $baslik, $metin, $serialize){
+        // ID verisi girilerek güncelleme işlemi yapılabilir. (Email ve Faktor)
+        $db = \Config\Database::connect();
+        $data = array(
+            "id" => $gelenAnketID
+        );
+        $newData = array(
+            "baslik" => $baslik,
+            "metin" => $metin,
+            "serialize" => $serialize
+        );
+        $result = $db->table("anketler")->where($data)->update($newData);
+        return $result;
+    }
     public function getMyAnketProjects($gelenYonetici){
         $db = \Config\Database::connect();
         $data = array(

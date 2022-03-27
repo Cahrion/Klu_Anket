@@ -50,7 +50,7 @@
 							</div>
 							<div class="anketSecenekler row">
 								<div class="col-10">
-									<input type="text" placeholder="Şıklar">
+									<input type="text" placeholder="Seçenekler">
 								</div>
 								<!-- Kullanıcı şık ekleme alanı -->
 								<div class="col-2 text-center">
