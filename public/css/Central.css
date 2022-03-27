@@ -105,19 +105,19 @@ input:focus{
     border: 1px solid white;
     transform: scale(1.2);
 }
-.anketSorular{
+.anketSecenekler{
     margin-top: 10px;
 }
-.anketSorular input{
+.anketSecenekler input{
     width: 100%;
     border: 0;
     height: 50px;
     padding-left: 10px;
     padding-right: 10px;
 }
-.anketSorular input:hover{
+.anketSecenekler input:hover{
     border-bottom: 1px dotted grey;
 }
-.anketSorular input:focus{
+.anketSecenekler input:focus{
     border-bottom: 1px solid grey;
 }

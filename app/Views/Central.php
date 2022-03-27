@@ -48,7 +48,7 @@
 							<div class="baslik">
 								<input type="text" placeholder="Soru Başlığı">
 							</div>
-							<div class="anketSorular row">
+							<div class="anketSecenekler row">
 								<div class="col-10">
 									<input type="text" placeholder="Şıklar">
 								</div>
@@ -67,6 +67,7 @@
 				</div>
 				<div class="col-0 col-sm-2"></div>
 			</div>
+			<button id="veriGonder" type="button" class="btn btn-primary mt-4">Gönder</button>
 		</div>
 		<div class="col-2"></div>
 	</div>

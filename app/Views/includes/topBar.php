@@ -29,6 +29,11 @@
                 <?php
                 }
                 ?>
+                    <li class='nav-item'>
+                        <a href="<?php echo $SiteLinki . "public/ownerController/leave"?>" class='navbar_options text-muted'>
+                            Çıkış Yap
+                        </a>          
+                    </li>
             </ul>  
         </div>      
     </div>

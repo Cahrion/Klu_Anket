@@ -27,6 +27,33 @@ class ownerController extends Controller
             exit();
         }
     }
+    public function anketAdd(){
+        $Ayar  = new AyarModel();
+        if(isset($_SESSION["Yonetici"])){
+            // Kullanıcı bilgilerini kullanmak amacıyla IslemModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
+            $Islem  = new IslemModel();
+            if($_POST["queryString"]){
+                $gelenQuery = $_POST["queryString"];
+            }else{
+                $gelenQuery = "";
+            }
+            if($gelenQuery != ""){
+                echo $gelenQuery;
+                die();
+            }else{
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") ."public/ownerController");
+                exit();
+            }
+        }else{
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            exit();
+        }
+    }
+
+    public function myAnket(){
+
+    }
+
         // Çıkış yapma yapısı
     public function leave(){
         $Ayar  = new AyarModel();

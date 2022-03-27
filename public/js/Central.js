@@ -6,7 +6,7 @@ function anketIcerigiEkle(node){
             <div class="baslik">
                 <input type="text" placeholder="Soru Başlığı">
             </div>
-            <div class="anketSorular row">
+            <div class="anketSecenekler row">
                 <div class="col-10">
                     <input type="text" placeholder="Şıklar">
                 </div>
@@ -27,7 +27,7 @@ function anketIcerigiEkle(node){
 function soruSecenekEkle(node){
     $(node).css("display", "none");
     var html = `
-        <div class="anketSorular row">
+        <div class="anketSecenekler row">
             <div class="col-10">
                 <input type="text" placeholder="Şıklar">
             </div>
@@ -55,7 +55,7 @@ function anketGroupEkle(node){
                 <div class="baslik">
                     <input type="text" placeholder="Soru Başlığı">
                 </div>
-                <div class="anketSorular row">
+                <div class="anketSecenekler row">
                     <div class="col-10">
                         <input type="text" placeholder="Şıklar">
                     </div>
@@ -81,3 +81,60 @@ function renkAlani(node){
     $(node).css("background-color", renkler[index + 1]);
     $(node).parent().siblings().css("border-left", "4px solid " + renkler[index + 1])
 }
+
+$(document).ready(function(){
+    // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
+    $("#veriGonder").click(function(){
+        var UstGrup     = $(".GroupCoverager");
+        var UstList     = {};   // Liste ataması kullanarak sırayı karıştırmayalım
+        var OrtaList    = {};  // Liste ataması kullanarak sırayı karıştırmayalım
+        var AltList     = {};   // Liste ataması kullanarak sırayı karıştırmayalım
+
+        $.each(UstGrup, function(key, value){
+            var groupElement                = $(value).children(".anketGroupHeadCoverager");
+            var groupElementRenk            = $(groupElement).children(".renkAlani").css("background-color");
+            var groupElementBaslik          = $(groupElement).children(".baslik").children("input").val();
+            var groupElementbaslikMetni     = $(groupElement).children(".baslikMetni").children("textarea").text();
+            // document.write(groupElementRenk + "<br>" + groupElementBaslik + "<br>" + groupElementbaslikMetni); // Denedik ve geliyor olduğunu gördük
+
+            var groupAnketGroup             = $(value).children(".anketCoverager"); // Birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
+            $.each(groupAnketGroup, function(key, value){
+                var anketSoruBaslik         = $(value).children(".baslik").children("input").val();
+
+                var anketSoruSecenek        = $(value).children(".anketSecenekler") // Yine birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
+                $.each(anketSoruSecenek, function(key, value){
+                    var SecenekVerisi       = $(value).children(".col-10").children("input").val();
+                    AltList[key] = SecenekVerisi; // Ekleme işlemine küçük veriden başlıyoruz.
+                });
+                OrtaList[key] = [anketSoruBaslik, AltList]; // Ekliyoruz
+                AltList = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            });
+            var Iclist = [groupElementRenk, groupElementBaslik, groupElementbaslikMetni];
+            UstList[key] = [Iclist, OrtaList] // Ekliyoruz
+            OrtaList = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+        });
+        // document.write(UstList); // Verimiz UstList dosyasına başarıyla eklendi. (Veriler bu metodla görülebilir.)
+        // $.each(UstList, function(key, value){
+        //     document.write(value + "<br>");
+        //     $.each(value[1], function(key, value){
+        //         document.write(value + "<br>");
+        //         $.each(value[1], function(key, value){
+        //             document.write(value + "<br>");
+        //         });
+        //     });
+        // });
+        
+        // Veriyi bir php dosyasına gönderiyoruz. ( Mola )
+        // Post yapısı çalışmadı (Biraz mola vermeye karar verdim)
+
+        // $.post(window.location.href + '/anketAdd', UstList, function(data) 
+        // {
+        // if(data.length > 0)
+        // {
+        //     document.write(data);
+        // }
+        // });
+        
+        
+    });
+});
