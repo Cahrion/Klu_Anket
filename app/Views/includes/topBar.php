@@ -14,7 +14,7 @@
                         </a>          
                     </li> 
                     <li class='nav-item'>
-                        <a href="anketlerim" class='navbar_options text-muted'>
+                        <a href="<?php echo $SiteLinki . "public/ownerController/adminAnket"?>" class='navbar_options text-muted'>
                             Anketlerim
                         </a>          
                     </li>   

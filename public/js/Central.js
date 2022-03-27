@@ -127,13 +127,16 @@ $(document).ready(function(){
         // Veriyi bir php dosyasına gönderiyoruz. ( Mola )
         // Post yapısı çalışmadı (Biraz mola vermeye karar verdim)
 
-        // $.post(window.location.href + '/anketAdd', UstList, function(data) 
-        // {
-        // if(data.length > 0)
-        // {
-        //     document.write(data);
-        // }
-        // });
+        var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
+        var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").text(); // Anket Metni
+
+        $.post(window.location.href + '/anketAdd', {queryName: [anketBaslik,anketBaslikM],queryString: UstList}, function(data) 
+        {
+        if(data.length > 0)
+        {
+            document.write(data);
+        }
+        });
         
         
     });

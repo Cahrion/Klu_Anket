@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -21,22 +22,22 @@
 	<div class="row kluCenter">
 		<div class="col-2"></div>
 		<div class="col-8 pt-3">
-			<div class="adminButton"><a href="<?php echo $SiteLinki . "public/adminController/adminEkle"?>">+ Yeni Yönetici Ekle</a></div>
+			<div class="adminButton"><a href="<?php echo $SiteLinki . "public/ownerController"?>">+ Yeni Anket Ekle</a></div>
             <?php 
-					foreach($YoneticilerKayitlari as $YoneticilerSatirlari){
+					foreach($anketKayitlarim as $anketKaydi){ // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
 			?>	
 				<div class="row border border-secondary mt-2">
-					<div class="col-4 p-4"><b>Gmail</b> = <?php echo $YoneticilerSatirlari->emailAdresi; ?></div>
+					<div class="col-4 p-4"><b>Baslik</b> = <?php echo $anketKaydi->baslik; ?></div>
 					<?php
-						// Ternary yapısıyla yöneticinin durumunu isimlendiriyorum.
-						$yonetimDurumu = $YoneticilerSatirlari->yonetimFaktoru?"Üst Düzey Yönetici":"Yönetici";
+						// Ternary yapısıyla anketin durumunu isimlendiriyorum.
+						$onayDurumu = $anketKaydi->onay?"Onaylandı":"Onay Bekleniyor";
 					?>
-					<div class="col-4 p-4"><b>Yonetici Durumu</b> = <?php echo $yonetimDurumu; ?> </div>
+					<div class="col-4 p-4"><b>Onay Durumu</b> = <?php echo $onayDurumu; ?> </div>
 					<div class="col-4 p-4" style="text-align:right">
-						<a href="<?php 	echo $SiteLinki . "public/adminController/adminGuncelle/" . $YoneticilerSatirlari->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Guncelleme20x20.png"?>" ></a>
-						<a href="<?php  echo $SiteLinki . "public/adminController/adminGuncelle/" . $YoneticilerSatirlari->id; ?>" style="color: #0000FF; text-decoration: none;">Güncelle</a>
-						<a href="<?php  echo $SiteLinki . "public/adminController/adminPanelSil/" . $YoneticilerSatirlari->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Sil20x20.png"?>"></a>
-						<a href="<?php  echo $SiteLinki . "public/adminController/adminPanelSil/" . $YoneticilerSatirlari->id; ?>" style="color: #FF0000; text-decoration: none;">Sil</a>
+						<a href="<?php 	echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Guncelleme20x20.png"?>" ></a>
+						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>" style="color: #0000FF; text-decoration: none;">Güncelle</a>
+						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketSil/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Sil20x20.png"?>"></a>
+						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketSil/" . $anketKaydi->id; ?>" style="color: #FF0000; text-decoration: none;">Sil</a>
 					</div>
 				</div>
 			<?php

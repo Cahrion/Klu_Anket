@@ -197,6 +197,7 @@ class adminController extends Controller
             if ($yonetimBilgi->yonetimFaktoru) {
                 // Gelen veriyi güvenlik taramasından geçiriyoruz eğer gelmediyse geri gönderelim.
                 if ($gelenVeri != "") {
+                    $gelenVeri      = GuvenlikFiltresi($gelenVeri);
                     // Kişi kendi üyeliğini silmeye çalışırsa otomatik olarak engelleyelim
                     if ($yonetimBilgi->id != $gelenVeri) {
                         $Islem->setControlMemberDel($gelenVeri); // ID değerine göre kişinin uyeliğini sildik.

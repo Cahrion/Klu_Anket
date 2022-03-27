@@ -3,6 +3,9 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class IslemModel extends Model {
+    // --------------------------------
+    // -- Üye çekme ve benzer işler için
+    // --------------------------------
     public function getControlMember($degree){
         $db = \Config\Database::connect();
         $data = array(
@@ -57,6 +60,47 @@ class IslemModel extends Model {
         return $result;
     }
     
+    // --------------------------------
+    // -- Anket için
+    // --------------------------------
+    
+    public function setAnketProject($gelenYonetici, $baslik, $metin, $serialize, $onay){
+        // ID verisi girilerek güncelleme işlemi yapılabilir. (Email ve Faktor)
+        $db = \Config\Database::connect();
+        $data = array(
+            "yoneticiID" => $gelenYonetici,
+            "baslik" => $baslik,
+            "metin" => $metin,
+            "serialize" => $serialize,
+            "onay" => $onay
+        );
+        $result = $db->table("anketler")->insert($data);
+        return $result;
+    }
+    public function getMyAnketProjects($gelenYonetici){
+        $db = \Config\Database::connect();
+        $data = array(
+            "yoneticiID" => $gelenYonetici
+        );
+        $result = $db->table("anketler")->getwhere($data)->getResult();
+        return $result;
+    }
+    public function getAnketProject($gelenID){ // ID değerine göre anket verisi getirilir.
+        $db = \Config\Database::connect();
+        $data = array(
+            "id" => $gelenID
+        );
+        $result = $db->table("anketler")->getwhere($data)->getRow();
+        return $result;
+    }
+    public function setAnketProjectDel($gelenID){ // ID değerine göre anket verisi silinir.
+        $db = \Config\Database::connect();
+        $data = array(
+            "id" => $gelenID
+        );
+        $result = $db->table("anketler")->delete($data);
+        return $result;
+    }
 }
 
 ?>
