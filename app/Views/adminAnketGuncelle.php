@@ -23,7 +23,7 @@
 		<div class="col-2"></div>
 		<div class="col-8">
 			<!-- Anket bilgilerini seçiçek ve dolduracak		 -->
-			<div class="anketHeadCoverager mt-4" id="<?php echo $anketBilgisi->id?>">
+			<div class="anketHeadCoverager mt-4" id="<?php echo $anketBilgisi->id ?>">
 				<div class="baslik">
 					<input type="text" value="<?php echo $anketBilgisi->baslik ?>" placeholder="ANKET BAŞLIĞI">
 				</div>
@@ -36,55 +36,67 @@
 				<div class="col-12 col-sm-8 anketPlatform">
 					<?php
 					$gelenUnSerializeVeri = unserialize($anketBilgisi->serialize);
-					foreach ($gelenUnSerializeVeri as $gelenGroupCoveragerler) { // [0][0] = renkAlani, [0][1] = Group başlığı, [0][2] = Group Detay Metni
+					foreach ($gelenUnSerializeVeri as $gelenGroupCoveragerler) { // [0][0] = renkAlani, [0][1] = Group başlığı, [0][2] = Group Detay Metni, [1] => Seçenekler, [2] => Sorular
 					?>
 						<div class="GroupCoverager mt-4">
 							<div class="anketGroupHeadCoverager">
 								<div class="renkAlani" onclick='renkAlani(this)' style="background-color: <?php echo $gelenGroupCoveragerler[0][0] ?>"></div>
 								<div class="baslik">
-									<input type="text" value="<?php echo $gelenGroupCoveragerler[0][1]?>" value="Group Başlığı">
+									<input type="text" value="<?php echo $gelenGroupCoveragerler[0][1] ?>" value="Group Başlığı">
 								</div>
 								<div class="baslikMetni">
 									<textarea class="text-muted" cols="30" rows="10" placeholder="Detay bilgisini giriniz."><?php echo $gelenGroupCoveragerler[0][2] ?></textarea>
 								</div>
+								<?php
+								foreach ($gelenGroupCoveragerler[1] as $keyOne => $gelenAnketSecenekler) {
+								?>
+									<div class="anketSecenekler row">
+										<div class="col-10">
+											<input type="text" value="<?php echo $gelenAnketSecenekler; ?>" placeholder="Seçenekler">
+										</div>
+										<!-- Kullanıcı şık ekleme alanı -->
+										<?php
+										if (count($gelenGroupCoveragerler[1]) == $keyOne + 1) { // Eğer son seçenek kısmındaysak seçenek ekleme başlıkları otomatikmen son olana eklensin.
+										?>
+											<div class="col-2 text-center">
+												<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)">+</button>
+											</div>
+										<?php
+										}
+										?>
+									</div>
+								<?php
+								}
+								?>
 							</div>
 							<?php
-							foreach ($gelenGroupCoveragerler[1] as $keyOne => $gelenAnketCoveragerlar) { // [1] verisinde anket bölümü bulunmakta bizde onu tek tek açıyoruz.
-								
+							
+							foreach ($gelenGroupCoveragerler[2] as $keyTwo => $gelenAnketCoveragerlar) { // [1] verisinde anket bölümü bulunmakta bizde onu tek tek açıyoruz.
 							?>
 								<div class="anketCoverager" style="border-left: 4px solid <?php echo $gelenGroupCoveragerler[0][0] ?>">
-									<div class="baslik">
-										<input type="text" value="<?php echo $gelenAnketCoveragerlar[0];?>" placeholder="Soru başlığı">
+									<div class="anketSoru">
+										<input type="text" value="<?php echo $gelenAnketCoveragerlar[0]; ?>" placeholder="Soru">
 									</div>
-									<?php
-										foreach($gelenAnketCoveragerlar[1] as $keyTwo => $gelenAnketSecenekler){
-											?>
-												<div class="anketSecenekler row">
-													<div class="col-10">
-														<input type="text" value="<?php echo $gelenAnketSecenekler;?>" placeholder="Seçenekler"> 
-													</div>
-													<!-- Kullanıcı şık ekleme alanı -->
-													<?php
-														if(count($gelenAnketCoveragerlar[1]) == $keyTwo + 1){ // Eğer son seçenek kısmındaysak seçenek ekleme başlıkları otomatikmen son olana eklensin.
-															?>
-																<div class="col-2 text-center">
-																	<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)">+</button>
-																</div>
-															<?php
-														}
-													?>
-												</div>
-											<?php
-										}
-									?>
+									<div class="row mt-5">
+										<div class="col-6 col-md-8 col-xl-9"></div>
+										<div class="col-6 col-md-4 col-xl-3">
+											<div class="form-check form-switch">
+												<?php
+													// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
+												?>
+												<input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" <?php echo $gelenAnketCoveragerlar[1] == 'true'?'checked':'';?>> 
+												<label class="form-check-label" for="flexSwitchCheckDefault" style="color: <?php echo $gelenAnketCoveragerlar[1] == 'true'?'red':'green';?>;font-weight:bold"> <?php echo $gelenAnketCoveragerlar[1] == 'true'?'Zorunlu':'Serbest';?></label>
+											</div>
+										</div>
+									</div>
 									<!-- Kullanıcı soru ekleme alanı -->
 									<?php
-										if(count($gelenGroupCoveragerler[1]) == $keyOne + 1){ // Eğer son Soru başlığındaysak soru ekleme başlıkları otomatikmen son olana eklensin.
-											?>
-												<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> S </span>
-												<span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
-											<?php
-										}
+									if (count($gelenGroupCoveragerler[2]) == $keyTwo + 1) { // Eğer son Soru başlığındaysak soru ekleme başlıkları otomatikmen son olana eklensin.
+									?>
+										<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> S </span>
+										<span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
+									<?php
+									}
 									?>
 								</div>
 							<?php
@@ -107,7 +119,7 @@
 		</div>
 		<div class="col-2"></div>
 	</div>
-	
+
 	<?php
 	include_once 'includes/footer.php';
 	?>

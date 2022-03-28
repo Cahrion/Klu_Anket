@@ -43,11 +43,6 @@
 							<div class="baslikMetni">
 								<textarea class="text-muted" cols="30" rows="10">Detay bilgisini giriniz</textarea>
 							</div>
-						</div>
-						<div class="anketCoverager">
-							<div class="baslik">
-								<input type="text" placeholder="Soru Başlığı">
-							</div>
 							<div class="anketSecenekler row">
 								<div class="col-10">
 									<input type="text" placeholder="Seçenekler">
@@ -55,6 +50,20 @@
 								<!-- Kullanıcı şık ekleme alanı -->
 								<div class="col-2 text-center">
 									<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)">+</button>
+								</div>
+							</div>
+						</div>
+						<div class="anketCoverager">
+							<div class="anketSoru">
+								<input type="text" placeholder="Soru">
+							</div>
+							<div class="row mt-5">
+								<div class="col-6 col-md-8 col-xl-9"></div>
+								<div class="col-6 col-md-4 col-xl-3">
+									<div class="form-check form-switch">
+										<input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" checked>
+										<label class="form-check-label" for="flexSwitchCheckDefault" style="color:red;font-weight:bold">Zorunlu</label>
+									</div>
 								</div>
 							</div>
 							<!-- Kullanıcı soru ekleme alanı -->

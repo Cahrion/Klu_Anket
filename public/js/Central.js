@@ -4,23 +4,21 @@ function anketIcerigiEkle(node){
     var myColor = $(node).parent().siblings(".anketGroupHeadCoverager").children(".renkAlani").css("background-color");
     var html = `
         <div class="anketCoverager" style="border-left: 4px solid ` + myColor + `">
-            <div class="baslik">
-                <input type="text" placeholder="Soru Başlığı">
+            <div class="anketSoru">
+                <input type="text" placeholder="Soru">
             </div>
-            <div class="anketSecenekler row">
-                <div class="col-10">
-                    <input type="text" placeholder="Şıklar">
-                </div>
-                <!-- Kullanıcı şık ekleme alanı -->
-                <div class="col-2 text-center">
-                    <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)">+</button>
+            <div class="row mt-5">
+                <div class="col-6 col-md-8 col-xl-9"></div>
+                <div class="col-6 col-md-4 col-xl-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" checked>
+                        <label class="form-check-label" for="flexSwitchCheckDefault" style="color:red;font-weight:bold">Zorunlu</label>
+                    </div>
                 </div>
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
             <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> S </span>
             <span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
-            <!-- 
-            <span class="anketIcerigiEkle"></span> -->
         </div>
     `;
     $(node).parent().parent().append(html);
@@ -30,7 +28,7 @@ function soruSecenekEkle(node){
     var html = `
         <div class="anketSecenekler row">
             <div class="col-10">
-                <input type="text" placeholder="Şıklar">
+                <input type="text" placeholder="Seçenekler">
             </div>
             <!-- Kullanıcı şık ekleme alanı -->
             <div class="col-2 text-center">
@@ -51,25 +49,32 @@ function anketGroupEkle(node){
                 <div class="baslikMetni">
                     <textarea class="text-muted" cols="30" rows="10">Detay bilgisini giriniz</textarea>
                 </div>
-            </div>
-            <div class="anketCoverager">
-                <div class="baslik">
-                    <input type="text" placeholder="Soru Başlığı">
-                </div>
                 <div class="anketSecenekler row">
                     <div class="col-10">
-                        <input type="text" placeholder="Şıklar">
+                        <input type="text" placeholder="Seçenekler">
                     </div>
                     <!-- Kullanıcı şık ekleme alanı -->
                     <div class="col-2 text-center">
                         <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)">+</button>
                     </div>
                 </div>
+            </div>
+            <div class="anketCoverager">
+                <div class="anketSoru">
+                    <input type="text" placeholder="Soru">
+                </div>
+                <div class="row mt-5">
+                    <div class="col-6 col-md-8 col-xl-9"></div>
+                    <div class="col-6 col-md-4 col-xl-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" checked>
+                            <label class="form-check-label" for="flexSwitchCheckDefault" style="color:red;font-weight:bold">Zorunlu</label>
+                        </div>
+                    </div>
+                </div>
                 <!-- Kullanıcı soru ekleme alanı -->
                 <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> S </span>
                 <span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
-                <!-- 
-                <span class="anketIcerigiEkle"></span> -->
             </div>
         </div>
     `;
@@ -82,14 +87,25 @@ function renkAlani(node){
     $(node).css("background-color", renkler[index + 1]);
     $(node).parent().siblings().css("border-left", "4px solid " + renkler[index + 1])
 }
+$(document).ready(function(){
+    $("#anketSoruZorunluluk").click(function(){
+        if($(this).prop("checked")){
+            $(this).siblings("label").css("color","red");
+            $(this).siblings("label").text("Zorunlu");
+        }else{
+            $(this).siblings("label").css("color","green");
+            $(this).siblings("label").text("Serbest");
+        }
+    });
+});
 
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $("#veriGonder").click(function(){
         var UstGrup     = $(".GroupCoverager");
-        var UstList     = {};   // Liste ataması kullanarak sırayı karıştırmayalım
-        var OrtaList    = {};  // Liste ataması kullanarak sırayı karıştırmayalım
-        var AltList     = {};   // Liste ataması kullanarak sırayı karıştırmayalım
+        var UstList     = {};  // Liste ataması kullanarak sırayı karıştırmayalım
+        var secenekList = {};  // Liste ataması kullanarak sırayı karıştırmayalım
+        var soruList    = {};  // Liste ataması kullanarak sırayı karıştırmayalım
 
         $.each(UstGrup, function(key, value){
             var groupElement                = $(value).children(".anketGroupHeadCoverager");
@@ -98,35 +114,28 @@ $(document).ready(function(){
             var groupElementbaslikMetni     = $(groupElement).children(".baslikMetni").children("textarea").val();
             // document.write(groupElementRenk + "<br>" + groupElementBaslik + "<br>" + groupElementbaslikMetni); // Denedik ve geliyor olduğunu gördük
 
+            var groupElementSecenekler      = $(groupElement).children(".anketSecenekler");
+            $.each(groupElementSecenekler, function(key, value){
+                var anketSecenek            = $(value).children(".col-10").children("input").val();
+                secenekList[key]            = anketSecenek;
+            });
+
             var groupAnketGroup             = $(value).children(".anketCoverager"); // Birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
             $.each(groupAnketGroup, function(key, value){
-                var anketSoruBaslik         = $(value).children(".baslik").children("input").val();
-
-                var anketSoruSecenek        = $(value).children(".anketSecenekler") // Yine birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
-                $.each(anketSoruSecenek, function(key, value){
-                    var SecenekVerisi       = $(value).children(".col-10").children("input").val();
-                    AltList[key] = SecenekVerisi; // Ekleme işlemine küçük veriden başlıyoruz.
-                });
-                OrtaList[key] = [anketSoruBaslik, AltList]; // Ekliyoruz
-                AltList = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+                
+                var anketSoru               = $(value).children(".anketSoru").children("input").val();
+                var anketSoruZorunluluk     = $(value).children(".row").children(".col-xl-3").children(".form-check").children("input").prop("checked");
+                soruList[key]               = [anketSoru,anketSoruZorunluluk];
             });
-            var Iclist = [groupElementRenk, groupElementBaslik, groupElementbaslikMetni];
-            UstList[key] = [Iclist, OrtaList] // Ekliyoruz
-            OrtaList = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            var Iclist      = [groupElementRenk, groupElementBaslik, groupElementbaslikMetni];
+            UstList[key]    = [Iclist, secenekList, soruList] // Ekliyoruz
+            secenekList     = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            soruList        = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
-        // document.write(UstList); // Verimiz UstList dosyasına başarıyla eklendi. (Veriler bu metodla görülebilir.)
-        // $.each(UstList, function(key, value){
-        //     document.write(value + "<br>");
-        //     $.each(value[1], function(key, value){
-        //         document.write(value + "<br>");
-        //         $.each(value[1], function(key, value){
-        //             document.write(value + "<br>");
-        //         });
-        //     });
-        // });
         
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
+        
 
         $.post(window.location.href + '/anketAdd', {queryName: [anketBaslik,anketBaslikM],queryString: UstList}, function(data) 
         {
@@ -135,8 +144,6 @@ $(document).ready(function(){
             window.location.href = window.location.href + '/adminAnket';
         }
         });
-        
-        
     });
 });
 
@@ -144,9 +151,9 @@ $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $("#veriGuncelle").click(function(){
         var UstGrup     = $(".GroupCoverager");
-        var UstList     = {};   // Liste ataması kullanarak sırayı karıştırmayalım
-        var OrtaList    = {};   // Liste ataması kullanarak sırayı karıştırmayalım
-        var AltList     = {};   // Liste ataması kullanarak sırayı karıştırmayalım
+        var UstList     = {};  // Liste ataması kullanarak sırayı karıştırmayalım
+        var secenekList = {};  // Liste ataması kullanarak sırayı karıştırmayalım
+        var soruList    = {};  // Liste ataması kullanarak sırayı karıştırmayalım
 
         $.each(UstGrup, function(key, value){
             var groupElement                = $(value).children(".anketGroupHeadCoverager");
@@ -155,30 +162,32 @@ $(document).ready(function(){
             var groupElementbaslikMetni     = $(groupElement).children(".baslikMetni").children("textarea").val();
             // document.write(groupElementRenk + "<br>" + groupElementBaslik + "<br>" + groupElementbaslikMetni); // Denedik ve geliyor olduğunu gördük
 
+            var groupElementSecenekler      = $(groupElement).children(".anketSecenekler");
+            $.each(groupElementSecenekler, function(key, value){
+                var anketSecenek            = $(value).children(".col-10").children("input").val();
+                secenekList[key]            = anketSecenek;
+            });
+
             var groupAnketGroup             = $(value).children(".anketCoverager"); // Birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
             $.each(groupAnketGroup, function(key, value){
-                var anketSoruBaslik         = $(value).children(".baslik").children("input").val();
-
-                var anketSoruSecenek        = $(value).children(".anketSecenekler") // Yine birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
-                $.each(anketSoruSecenek, function(key, value){
-                    var SecenekVerisi       = $(value).children(".col-10").children("input").val();
-                    AltList[key] = SecenekVerisi; // Ekleme işlemine küçük veriden başlıyoruz.
-                });
-                OrtaList[key] = [anketSoruBaslik, AltList]; // Ekliyoruz
-                AltList = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+                var anketSoru               = $(value).children(".anketSoru").children("input").val();
+                var anketSoruZorunluluk     = $(value).children(".row").children(".col-xl-3").children(".form-check").children("input").prop("checked");
+                soruList[key]               = [anketSoru,anketSoruZorunluluk];
             });
-            var Iclist = [groupElementRenk, groupElementBaslik, groupElementbaslikMetni];
-            UstList[key] = [Iclist, OrtaList] // Ekliyoruz
-            OrtaList = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            var Iclist      = [groupElementRenk, groupElementBaslik, groupElementbaslikMetni];
+            UstList[key]    = [Iclist, secenekList, soruList] // Ekliyoruz
+            secenekList     = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            soruList        = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
         
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
         var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
         
-        $pathKonum  = window.location.pathname.split("/");
-        $originKonum = window.location.origin; 
-        $needKonum  = $originKonum +  "/" + $pathKonum[1] + "/" + $pathKonum[2] + "/" + $pathKonum[3];
+        // Konum verisini sürekli olarak buradan değiştirmek yerine bağlantı kısmından istenilen konumu aldım. (ownerController/anketUpdate)
+        $pathKonum          = window.location.pathname.split("/");
+        $originKonum        = window.location.origin; 
+        $needKonum          = $originKonum +  "/" + $pathKonum[1] + "/" + $pathKonum[2] + "/" + $pathKonum[3];
 
         $.post($needKonum + '/anketUpdate', {queryName: [anketBaslik,anketBaslikM,anketID],queryString: UstList}, function(data) 
         {
