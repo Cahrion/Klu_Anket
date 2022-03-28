@@ -30,6 +30,9 @@
 				<div class="baslikMetni">
 					<textarea class="text-muted" cols="30" rows="10" placeholder="Detay bilgisini giriniz."><?php echo $anketBilgisi->metin ?></textarea>
 				</div>
+				<div class="aciklamaMetni">
+					<textarea class="text-muted" cols="30" rows="10" placeholder="Anket hakkında açıklama yapınız."><?php echo $anketBilgisi->aciklama ?></textarea>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-0 col-sm-2"></div>
@@ -84,7 +87,7 @@
 												<?php
 													// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
 												?>
-												<input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" <?php echo $gelenAnketCoveragerlar[1] == 'true'?'checked':'';?>> 
+												<input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" <?php echo $gelenAnketCoveragerlar[1] == 'true'?'checked':'';?> onclick='zorunlulukFaktor(this)'> 
 												<label class="form-check-label" for="flexSwitchCheckDefault" style="color: <?php echo $gelenAnketCoveragerlar[1] == 'true'?'red':'green';?>;font-weight:bold"> <?php echo $gelenAnketCoveragerlar[1] == 'true'?'Zorunlu':'Serbest';?></label>
 											</div>
 										</div>

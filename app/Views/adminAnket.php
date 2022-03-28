@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -11,8 +10,8 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<!-- Bootstrap CSS v5.0.2 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link rel="stylesheet" href="<?php echo $SiteLinki . "public/";?>css/minRequire.css">
-	<link rel="stylesheet" href="<?php echo $SiteLinki . "public/";?>css/admin.css">
+	<link rel="stylesheet" href="<?php echo $SiteLinki . "public/"; ?>css/minRequire.css">
+	<link rel="stylesheet" href="<?php echo $SiteLinki . "public/"; ?>css/admin.css">
 </head>
 
 <body>
@@ -22,27 +21,35 @@
 	<div class="row kluCenter">
 		<div class="col-2"></div>
 		<div class="col-8 pt-3">
-			<div class="adminButton"><a href="<?php echo $SiteLinki . "public/ownerController"?>">+ Yeni Anket Ekle</a></div>
-            <?php 
-					foreach($anketKayitlarim as $anketKaydi){ // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
-			?>	
+			<div class="adminButton"><a href="<?php echo $SiteLinki . "public/ownerController" ?>">+ Yeni Anket Ekle</a></div>
+			<?php
+			foreach ($anketKayitlarim as $anketKaydi) { // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
+			?>
 				<div class="row border border-secondary mt-2">
 					<div class="col-3 p-4"><b>Baslik</b> = <?php echo $anketKaydi->baslik; ?></div>
 					<?php
-						// Ternary yapısıyla anketin durumunu isimlendiriyorum.
-						$onayDurumu = $anketKaydi->onay?"Onaylandı":"Onay Bekleniyor";
+					// Ternary yapısıyla anketin durumunu isimlendiriyorum.
+					$onayDurumu = $anketKaydi->onay ? "Onaylandı" : "Onay Bekleniyor";
 					?>
 					<div class="col-3 p-4"><b>Onay Durumu</b> = <?php echo $onayDurumu; ?> </div>
-					<div class="col-3 pt-3"><a class="btn btn-secondary" href="<?php echo $SiteLinki . "public/ownerController/adminAnketLinkOlustur/" . $anketKaydi->id?>" role="button">Link Oluştur</a></div>
+					<div class="col-3 pt-3">
+						<?php
+						if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
+						?>
+							<a class="btn btn-secondary" href="<?php echo $SiteLinki . "public/ownerController/adminAnketLinkOlustur/" . $anketKaydi->id ?>" role="button">Link Oluştur</a>
+						<?php
+						}
+						?>
+					</div>
 					<div class="col-3 p-4" style="text-align:right">
-						<a href="<?php 	echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Guncelleme20x20.png"?>" ></a>
-						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>" style="color: #0000FF; text-decoration: none;">Güncelle</a>
-						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketSil/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Sil20x20.png"?>"></a>
-						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketSil/" . $anketKaydi->id; ?>" style="color: #FF0000; text-decoration: none;">Sil</a>
+						<a href="<?php echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Guncelleme20x20.png" ?>"></a>
+						<a href="<?php echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>" style="color: #0000FF; text-decoration: none;">Güncelle</a>
+						<a href="<?php echo $SiteLinki . "public/ownerController/adminAnketSil/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Sil20x20.png" ?>"></a>
+						<a href="<?php echo $SiteLinki . "public/ownerController/adminAnketSil/" . $anketKaydi->id; ?>" style="color: #FF0000; text-decoration: none;">Sil</a>
 					</div>
 				</div>
 			<?php
-				}
+			}
 			?>
 		</div>
 		<div class="col-2"></div>
@@ -54,4 +61,5 @@
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
+
 </html>

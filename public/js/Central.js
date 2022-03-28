@@ -11,7 +11,7 @@ function anketIcerigiEkle(node){
                 <div class="col-6 col-md-8 col-xl-9"></div>
                 <div class="col-6 col-md-4 col-xl-3">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" checked>
+                        <input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" onclick='zorunlulukFaktor(this)' checked>
                         <label class="form-check-label" for="flexSwitchCheckDefault" style="color:red;font-weight:bold">Zorunlu</label>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ function anketGroupEkle(node){
                     <div class="col-6 col-md-8 col-xl-9"></div>
                     <div class="col-6 col-md-4 col-xl-3">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" checked>
+                            <input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" onclick='zorunlulukFaktor(this)' checked >
                             <label class="form-check-label" for="flexSwitchCheckDefault" style="color:red;font-weight:bold">Zorunlu</label>
                         </div>
                     </div>
@@ -87,17 +87,15 @@ function renkAlani(node){
     $(node).css("background-color", renkler[index + 1]);
     $(node).parent().siblings().css("border-left", "4px solid " + renkler[index + 1])
 }
-$(document).ready(function(){
-    $("#anketSoruZorunluluk").click(function(){
-        if($(this).prop("checked")){
-            $(this).siblings("label").css("color","red");
-            $(this).siblings("label").text("Zorunlu");
-        }else{
-            $(this).siblings("label").css("color","green");
-            $(this).siblings("label").text("Serbest");
-        }
-    });
-});
+function zorunlulukFaktor(node){
+    if($(node).prop("checked")){
+        $(node).siblings("label").css("color","red");
+        $(node).siblings("label").text("Zorunlu");
+    }else{
+        $(node).siblings("label").css("color","green");
+        $(node).siblings("label").text("Serbest");
+    }
+}
 
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
@@ -129,15 +127,16 @@ $(document).ready(function(){
             });
             var Iclist      = [groupElementRenk, groupElementBaslik, groupElementbaslikMetni];
             UstList[key]    = [Iclist, secenekList, soruList] // Ekliyoruz
-            secenekList     = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
-            soruList        = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            secenekList     = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
         
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
+        var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
         
 
-        $.post(window.location.href + '/anketAdd', {queryName: [anketBaslik,anketBaslikM],queryString: UstList}, function(data) 
+        $.post(window.location.href + '/anketAdd', {queryName: [anketBaslik,anketBaslikM,anketBaslikA],queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {
@@ -176,24 +175,25 @@ $(document).ready(function(){
             });
             var Iclist      = [groupElementRenk, groupElementBaslik, groupElementbaslikMetni];
             UstList[key]    = [Iclist, secenekList, soruList] // Ekliyoruz
-            secenekList     = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
-            soruList        = []; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            secenekList     = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
+            soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
         
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
+        var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
         var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
         
         // Konum verisini sürekli olarak buradan değiştirmek yerine bağlantı kısmından istenilen konumu aldım. (ownerController/anketUpdate)
-        $pathKonum          = window.location.pathname.split("/");
-        $originKonum        = window.location.origin; 
-        $needKonum          = $originKonum +  "/" + $pathKonum[1] + "/" + $pathKonum[2] + "/" + $pathKonum[3];
+        var pathKonum          = window.location.pathname.split("/");
+        var originKonum        = window.location.origin; 
+        var needKonum          = originKonum +  "/" + pathKonum[1] + "/" + pathKonum[2] + "/" + pathKonum[3];
 
-        $.post($needKonum + '/anketUpdate', {queryName: [anketBaslik,anketBaslikM,anketID],queryString: UstList}, function(data) 
+        $.post(needKonum + '/anketUpdate', {queryName: [anketBaslik,anketBaslikM,anketBaslikA,anketID],queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {
-            window.location.href = $needKonum + '/adminAnket';
+            window.location.href = needKonum + '/adminAnket';
         }
         });
         

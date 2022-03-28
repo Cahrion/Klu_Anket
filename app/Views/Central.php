@@ -28,7 +28,10 @@
 					<input type="text" value="ANKET BAŞLIĞI">
 				</div>
 				<div class="baslikMetni">
-					<textarea class="text-muted" cols="30" rows="10">Detay bilgisini giriniz</textarea>
+					<textarea class="text-muted" cols="30" rows="10">Anket üst bilgisini giriniz</textarea>
+				</div>
+				<div class="aciklamaMetni">
+					<textarea class="text-muted" cols="30" rows="10">Anket hakkında açıklama yapınız.</textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -61,7 +64,7 @@
 								<div class="col-6 col-md-8 col-xl-9"></div>
 								<div class="col-6 col-md-4 col-xl-3">
 									<div class="form-check form-switch">
-										<input class="form-check-input" type="checkbox" id="anketSoruZorunluluk" checked>
+										<input class="form-check-input" type="checkbox" id="anketSoruZorunluluk"  onclick='zorunlulukFaktor(this)' checked>
 										<label class="form-check-label" for="flexSwitchCheckDefault" style="color:red;font-weight:bold">Zorunlu</label>
 									</div>
 								</div>

@@ -65,6 +65,7 @@ input:focus{
 }
 .baslikMetni{
     margin-top: 10px;
+    border-bottom: 1px solid grey;
 }
 .baslikMetni textarea{
     border: 0;
@@ -76,6 +77,22 @@ input:focus{
     padding-right: 10px;
 }
 .baslikMetni textarea:focus{
+    outline: none;
+    border: none;
+}
+.aciklamaMetni{
+    margin-top: 10px;
+}
+.aciklamaMetni textarea{
+    border: 0;
+    width: 100%;
+    height: 50px;
+    font-size: large;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.aciklamaMetni textarea:focus{
     outline: none;
     border: none;
 }

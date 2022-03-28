@@ -64,13 +64,14 @@ class IslemModel extends Model {
     // -- Anket için
     // --------------------------------
     
-    public function setAnketProject($gelenYonetici, $baslik, $metin, $serialize, $onay){
+    public function setAnketProject($gelenYonetici, $baslik, $metin, $aciklama, $serialize, $onay){
         // ID verisi girilerek güncelleme işlemi yapılabilir. (Email ve Faktor)
         $db = \Config\Database::connect();
         $data = array(
             "yoneticiID" => $gelenYonetici,
             "baslik" => $baslik,
             "metin" => $metin,
+            "aciklama" => $aciklama,
             "serialize" => $serialize,
             "onay" => $onay
         );
@@ -78,7 +79,7 @@ class IslemModel extends Model {
         return $result;
     }
 
-    public function setAnketProjectUpd($gelenAnketID, $baslik, $metin, $serialize){
+    public function setAnketProjectUpd($gelenAnketID, $baslik, $metin, $aciklama, $serialize){
         // ID verisi girilerek güncelleme işlemi yapılabilir. (Email ve Faktor)
         $db = \Config\Database::connect();
         $data = array(
@@ -87,6 +88,7 @@ class IslemModel extends Model {
         $newData = array(
             "baslik" => $baslik,
             "metin" => $metin,
+            "aciklama" => $aciklama,
             "serialize" => $serialize
         );
         $result = $db->table("anketler")->where($data)->update($newData);
@@ -131,6 +133,17 @@ class IslemModel extends Model {
             "id" => $gelenID
         );
         $result = $db->table("anketler")->delete($data);
+        return $result;
+    }
+
+    public function setAnketResult($gelenAnketID,$gelenSerialize, $gelenIP){
+        $db = \Config\Database::connect();
+        $data = array(
+            "anketID" => $gelenAnketID,
+            "serialize" => $gelenSerialize,
+            "kullaniciIP" => $gelenIP,
+        );
+        $result = $db->table("anketcevaplar")->insert($data);
         return $result;
     }
 }

@@ -35,4 +35,31 @@ class publicAnketler extends Controller
         echo "Böyle bir anketimiz bulunmamaktadır.";
         die();
     }
+    public function anketLoading($gelenAnketID = ""){
+        helper("fonksiyonlar");
+        $Islem  = new IslemModel();
+        if (isset($_POST["queryString"])) {
+            $gelenQuery = $_POST["queryString"];
+        } else {
+            $gelenQuery = "";
+        }
+        if($gelenAnketID != ""){
+            $anketID    = GuvenlikFiltresi($gelenAnketID);
+        }else{
+            $anketID    = "";
+        }
+        // Kullanıcı bilgilerini kullanmak amacıyla IslemModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
+        if ($gelenQuery != "" and $anketID != "") {
+            $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
+            $gelenIp            = $_SERVER["REMOTE_ADDR"]; // IP adresini yeniden cevap vermesini engellemek için tutalım.
+
+            $Islem->setAnketResult($anketID, $gelenSerialize, $gelenIp); 
+
+            echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
+        } else {
+            // Eğer ki verisel bir hata olursa kişiyi KLU sitesine atalım.
+            header("Location: https://www.klu.edu.tr/");
+            exit();
+        }
+    }
 }

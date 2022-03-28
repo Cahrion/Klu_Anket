@@ -78,15 +78,16 @@ class ownerController extends Controller
     }
     public function anketAdd()
     {
+        helper("fonksiyonlar");
         $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
-            if ($_POST["queryName"]) {
+            if (isset($_POST["queryName"])) {
                 $queryName = $_POST["queryName"];
             } else {
                 $queryName = "";
             }
-            if ($_POST["queryString"]) {
+            if (isset($_POST["queryString"])) {
                 $gelenQuery = $_POST["queryString"];
             } else {
                 $gelenQuery = "";
@@ -95,6 +96,7 @@ class ownerController extends Controller
             if ($queryName != "" and $gelenQuery != "") {
                 $gelenBaslik        = $queryName[0]; // [0] parametre göndermede baslik olarak gönderilmişti.
                 $gelenBaslikmetni   = $queryName[1]; // [1] parametre göndermede baslik metni olarak gönderilmişti.
+                $gelenAciklamaMetni = $queryName[2]; // [2] parametre göndermede açıklama metni olarak gönderilmişti.
                 $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
                 $onay               = 0; // Normal olarak 0 lakin üst düzey ise aşağıda düzelticez.
 
@@ -102,7 +104,7 @@ class ownerController extends Controller
                 if ($yoneticiBilgisi->yonetimFaktoru) {
                     $onay           = 1;
                 }
-                $Islem->setAnketProject($yoneticiBilgisi->id, $gelenBaslik, $gelenBaslikmetni, $gelenSerialize, $onay); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
+                $Islem->setAnketProject($yoneticiBilgisi->id, $gelenBaslik, $gelenBaslikmetni, $gelenAciklamaMetni, $gelenSerialize, $onay); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
 
                 echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
             } else {
@@ -116,15 +118,16 @@ class ownerController extends Controller
     }
     public function anketUpdate()
     {
+        helper("fonksiyonlar");
         $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
-            if ($_POST["queryName"]) {
+            if (isset($_POST["queryName"])) {
                 $queryName = $_POST["queryName"];
             } else {
                 $queryName = "";
             }
-            if ($_POST["queryString"]) {
+            if (isset($_POST["queryString"])) {
                 $gelenQuery = $_POST["queryString"];
             } else {
                 $gelenQuery = "";
@@ -132,11 +135,12 @@ class ownerController extends Controller
             // Kullanıcı bilgilerini kullanmak amacıyla IslemModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
             if ($queryName != "" and $gelenQuery != "") {
                 $gelenBaslik        = $queryName[0]; // [0] parametre göndermede baslik olarak gönderilmişti.
-                $gelenBaslikmetni   = $queryName[1]; // [1] parametre göndermede baslik metni olarak gönderilmişti.
-                $gelenID            = $queryName[2]; // [2] parametre göndermede anketin ID değeri olarak gönderilmişti.
+                $gelenBaslikMetni   = $queryName[1]; // [1] parametre göndermede baslik metni olarak gönderilmişti.
+                $gelenAciklamaMetni = $queryName[2]; // [2] parametre göndermede açıklama metni olarak gönderilmişti.
+                $gelenID            = $queryName[3]; // [3] parametre göndermede anketin ID değeri olarak gönderilmişti.
                 $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
 
-                $Islem->setAnketProjectUpd($gelenID, $gelenBaslik, $gelenBaslikmetni, $gelenSerialize); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
+                $Islem->setAnketProjectUpd($gelenID, $gelenBaslik, $gelenBaslikMetni, $gelenAciklamaMetni, $gelenSerialize); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
 
                 echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
             } else {

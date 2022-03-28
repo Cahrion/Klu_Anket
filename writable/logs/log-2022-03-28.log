@@ -152,3 +152,261 @@ CRITICAL - 2022-03-28 06:00:51 --> Uninitialized string offset 0
 #7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #9 {main}
+CRITICAL - 2022-03-28 11:08:13 --> Undefined array key 2
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(98): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 98)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-28 13:53:57 --> Undefined array key "queryString"
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(52): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 52)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('18')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-28 13:54:53 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(42): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 13:54:58 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(42): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 13:54:58 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(42): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 13:54:59 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(42): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 13:54:59 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(42): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 13:55:00 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(42): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 13:58:38 --> Undefined array key "queryString"
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 40)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-28 13:58:42 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(45): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:02:37 --> Undefined array key "queryString"
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 40)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-28 14:02:38 --> Undefined array key "queryString"
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 40)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-28 14:02:38 --> Undefined array key "queryString"
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 40)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->anketLoading('21')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-28 14:03:36 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:03:37 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:03:38 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:04:06 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:04:11 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:04:24 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:04:25 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:04:25 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:04:45 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:04:46 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:07 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:09 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:09 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:10 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:10 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:10 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:10 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:10 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:10 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-28 14:05:11 --> trim(): Argument #1 ($string) must be of type string, array given
+#0 C:\xampp\htdocs\Klu_Anket\app\Helpers\fonksiyonlar_helper.php(55): trim(Array)
+#1 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(86): GuvenlikFiltresi(Array)
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAdd()
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
