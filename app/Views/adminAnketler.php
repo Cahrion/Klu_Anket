@@ -27,7 +27,7 @@
 					foreach($anketKayitlari as $anketKaydi){ // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
 			?>	
 				<div class="row border border-secondary mt-2">
-					<div class="col-3 p-4"><b>Baslik</b> = <?php echo $anketKaydi->baslik; ?></div>
+					<div class="col-3 p-4"><b>Baslik</b> = <a class="text-muted" href="<?php echo $SiteLinki . "public/ownerController/AnketAnaliz/" . $anketKaydi->id ?>"><?php echo $anketKaydi->baslik; ?></a></div>
 					<?php
 						// Ternary yapısıyla anketin durumunu isimlendiriyorum.
                         $onayDurumu     = $anketKaydi->onay?"Onaylandı":"Onaylanmadı";

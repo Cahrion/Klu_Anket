@@ -46,7 +46,56 @@
         $anketUnSerializeVeri = unserialize($anketKaydi->serialize);
         foreach ($anketUnSerializeVeri as $ustKey => $anketGroup) { // $anketGroup -> [0][0] = renkAlani, [0][1] = Group Başlık, [0][2] = Group Metin, [1] => Seçenekler, [2] => Sorular
         ?>
-            <div class="row border border-secondary my-5 anketAlan">
+        
+                <?php
+                    if($anketGroup[0][2] != ""){
+                        ?>
+                            <div style="min-height:100px" class="border border-secondary p-2">
+                                <?php echo $anketGroup[0][2];?>
+                            </div>
+                        <?php
+                    }
+                ?>
+				<div class="table-responsive mb-4 anketAlan">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col" class="text-muted" style="background-color:<?php echo $anketGroup[0][0] ?>;"><?php echo $anketGroup[0][1]; ?></th>
+								<?php
+								foreach ($anketGroup[1] as $anketSecenek) { // Seçenekler oluyor.
+									echo "<th scope='col'>$anketSecenek</th>";
+								}
+								?>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+                                foreach ($anketGroup[2] as $key => $anketSoru) {
+									?>
+										<tr>
+											<td class="soruBasligi">
+												<?php echo ($key + 1) . ". " . $anketSoru[0];?>
+											</td>
+											<?php
+												foreach($anketGroup[1] as $icKey => $anketSecenek){
+													?>	
+														<td class="soruCevaplari">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" value="<?php echo ($key+1) . "-" . $anketSecenek; ?>" name="<?php echo $ustKey . "-" . $key; ?>">
+                                                                <?php // checkbox sorunu yaşanmasın diye key bilgileriyle beraber gelcek veriyi özelleştirdik. ?>
+                                                            </div>
+                                                        </td>
+													<?php
+												}
+											?>
+										</tr>
+									<?php
+								}
+							?>
+						</tbody>
+					</table>
+				</div>
+            <!-- <div class="row border border-secondary my-5 anketAlan">
                 <?php
                     if($anketGroup[0][2] != ""){
                         ?>
@@ -96,7 +145,7 @@
                 <?php
                 }
                 ?>
-            </div>
+            </div> -->
         <?php
         }
         ?>

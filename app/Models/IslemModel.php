@@ -146,6 +146,23 @@ class IslemModel extends Model {
         $result = $db->table("anketcevaplar")->insert($data);
         return $result;
     }
+    public function getAnketResult($gelenAnketID){
+        $db = \Config\Database::connect();
+        $data = array(
+            "anketID" => $gelenAnketID,
+        );
+        $result = $db->table("anketcevaplar")->getWhere($data)->getResult();
+        return $result;
+    }
+    public function getAnketIpReport($gelenAnketID, $gelenIP){ // İp adresiyle önceden anket doldurulmuş mu ona baktık.
+        $db = \Config\Database::connect();
+        $data = array(
+            "anketID" => $gelenAnketID,
+            "kullaniciIP" => $gelenIP
+        );
+        $result = $db->table("anketcevaplar")->getWhere($data)->getRow();
+        return $result;
+    }
 }
 
 ?>

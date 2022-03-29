@@ -271,6 +271,39 @@ class ownerController extends Controller
             exit();
         }
     }
+    public function anketAnaliz($gelenVeri = ""){
+        helper("fonksiyonlar");
+        $Ayar  = new AyarModel();
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            // Gelen veriyi güvenlik taramasından geçiriyoruz eğer gelmediyse geri gönderelim.
+            if ($gelenVeri != "") {
+                $gelenVeri          = GuvenlikFiltresi($gelenVeri);
+                $anketBilgisi = $Islem->getAnketProject($gelenVeri);
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                    $gelenVeri = $Islem->getAnketResult($anketBilgisi->id);
+                    $data = array(
+                        "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
+                        "yonetimBilgi" => $yonetimBilgi,
+                        "anketBilgisi" => $anketBilgisi,
+                        "publicVeri"   => $gelenVeri
+                    );
+                    
+                    return view('adminAnketAnaliz', $data);
+                } else {
+                    // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
+                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                    exit();
+                }
+            }
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+            exit();
+        } else {
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            exit();
+        }
+    }
     // Çıkış yapma yapısı
     public function leave()
     {

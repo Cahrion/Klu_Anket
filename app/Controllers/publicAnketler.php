@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\AyarModel;
 use App\Models\IslemModel;
+use CodeIgniter\Exceptions\AlertError;
 
 \Config\Services::session();
 
@@ -23,11 +24,18 @@ class publicAnketler extends Controller
                     $resultLink = SEO($gelenAnket->baslik,$gelenAnket->id); // Yapının olması gereken SEO halini sorguladık.
                     if($gelenLink == $resultLink){ // Aynı ise siteyi gösterdik.
                         $Ayar  = new AyarModel();
-                        $data = array(
-                            "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
-                            "anketKaydi" => $gelenAnket
-                        );
-                        return view('public/publicAnketler', $data);
+                        $gelenIP = $_SERVER["REMOTE_ADDR"];
+                        // if(!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)){ // Şimdilik kapatıyorum (Sisteme ait verileri düzeltince ve yayınlayınca açılacak.)
+                            $data = array(
+                                "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
+                                "anketKaydi" => $gelenAnket
+                            );
+                            return view('public/publicAnketler', $data);
+                        // }else{
+                        //     echo "<script>Anketimize zaten önceden katılmıştınız...</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
+                        //     header("Location: https://www.klu.edu.tr/");
+                        //     exit();
+                        // }
                     }
                 }
             }

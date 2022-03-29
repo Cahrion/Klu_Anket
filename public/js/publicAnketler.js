@@ -4,9 +4,9 @@ $(document).ready(function(){
         var anketCevaplarListesi = {};
         var anketAlanlar = $(".anketAlan");
         $.each(anketAlanlar, function(keyIlk, value){ // Anket grup verisi (Birden fazla grup bulunursa bu belirteç olacaktır.)
-            var anketSoruCevaplari = $(value).children(".soruCevaplari");
+            var anketSoruCevaplari = $(value).children(".table").children("tbody").children("tr");
             $.each(anketSoruCevaplari, function(keyOrta, value){ // Anket soru verisi (Birden fazla soru bulunursa bu belirteç olacaktır.)
-                var anketSoruCevap = $(value).children(".row").children("div");
+                var anketSoruCevap = $(value).children(".soruCevaplari");
                 $.each(anketSoruCevap, function(keySon, value){ // Anket şık verisi (Birden fazla şık bulunursa bu belirteç olacaktır.)
                     var anketCevap = $(value).children(".form-check").children(".form-check-input").prop("checked");
                     if(anketCevap){
@@ -30,7 +30,6 @@ $(document).ready(function(){
         {
         if(data.length > 0)
         {
-            document.write(data);
             alert("Anket bilgileri başarıyla gönderildi. Anketimize katıldığınız için teşekkür ederiz.");
             window.location.href = "https://www.klu.edu.tr/";
         }
