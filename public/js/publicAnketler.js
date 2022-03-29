@@ -26,9 +26,6 @@ $(document).ready(function(){
         var needKonum          = originKonum +  "/" + pathKonum[1] + "/" + pathKonum[2] + "/" + pathKonum[3];
         var anketBilgisi       = $(this).attr("id");
 
-
-
-        // Sorun Yaşadım. Obje gitmiyor birdahaki çalışmada bakacağım.. (Mola)
         $.post(needKonum + '/anketLoading/' + anketBilgisi, {queryString: anketAlanCevaplarListesi}, function(data) 
         {
         if(data.length > 0)
