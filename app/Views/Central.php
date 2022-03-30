@@ -70,8 +70,8 @@
 								</div>
 							</div>
 							<!-- Kullanıcı soru ekleme alanı -->
-							<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> S </span>
-							<span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
+							<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">S</span>
+							<span class="anketGroupEkle" onclick="anketGroupEkle(this)">G</span>
 							<!-- 
 							<span class="anketIcerigiEkle"></span> -->
 						</div>

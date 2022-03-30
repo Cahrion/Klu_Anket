@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3307
--- Üretim Zamanı: 29 Mar 2022, 14:18:11
+-- Üretim Zamanı: 30 Mar 2022, 20:20:34
 -- Sunucu sürümü: 10.4.19-MariaDB
 -- PHP Sürümü: 8.0.7
 
@@ -40,7 +40,16 @@ CREATE TABLE `anketcevaplar` (
 
 INSERT INTO `anketcevaplar` (`id`, `anketID`, `serialize`, `kullaniciIP`) VALUES
 (1, 21, 'a:1:{i:0;a:2:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";}}', '::1'),
-(2, 21, 'a:1:{i:1;a:5:{i:0;s:3:\"1-B\";i:1;s:3:\"2-A\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-A\";}}', '::1');
+(2, 21, 'a:1:{i:1;a:5:{i:0;s:3:\"1-B\";i:1;s:3:\"2-A\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-A\";}}', '::1'),
+(3, 18, 'a:2:{i:0;a:3:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";i:2;s:3:\"3-C\";}i:1;a:2:{i:0;s:6:\"1-Evet\";i:1;s:14:\"2-Kısmen evet\";}}', '::1'),
+(4, 18, 'a:2:{i:0;a:3:{i:0;s:3:\"1-C\";i:1;s:3:\"2-C\";i:2;s:3:\"3-C\";}i:1;a:2:{i:0;s:16:\"1-Kısmen hayır\";i:1;s:16:\"2-Kısmen hayır\";}}', '::1'),
+(5, 21, 'a:2:{i:0;a:8:{i:0;s:3:\"1-B\";i:1;s:3:\"2-B\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-B\";i:5;s:3:\"6-B\";i:6;s:3:\"7-B\";i:7;s:3:\"8-B\";}i:1;a:5:{i:0;s:3:\"1-B\";i:1;s:3:\"2-B\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-B\";}}', '::1'),
+(6, 21, 'a:1:{i:1;a:1:{i:4;s:3:\"5-B\";}}', '::1'),
+(7, 18, 'a:2:{i:0;a:3:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";i:2;s:3:\"3-A\";}i:1;a:2:{i:0;s:14:\"1-Kısmen evet\";i:1;s:14:\"2-Kısmen evet\";}}', '::1'),
+(8, 18, 'a:2:{i:0;a:3:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";i:2;s:3:\"3-A\";}i:1;a:2:{i:0;s:14:\"1-Kısmen evet\";i:1;s:14:\"2-Kısmen evet\";}}', '::1'),
+(9, 21, 'a:2:{i:0;a:8:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-B\";i:5;s:3:\"6-B\";i:6;s:3:\"7-C\";i:7;s:3:\"8-C\";}i:1;a:5:{i:0;s:3:\"1-D\";i:1;s:3:\"2-D\";i:2;s:3:\"3-D\";i:3;s:3:\"4-D\";i:4;s:3:\"5-D\";}}', '::1'),
+(10, 21, 'a:2:{i:0;a:7:{i:0;s:3:\"1-D\";i:1;s:3:\"2-D\";i:2;s:3:\"3-D\";i:3;s:3:\"4-D\";i:5;s:3:\"6-D\";i:6;s:3:\"7-D\";i:7;s:3:\"8-D\";}i:1;a:5:{i:0;s:3:\"1-D\";i:1;s:3:\"2-D\";i:2;s:3:\"3-D\";i:3;s:3:\"4-D\";i:4;s:3:\"5-D\";}}', '::1'),
+(11, 21, 'a:1:{i:0;a:3:{i:3;s:3:\"4-D\";i:4;s:3:\"5-D\";i:5;s:3:\"6-D\";}}', '::1');
 
 -- --------------------------------------------------------
 
@@ -141,13 +150,13 @@ ALTER TABLE `uyeler`
 -- Tablo için AUTO_INCREMENT değeri `anketcevaplar`
 --
 ALTER TABLE `anketcevaplar`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `anketler`
 --
 ALTER TABLE `anketler`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `ayarlar`

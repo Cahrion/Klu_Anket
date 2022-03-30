@@ -1,6 +1,6 @@
 function anketIcerigiEkle(node){
     $(node).css("display", "none");
-    $(node).siblings("span").css("display", "none");
+    $(node).siblings(".anketGroupEkle").css("display", "none");
     var myColor = $(node).parent().siblings(".anketGroupHeadCoverager").children(".renkAlani").css("background-color");
     var html = `
         <div class="anketCoverager" style="border-left: 4px solid ` + myColor + `">
@@ -17,8 +17,9 @@ function anketIcerigiEkle(node){
                 </div>
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
-            <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> S </span>
-            <span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
+            <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">S</span>
+            <span class="anketGroupEkle" onclick="anketGroupEkle(this)">G</span>
+            <span class="anketIcerigiSil" onclick="anketIcerigiSil(this)">S-</span>
         </div>
     `;
     $(node).parent().parent().append(html);
@@ -42,6 +43,7 @@ function anketGroupEkle(node){
     var html = `
         <div class="GroupCoverager mt-4">
             <div class="anketGroupHeadCoverager">
+                <span class="anketGroupSil" onclick="anketGroupSil(this)">G-</span>
                 <div class="renkAlani" onclick='renkAlani(this)'></div>
                 <div class="baslik">
                     <input type="text" value="Group Başlığı">
@@ -73,12 +75,23 @@ function anketGroupEkle(node){
                     </div>
                 </div>
                 <!-- Kullanıcı soru ekleme alanı -->
-                <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)"> S </span>
-                <span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
+                <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">S</span>
+                <span class="anketGroupEkle" onclick="anketGroupEkle(this)">G</span>
             </div>
         </div>
     `;
     $(".anketPlatform").append(html);
+}
+function anketGroupSil(node){
+    $(node).parent().parent().remove();
+}
+function anketIcerigiSil(node){
+    var html = `
+        <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">S</span>
+        <span class="anketGroupEkle" onclick="anketGroupEkle(this)">G</span>
+    `;
+    $(node).parent().prev().append(html);
+    $(node).parent().remove();
 }
 function renkAlani(node){
     var renkler = ["rgb(0, 0, 0)", "rgb(0, 0, 255)","rgb(255, 0, 255)","cyan", "rgb(0, 224, 0)", "rgb(160, 0, 255)", "rgb(255, 255, 0)"];

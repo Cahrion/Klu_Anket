@@ -41,8 +41,8 @@
 					<div class="col-3 p-4" style="text-align:right">
 						<a href="<?php 	echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Guncelleme20x20.png"?>" ></a>
 						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketGuncelle/" . $anketKaydi->id; ?>" style="color: #0000FF; text-decoration: none;">Güncelle</a>
-						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketSil/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Sil20x20.png"?>"></a>
-						<a href="<?php  echo $SiteLinki . "public/ownerController/adminAnketSil/" . $anketKaydi->id; ?>" style="color: #FF0000; text-decoration: none;">Sil</a>
+						<a href="<?php  echo $SiteLinki . "public/ownerController/ustAdminAnketSil/" . $anketKaydi->id; ?>"><img src="<?php echo $SiteLinki . "public/img/Sil20x20.png"?>"></a>
+						<a href="<?php  echo $SiteLinki . "public/ownerController/ustAdminAnketSil/" . $anketKaydi->id; ?>" style="color: #FF0000; text-decoration: none;">Sil</a>
 					</div>
 				</div>
 			<?php

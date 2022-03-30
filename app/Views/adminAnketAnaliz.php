@@ -40,13 +40,11 @@
 			}
 
 			foreach ($publicVeri as $publicRowVeri) { // getResult() yapısıyla geldiği için öncelikle bir foreach döngüsüne girelim.
-
+				$gelenUnSerializeVeri = unserialize($publicRowVeri->serialize);
 				foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
 					foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
 						$ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
-
 						$SoruGrouplari[$keyGroup][1][$ayracSoru[0]][$ayracSoru[1]] += 1; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
-
 					}
 				}
 			}

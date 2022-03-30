@@ -173,7 +173,6 @@ class ownerController extends Controller
             exit();
         }
     }
-
     public function adminAnketSil($gelenVeri = "")
     {
         helper("fonksiyonlar");
@@ -188,7 +187,7 @@ class ownerController extends Controller
                 // Kişi kendi üyeliğinin dışında bir anketi silmeye çalışırsa onu engelleyelim
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
 
-                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID)) { 
                     $Islem->setAnketProjectDel($gelenVeri); // ID değerine göre anketi sildik.
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
@@ -198,6 +197,30 @@ class ownerController extends Controller
             }
             header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
             exit();
+        } else {
+            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            exit();
+        }
+    }
+    public function ustAdminAnketSil($gelenVeri = "")
+    {
+        helper("fonksiyonlar");
+        $Ayar  = new AyarModel();
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            // Gelen veriyi güvenlik taramasından geçiriyoruz eğer gelmediyse geri gönderelim.
+            if ($yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                if ($gelenVeri != "") {
+                    $gelenVeri          = GuvenlikFiltresi($gelenVeri);
+                    $Islem->setAnketProjectDel($gelenVeri); // ID değerine göre anketi sildik.
+                }
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/anketler");
+                exit();
+            } else {
+                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+                exit();
+            }
         } else {
             header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
             exit();
