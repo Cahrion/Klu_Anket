@@ -4,7 +4,6 @@
 
 ```python
 -> Anketör veya Üst Yönetici sonuçları excel olarak alma
--> İkinci doldurmaya karşı güvenlik
 -> Captcha eklentisi.
 -> Giriş ekranı (Pasif - Aktif) yapma
 -> Bulundukları fakülte verilerinin alımı.
