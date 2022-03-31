@@ -39,10 +39,17 @@
 				<div class="col-12 col-sm-8 anketPlatform">
 					<?php
 					$gelenUnSerializeVeri = unserialize($anketBilgisi->serialize);
-					foreach ($gelenUnSerializeVeri as $gelenGroupCoveragerler) { // [0][0] = renkAlani, [0][1] = Group başlığı, [0][2] = Group Detay Metni, [1] => Seçenekler, [2] => Sorular
+					foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupCoveragerler) { // [0][0] = renkAlani, [0][1] = Group başlığı, [0][2] = Group Detay Metni, [1] => Seçenekler, [2] => Sorular
 					?>
 						<div class="GroupCoverager mt-4">
 							<div class="anketGroupHeadCoverager">
+								<?php
+									if($keyGroup != 0){
+										?>
+											<span class="anketGroupSil" onclick="anketGroupSil(this)">G-</span>
+										<?php
+									}
+								?>
 								<div class="renkAlani" onclick='renkAlani(this)' style="background-color: <?php echo $gelenGroupCoveragerler[0][0] ?>"></div>
 								<div class="baslik">
 									<input type="text" value="<?php echo $gelenGroupCoveragerler[0][1] ?>" value="Group Başlığı">
@@ -100,6 +107,13 @@
 										<span class="anketGroupEkle" onclick="anketGroupEkle(this)"> G </span>
 									<?php
 									}
+									?>
+									<?php
+										if(($keyTwo+1) != 1){
+											?>
+												<span class="anketIcerigiSil" onclick="anketIcerigiSil(this)">S-</span>
+											<?php
+										}
 									?>
 								</div>
 							<?php

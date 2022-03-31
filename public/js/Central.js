@@ -206,7 +206,7 @@ $(document).ready(function(){
         {
         if(data.length > 0)
         {
-            window.location.href = needKonum + '/adminAnket';
+            history.back();
         }
         });
         
