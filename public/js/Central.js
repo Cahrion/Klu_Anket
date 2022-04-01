@@ -123,6 +123,24 @@ function anketGirisZorunluluk(node){
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $("#veriGonder").click(function(){
+        
+        // Üst anket verilerin alımı.
+        var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
+        if(anketBaslik == ""){
+            $(".anketHeadCoverager").children(".baslik").children("input").focus()
+            return $(".anketHeadCoverager").children(".baslik").children("input").val("Burası boş geçilemez.");
+        }
+        var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
+        var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
+        var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
+        if(anketGiris){
+            anketGiris = 1;
+        }else{
+            anketGiris = 0;
+        }
+        
+        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketGiris];
+
         var UstGrup     = $(".GroupCoverager");
         var UstList     = {};  // Liste ataması kullanarak sırayı karıştırmayalım
         var secenekList = {};  // Liste ataması kullanarak sırayı karıştırmayalım
@@ -154,17 +172,7 @@ $(document).ready(function(){
             soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
         
-        var anketBaslik   = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
-        var anketBaslikM  = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
-        var anketBaslikA  = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
-        var anketGiris    = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
-        if(anketGiris){
-            anketGiris = 1;
-        }else{
-            anketGiris = 0;
-        }
-
-        $.post(window.location.href + '/anketAdd', {queryName: [anketBaslik,anketBaslikM,anketBaslikA,anketGiris],queryString: UstList}, function(data) 
+        $.post(window.location.href + '/anketAdd', {queryName: temelAnketVerileri,queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {
@@ -177,6 +185,25 @@ $(document).ready(function(){
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $("#veriGuncelle").click(function(){
+
+        // Üst anket verilerin alımı.
+        var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
+        if(anketBaslik == ""){
+            $(".anketHeadCoverager").children(".baslik").children("input").focus()
+            return $(".anketHeadCoverager").children(".baslik").children("input").val("Burası boş geçilemez.");
+        }
+        var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
+        var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
+        var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
+        var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
+        if(anketGiris){
+            anketGiris = 1;
+        }else{
+            anketGiris = 0;
+        }
+        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketGiris,anketID];
+
+        // Anket içinin verilerinin alımı.
         var UstGrup     = $(".GroupCoverager");
         var UstList     = {};  // Liste ataması kullanarak sırayı karıştırmayalım
         var secenekList = {};  // Liste ataması kullanarak sırayı karıştırmayalım
@@ -186,6 +213,10 @@ $(document).ready(function(){
             var groupElement                = $(value).children(".anketGroupHeadCoverager");
             var groupElementRenk            = $(groupElement).children(".renkAlani").css("background-color");
             var groupElementBaslik          = $(groupElement).children(".baslik").children("input").val();
+            if(groupElementBaslik == ""){
+                document.write(groupElementBaslik);
+                return $(groupElementBaslik).focus();
+            }
             var groupElementbaslikMetni     = $(groupElement).children(".baslikMetni").children("textarea").val();
             // document.write(groupElementRenk + "<br>" + groupElementBaslik + "<br>" + groupElementbaslikMetni); // Denedik ve geliyor olduğunu gördük
 
@@ -207,17 +238,6 @@ $(document).ready(function(){
             soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
         
-        var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
-        var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
-        var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
-        var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
-        var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
-        if(anketGiris){
-            anketGiris = 1;
-        }else{
-            anketGiris = 0;
-        }
-        
         // Konum verisini sürekli olarak buradan değiştirmek yerine bağlantı kısmından istenilen konumu aldım. (ownerController/anketUpdate)
         var pathKonum          = window.location.pathname.split("/");
         pathKonum = pathKonum.splice(0,pathKonum.length-2);
@@ -230,7 +250,7 @@ $(document).ready(function(){
         })
         var needKonum          = originKonum + realPath;
 
-        $.post(needKonum + '/anketUpdate', {queryName: [anketBaslik,anketBaslikM,anketBaslikA,anketGiris,anketID],queryString: UstList}, function(data) 
+        $.post(needKonum + '/anketUpdate', {queryName: temelAnketVerileri,queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {

@@ -75,7 +75,15 @@
 									?>
 										<tr>
 											<td class="soruBasligi">
-												<?php echo ($key + 1) . ". " . $anketSoru[0];?>
+                                                <?php
+                                                    if($anketSoru[1] == "true"){
+                                                        $anketZorunluluk = "<span class='zorunluAlan' value='" . $ustKey . "-" . $key+1 . "'>(*)</span>";
+                                                    }else{
+                                                        $anketZorunluluk = "";
+                                                    }
+                                                ?>
+                                                <span class="soruMetni"><?php echo ($key + 1) . ". " . $anketSoru[0]; ?></span>
+                                                <?php echo $anketZorunluluk;?>
 											</td>
 											<?php
 												foreach($anketGroup[1] as $icKey => $anketSecenek){
@@ -83,7 +91,7 @@
 														<td class="soruCevaplari">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="radio" value="<?php echo ($key+1) . "-" . $anketSecenek; ?>" name="<?php echo $ustKey . "-" . $key; ?>">
-                                                                <?php // checkbox sorunu yaşanmasın diye key bilgileriyle beraber gelcek veriyi özelleştirdik. ?>
+                                                                <?php // checkbox sorunu yaşanmasın diye key bilgileriyle beraber gelicek veriyi özelleştirdik. ?>
                                                             </div>
                                                         </td>
 													<?php

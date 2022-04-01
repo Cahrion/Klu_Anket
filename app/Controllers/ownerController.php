@@ -83,12 +83,29 @@ class ownerController extends Controller
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             if (isset($_POST["queryName"])) {
-                $queryName = $_POST["queryName"];
+                $queryName = [];
+                foreach($_POST["queryName"] as $queryNameKey => $queryNameVeri){
+                    $queryName[$queryNameKey] = GuvenlikFiltresi($queryNameVeri);
+                }
             } else {
                 $queryName = "";
             }
             if (isset($_POST["queryString"])) {
-                $gelenQuery = $_POST["queryString"];
+                $gelenQuery = [];
+                foreach($_POST["queryString"] as $keyGroup => $queryStringGroup){ // Groupları aldık.
+                    foreach($queryStringGroup as $keyGroupIn => $queryStringGroupIn){ // Group içindeki bilgileri aldık.
+                        foreach($queryStringGroupIn as $keyGroupDetay => $queryStringDetay){ // Group içinin detaylarını aldık.
+                            $queryStringBilgi = is_array($queryStringDetay); // Group içinde eğer array yapısı varsa ki (Sorular array yapısında geliyor.)
+                            if($queryStringBilgi){ // Array yapısında gelenleri bir daha for döngüsüne aldık.
+                                foreach($queryStringDetay as $keyGroupSoruDetay => $queryStringSoruDetay){
+                                    $gelenQuery[$keyGroup][$keyGroupIn][$keyGroupDetay][$keyGroupSoruDetay] = GuvenlikFiltresi($queryStringSoruDetay); // Guvenlik filtresi uygulayıp yeniden gönderdik.
+                                }
+                            }else{
+                                $gelenQuery[$keyGroup][$keyGroupIn][$keyGroupDetay] = GuvenlikFiltresi($queryStringDetay); // Guvenlik filtresi uygulayıp yeniden gönderdik.
+                            }
+                        }
+                    }
+                }
             } else {
                 $gelenQuery = "";
             }
@@ -123,13 +140,30 @@ class ownerController extends Controller
         $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
+            $queryName = [];
             if (isset($_POST["queryName"])) {
-                $queryName = $_POST["queryName"];
+                foreach($_POST["queryName"] as $queryNameKey => $queryNameVeri){
+                    $queryName[$queryNameKey] = GuvenlikFiltresi($queryNameVeri);
+                }
             } else {
                 $queryName = "";
             }
             if (isset($_POST["queryString"])) {
-                $gelenQuery = $_POST["queryString"];
+                $gelenQuery = [];
+                foreach($_POST["queryString"] as $keyGroup => $queryStringGroup){ // Groupları aldık.
+                    foreach($queryStringGroup as $keyGroupIn => $queryStringGroupIn){ // Group içindeki bilgileri aldık.
+                        foreach($queryStringGroupIn as $keyGroupDetay => $queryStringDetay){ // Group içinin detaylarını aldık.
+                            $queryStringBilgi = is_array($queryStringDetay); // Group içinde eğer array yapısı varsa ki (Sorular array yapısında geliyor.)
+                            if($queryStringBilgi){ // Array yapısında gelenleri bir daha for döngüsüne aldık.
+                                foreach($queryStringDetay as $keyGroupSoruDetay => $queryStringSoruDetay){
+                                    $gelenQuery[$keyGroup][$keyGroupIn][$keyGroupDetay][$keyGroupSoruDetay] = GuvenlikFiltresi($queryStringSoruDetay); // Guvenlik filtresi uygulayıp yeniden gönderdik.
+                                }
+                            }else{
+                                $gelenQuery[$keyGroup][$keyGroupIn][$keyGroupDetay] = GuvenlikFiltresi($queryStringDetay); // Guvenlik filtresi uygulayıp yeniden gönderdik.
+                            }
+                        }
+                    }
+                }
             } else {
                 $gelenQuery = "";
             }
