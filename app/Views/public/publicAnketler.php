@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="text-center mt-5 pb-2" style="border-bottom:1px dotted grey">
             <img src="<?php echo $SiteLinki . "public/" ?>img/kluLogo.jpg" alt="KLU" title="KLU">
@@ -95,57 +96,6 @@
 						</tbody>
 					</table>
 				</div>
-            <!-- <div class="row border border-secondary my-5 anketAlan">
-                <?php
-                    if($anketGroup[0][2] != ""){
-                        ?>
-                            <div class="col-12" style="min-height:100px">
-                                <?php echo $anketGroup[0][2];?>
-                            </div>
-                        <?php
-                    }
-                ?>
-                <div class="col-8 col-md-10 text-center anketTabAlan" style="background-color:<?php echo $anketGroup[0][0] ?>;color:white"><?php echo $anketGroup[0][1]; ?></div>
-                <div class="col-4 col-md-2 anketTabAlan">
-                    <div class="row text-center">
-                        <?php
-                        $gelenMiktar = count($anketGroup[1]);
-                        $gelenYuzde  = 100 / $gelenMiktar;
-                        foreach ($anketGroup[1] as $anketSecenek) {
-                        ?>
-                            <div style="width:<?php echo $gelenYuzde; ?>%" class="border border-secondary"><?php echo $anketSecenek ?></div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-
-                <?php
-                foreach ($anketGroup[2] as $key => $anketSoru) {
-                ?>
-                    <div class="col-8 col-md-10 soruBasligi">
-                        <?php echo ($key + 1) . ". " . $anketSoru[0] ?>
-                    </div>
-                    <div class="col-4 col-md-2 soruCevaplari">
-                        <div class="row">
-                            <?php
-                            foreach ($anketGroup[1] as $icKey => $anketSecenek) {
-                            ?>
-                                <div style="width:<?php echo $gelenYuzde; ?>%" class="border border-secondary">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="<?php echo ($key+1) . "-" . $anketSecenek; ?>" name="<?php echo $ustKey . "-" . $key; ?>">
-                                        <?php // checkbox sorunu yaşanmasın diye key bilgileriyle beraber gelcek veriyi özelleştirdik. ?>
-                                    </div>
-                                </div>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
-                <?php
-                }
-                ?>
-            </div> -->
         <?php
         }
         ?>

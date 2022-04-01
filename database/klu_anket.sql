@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3307
--- Üretim Zamanı: 30 Mar 2022, 20:20:34
+-- Üretim Zamanı: 01 Nis 2022, 21:01:14
 -- Sunucu sürümü: 10.4.19-MariaDB
 -- PHP Sürümü: 8.0.7
 
@@ -63,6 +63,7 @@ CREATE TABLE `anketler` (
   `baslik` varchar(255) NOT NULL,
   `metin` text NOT NULL,
   `aciklama` text NOT NULL,
+  `anketGiris` tinyint(1) NOT NULL,
   `serialize` text NOT NULL,
   `onay` tinyint(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -71,9 +72,10 @@ CREATE TABLE `anketler` (
 -- Tablo döküm verisi `anketler`
 --
 
-INSERT INTO `anketler` (`id`, `yoneticiID`, `baslik`, `metin`, `aciklama`, `serialize`, `onay`) VALUES
-(18, 3, '2. Anket Deneme Töreni', 'Detaylar ana sayfada sizlerle olucaktır.', '', 'a:2:{i:0;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:17:\"Group Başlığı\";i:2;s:0:\"\";}i:1;a:4:{i:0;s:1:\"A\";i:1;s:1:\"B\";i:2;s:1:\"C\";i:3;s:1:\"D\";}i:2;a:3:{i:0;a:2:{i:0;s:20:\"Kim daha büyüktür\";i:1;s:4:\"true\";}i:1;a:2:{i:0;s:32:\"Hangisi Alfabede en başa gelir.\";i:1;s:4:\"true\";}i:2;a:2:{i:0;s:42:\"Dersi geçmek için en iyi not hangisidir.\";i:1;s:4:\"true\";}}}i:1;a:3:{i:0;a:3:{i:0;s:14:\"rgb(0, 0, 255)\";i:1;s:5:\"Zafer\";i:2;s:57:\"Bu kısımda zaferle alakalı bir kaç veri verilecektir.\";}i:1;a:4:{i:0;s:4:\"Evet\";i:1;s:12:\"Kısmen evet\";i:2;s:14:\"Kısmen hayır\";i:3;s:6:\"Hayır\";}i:2;a:2:{i:0;a:2:{i:0;s:40:\"Zafer kazanmakla aynı anlamda mıdır ?\";i:1;s:4:\"true\";}i:1;a:2:{i:0;s:36:\"Zafer için her şey mubah mıdır ?\";i:1;s:4:\"true\";}}}}', 1),
-(21, 3, '3. Anket Girişimi', 'Değerli Akademik Personelimiz, \n\nAşağıda sunulan anket, Kırklareli üniversitesi \nbla bla bla bla bla bla bla\n', 'Anket 5 şıktan oluşmakta ve şıkları doğru işaretlerseniz seviniriz.', 'a:2:{i:0;a:3:{i:0;a:3:{i:0;s:14:\"rgb(0, 0, 255)\";i:1;s:12:\"Soru grubu 1\";i:2;s:0:\"\";}i:1;a:4:{i:0;s:1:\"A\";i:1;s:1:\"B\";i:2;s:1:\"C\";i:3;s:1:\"D\";}i:2;a:8:{i:0;a:2:{i:0;s:9:\"İlk Soru\";i:1;s:4:\"true\";}i:1;a:2:{i:0;s:12:\"İkinci Soru\";i:1;s:4:\"true\";}i:2;a:2:{i:0;s:11:\"Ucuncu Soru\";i:1;s:4:\"true\";}i:3;a:2:{i:0;s:9:\"Dort Soru\";i:1;s:4:\"true\";}i:4;a:2:{i:0;s:9:\"Beş Soru\";i:1;s:4:\"true\";}i:5;a:2:{i:0;s:10:\"Altı Soru\";i:1;s:4:\"true\";}i:6;a:2:{i:0;s:9:\"Yedi Soru\";i:1;s:4:\"true\";}i:7;a:2:{i:0;s:10:\"Sekiz Soru\";i:1;s:4:\"true\";}}}i:1;a:3:{i:0;a:3:{i:0;s:16:\"rgb(255, 0, 255)\";i:1;s:5:\"Zafer\";i:2;s:51:\"Bu kısımda zafer konulu şeyler konuşulacaktır.\";}i:1;a:4:{i:0;s:1:\"A\";i:1;s:1:\"B\";i:2;s:1:\"C\";i:3;s:1:\"D\";}i:2;a:5:{i:0;a:2:{i:0;s:6:\"Soru 1\";i:1;s:4:\"true\";}i:1;a:2:{i:0;s:6:\"Soru 2\";i:1;s:4:\"true\";}i:2;a:2:{i:0;s:6:\"Soru 3\";i:1;s:4:\"true\";}i:3;a:2:{i:0;s:6:\"Soru 4\";i:1;s:4:\"true\";}i:4;a:2:{i:0;s:6:\"Soru 5\";i:1;s:4:\"true\";}}}}', 1);
+INSERT INTO `anketler` (`id`, `yoneticiID`, `baslik`, `metin`, `aciklama`, `anketGiris`, `serialize`, `onay`) VALUES
+(18, 3, '2. Anket Deneme Töreni', 'Detaylar ana sayfada sizlerle olucaktır.', '', 1, 'a:2:{i:0;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:17:\"Group Başlığı\";i:2;s:0:\"\";}i:1;a:4:{i:0;s:1:\"A\";i:1;s:1:\"B\";i:2;s:1:\"C\";i:3;s:1:\"D\";}i:2;a:4:{i:0;a:2:{i:0;s:20:\"Kim daha büyüktür\";i:1;s:4:\"true\";}i:1;a:2:{i:0;s:32:\"Hangisi Alfabede en başa gelir.\";i:1;s:4:\"true\";}i:2;a:2:{i:0;s:42:\"Dersi geçmek için en iyi not hangisidir.\";i:1;s:4:\"true\";}i:3;a:2:{i:0;s:0:\"\";i:1;s:4:\"true\";}}}i:1;a:3:{i:0;a:3:{i:0;s:14:\"rgb(0, 0, 255)\";i:1;s:5:\"Zafer\";i:2;s:57:\"Bu kısımda zaferle alakalı bir kaç veri verilecektir.\";}i:1;a:4:{i:0;s:4:\"Evet\";i:1;s:12:\"Kısmen evet\";i:2;s:14:\"Kısmen hayır\";i:3;s:6:\"Hayır\";}i:2;a:2:{i:0;a:2:{i:0;s:40:\"Zafer kazanmakla aynı anlamda mıdır ?\";i:1;s:4:\"true\";}i:1;a:2:{i:0;s:36:\"Zafer için her şey mubah mıdır ?\";i:1;s:4:\"true\";}}}}', 1),
+(21, 3, '3. Anket Girişimi', 'Değerli Akademik Personelimiz, \n\nAşağıda sunulan anket, Kırklareli üniversitesi \nbla bla bla bla bla bla bla\n', 'Anket 5 şıktan oluşmakta ve şıkları doğru işaretlerseniz seviniriz.', 0, 'a:2:{i:0;a:3:{i:0;a:3:{i:0;s:14:\"rgb(0, 0, 255)\";i:1;s:12:\"Soru grubu 1\";i:2;s:0:\"\";}i:1;a:4:{i:0;s:1:\"A\";i:1;s:1:\"B\";i:2;s:1:\"C\";i:3;s:1:\"D\";}i:2;a:8:{i:0;a:2:{i:0;s:9:\"İlk Soru\";i:1;s:4:\"true\";}i:1;a:2:{i:0;s:12:\"İkinci Soru\";i:1;s:4:\"true\";}i:2;a:2:{i:0;s:11:\"Ucuncu Soru\";i:1;s:4:\"true\";}i:3;a:2:{i:0;s:9:\"Dort Soru\";i:1;s:4:\"true\";}i:4;a:2:{i:0;s:9:\"Beş Soru\";i:1;s:4:\"true\";}i:5;a:2:{i:0;s:10:\"Altı Soru\";i:1;s:4:\"true\";}i:6;a:2:{i:0;s:9:\"Yedi Soru\";i:1;s:4:\"true\";}i:7;a:2:{i:0;s:10:\"Sekiz Soru\";i:1;s:4:\"true\";}}}i:1;a:3:{i:0;a:3:{i:0;s:16:\"rgb(255, 0, 255)\";i:1;s:5:\"Zafer\";i:2;s:51:\"Bu kısımda zafer konulu şeyler konuşulacaktır.\";}i:1;a:4:{i:0;s:1:\"A\";i:1;s:1:\"B\";i:2;s:1:\"C\";i:3;s:1:\"D\";}i:2;a:5:{i:0;a:2:{i:0;s:6:\"Soru 1\";i:1;s:4:\"true\";}i:1;a:2:{i:0;s:6:\"Soru 2\";i:1;s:4:\"true\";}i:2;a:2:{i:0;s:6:\"Soru 3\";i:1;s:4:\"true\";}i:3;a:2:{i:0;s:6:\"Soru 4\";i:1;s:4:\"true\";}i:4;a:2:{i:0;s:6:\"Soru 5\";i:1;s:4:\"true\";}}}}', 1),
+(31, 3, 'ANKET BAŞLIĞI', 'Anket üst bilgisini giriniz', 'Anket hakkında açıklama yapınız.', 0, 'a:3:{i:0;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:17:\"Group Başlığı\";i:2;s:23:\"Detay bilgisini giriniz\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:4:\"true\";}}}i:1;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:17:\"Group Başlığı\";i:2;s:23:\"Detay bilgisini giriniz\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:4:\"true\";}}}i:2;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:17:\"Group Başlığı\";i:2;s:23:\"Detay bilgisini giriniz\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:4:\"true\";}}}}', 1);
 
 -- --------------------------------------------------------
 
@@ -156,7 +158,7 @@ ALTER TABLE `anketcevaplar`
 -- Tablo için AUTO_INCREMENT değeri `anketler`
 --
 ALTER TABLE `anketler`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `ayarlar`

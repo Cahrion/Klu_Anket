@@ -33,6 +33,15 @@
 				<div class="aciklamaMetni">
 					<textarea class="text-muted" cols="30" rows="10">Anket hakkında açıklama yapınız.</textarea>
 				</div>
+				<div class="row">
+					<div class="col-6 col-md-8 col-xl-9"></div>
+					<div class="col-6 col-md-4 col-xl-3">
+						<div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="anketGirisZorunluluk" onclick="anketGirisZorunluluk(this)" checked>
+							<label class="form-check-label" for="flexSwitchCheckDefault" style="color:red;font-weight:bold">Uyelik Şart</label>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-0 col-sm-2"></div>

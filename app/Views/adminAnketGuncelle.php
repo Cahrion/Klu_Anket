@@ -33,6 +33,18 @@
 				<div class="aciklamaMetni">
 					<textarea class="text-muted" cols="30" rows="10" placeholder="Anket hakkında açıklama yapınız."><?php echo $anketBilgisi->aciklama ?></textarea>
 				</div>
+				<div class="row">
+					<div class="col-6 col-md-8 col-xl-9"></div>
+					<div class="col-6 col-md-4 col-xl-3">
+						<div class="form-check form-switch">
+							<?php
+								// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
+							?>
+							<input class="form-check-input" type="checkbox" id="anketGirisZorunluluk" <?php echo $anketBilgisi->anketGiris?'checked':'';?> onclick='anketGirisZorunluluk(this)'> 
+							<label class="form-check-label" for="flexSwitchCheckDefault" style="color: <?php echo $anketBilgisi->anketGiris?'red':'green';?>;font-weight:bold"> <?php echo $anketBilgisi->anketGiris?'Uyelik Şart':'Uyelik Şart Değil';?></label>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-0 col-sm-2"></div>

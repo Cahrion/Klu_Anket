@@ -109,6 +109,16 @@ function zorunlulukFaktor(node){
         $(node).siblings("label").text("Serbest");
     }
 }
+function anketGirisZorunluluk(node){
+    if($(node).prop("checked")){
+        $(node).siblings("label").css("color","red");
+        $(node).siblings("label").text("Uyelik Şart");
+    }else{
+        $(node).siblings("label").css("color","green");
+        $(node).siblings("label").text("Uyelik Şart Değil");
+    }
+}
+
 
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
@@ -144,12 +154,17 @@ $(document).ready(function(){
             soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
         
-        var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
-        var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
-        var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
-        
+        var anketBaslik   = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
+        var anketBaslikM  = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
+        var anketBaslikA  = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
+        var anketGiris    = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
+        if(anketGiris){
+            anketGiris = 1;
+        }else{
+            anketGiris = 0;
+        }
 
-        $.post(window.location.href + '/anketAdd', {queryName: [anketBaslik,anketBaslikM,anketBaslikA],queryString: UstList}, function(data) 
+        $.post(window.location.href + '/anketAdd', {queryName: [anketBaslik,anketBaslikM,anketBaslikA,anketGiris],queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {
@@ -195,14 +210,27 @@ $(document).ready(function(){
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children("input").val(); // Anket Başlığı
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children("textarea").val(); // Anket Metni
         var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children("textarea").val(); // Anket Açıklama Metni
+        var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
         var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
+        if(anketGiris){
+            anketGiris = 1;
+        }else{
+            anketGiris = 0;
+        }
         
         // Konum verisini sürekli olarak buradan değiştirmek yerine bağlantı kısmından istenilen konumu aldım. (ownerController/anketUpdate)
         var pathKonum          = window.location.pathname.split("/");
-        var originKonum        = window.location.origin; 
-        var needKonum          = originKonum +  "/" + pathKonum[1] + "/" + pathKonum[2] + "/" + pathKonum[3];
+        pathKonum = pathKonum.splice(0,pathKonum.length-2);
+        pathKonum = pathKonum.splice(1);
 
-        $.post(needKonum + '/anketUpdate', {queryName: [anketBaslik,anketBaslikM,anketBaslikA,anketID],queryString: UstList}, function(data) 
+        var originKonum        = window.location.origin;
+        var realPath = "/";
+        pathKonum.forEach(item => {
+            realPath += item + "/";
+        })
+        var needKonum          = originKonum + realPath;
+
+        $.post(needKonum + '/anketUpdate', {queryName: [anketBaslik,anketBaslikM,anketBaslikA,anketGiris,anketID],queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {

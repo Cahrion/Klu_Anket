@@ -5,7 +5,6 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\AyarModel;
 use App\Models\IslemModel;
-use CodeIgniter\Exceptions\AlertError;
 
 \Config\Services::session();
 
@@ -23,19 +22,36 @@ class publicAnketler extends Controller
 
                     $resultLink = SEO($gelenAnket->baslik,$gelenAnket->id); // Yapının olması gereken SEO halini sorguladık.
                     if($gelenLink == $resultLink){ // Aynı ise siteyi gösterdik.
-                        $Ayar  = new AyarModel();
-                        $gelenIP = $_SERVER["REMOTE_ADDR"];
-                        // if(!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)){ // Şimdilik kapatıyorum (Sisteme ait verileri düzeltince ve yayınlayınca açılacak.)
-                            $data = array(
-                                "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
-                                "anketKaydi" => $gelenAnket
-                            );
-                            return view('public/publicAnketler', $data);
-                        // }else{
-                        //     echo "<script>Anketimize zaten önceden katılmıştınız...</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
-                        //     header("Location: https://www.klu.edu.tr/");
-                        //     exit();
-                        // }
+                        if(isset($_SESSION["Yonetici"])){
+                            $yonetimBilgi       = $Islem->getControlMember($_SESSION["Yonetici"]);
+                            $yonetimFaktoru     = $yonetimBilgi->yonetimFaktoru;
+                        }else{
+                            $yonetimFaktoru = 0;
+                        }
+                        if($gelenAnket->onay or $yonetimFaktoru){
+                            if($gelenAnket->anketGiris){ 
+                                if(!isset($_SESSION["Yonetici"])){
+                                    $Ayar = new AyarModel();
+                                    echo "<script>alert('Anketimize katılmak için öncelikle üye girişi yapınız.');</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
+                                    
+                                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+                                    exit();
+                                }
+                            }
+                            $Ayar  = new AyarModel();
+                            $gelenIP = $_SERVER["REMOTE_ADDR"];
+                            // if(!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)){ // Şimdilik kapatıyorum (Sisteme ait verileri düzeltince ve yayınlayınca açılacak.)
+                                $data = array(
+                                    "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
+                                    "anketKaydi" => $gelenAnket
+                                );
+                                return view('public/publicAnketler', $data);
+                            // }else{
+                            //     echo "<script>alert('Anketimize zaten önceden katılmıştınız...')</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
+                            //     header("Location: https://www.klu.edu.tr/");
+                            //     exit();
+                            // }
+                        }
                     }
                 }
             }
