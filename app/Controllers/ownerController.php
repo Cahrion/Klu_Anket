@@ -363,8 +363,83 @@ class ownerController extends Controller
             exit();
         }
     }
-    public function anketAnalizExcel(){
+    public function anketAnalizExcel($gelenVeri = ""){
+
+        $Ayar  = new AyarModel();
+        $Islem  = new IslemModel();
+        $anketBilgisi = $Islem->getAnketProject($gelenVeri);
+        $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
+
+
+        $SoruGrouplari 	= []; // Grouplar şeklinde datalarımızı tutalım
+        $SoruVerileri 	= []; // Gelen soru şıklarını alalım
+        $SoruMetinleri 	= []; // Gelen soru metinlerini alalım
+        $anketUnSerialize = unserialize($anketBilgisi->serialize);
+        foreach ($anketUnSerialize as $keyGroup => $anketGroup) { // Groupları aldık
+            foreach ($anketGroup[2] as $keySoru => $anketSorular) { // Group içinde soruları aldık.
+                $SoruMetinleri[$keySoru + 1] = $anketSorular;
+                foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Group içine seçenekleri yazdırdık ve puanları 0 yaptık (İşaretlenmemiş anlamında.)
+                    $SoruVerileri[$keySoru + 1][$gelenSoruSecenekler] = 0;
+                }
+            }
+            $SoruGrouplari[$keyGroup] = [$SoruMetinleri, $SoruVerileri]; // Elimizdeki verileri düzenli bir şekilde ana grup yapısına ekledik.
+            $SoruVerileri             = [];
+            $SoruMetinleri            = []; // Sistemde yeni veriler üst üste gelmesin diye eski verileri siliyoruz.
+        }
+
+        foreach ($publicVeri as $publicRowVeri) { // getResult() yapısıyla geldiği için öncelikle bir foreach döngüsüne girelim.
+            $gelenUnSerializeVeri = unserialize($publicRowVeri->serialize);
+            foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
+                foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
+                    $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
+                    $SoruGrouplari[$keyGroup][1][$ayracSoru[0]][$ayracSoru[1]] += 1; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                }
+            }
+        }
+ 
+        $gelenSutunArray = []; // Gelen verileri sutunlar diye ayırdık.
+        $gelenSatirArray = []; // Gelen verileri satırlar diye ayırdık.
+        foreach ($anketUnSerialize as $keyGroup => $anketGroup) {
+            $SutunArray = [];
+            $SutunArray[] = "Sorular";
+            foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Seçenekler oluyor.
+                $gelenSoruSecenekler = mb_convert_encoding($gelenSoruSecenekler, "windows-1254","utf-8"); // Türkçe karakter doğrulaması.
+                $SutunArray[] = $gelenSoruSecenekler;
+            }
+            $gelenSutunArray[$keyGroup] = $SutunArray;
+            $SatirArray = [];
+            foreach($SoruGrouplari[$keyGroup][0] as $keySoru => $soru){
+                $SatirSoruArray = [];
+                $SatirSoruArray[] = $soru[0];
+                foreach($SoruGrouplari[$keyGroup][1][$keySoru] as $secenekler){
+                    $SatirSoruArray[] = $secenekler;
+                }
+                $SatirArray[$keySoru] = $SatirSoruArray;
+            }
+            $gelenSatirArray[$keyGroup] = $SatirArray;
+        }
+        $fileName = "klu_anket_" . $anketBilgisi->id ."_" . date('Y-m-d') . ".xls"; 
+        $excelData = "";
+        foreach($gelenSutunArray as $keyArr => $gelenSutunArr){
+            // Column names  
+            $fields = $gelenSutunArray[$keyArr];
+            if($keyArr == 0){
+                $excelData = implode("\t", array_values($fields)) . "\n"; 
+            }else{
+                $excelData .= "\n" . implode("\t", array_values($fields)) . "\n"; 
+            }
+            foreach($gelenSatirArray[$keyArr] as $gelenMetin){
+                $gelenMetin = mb_convert_encoding($gelenMetin, "windows-1254","utf-8");
+                $excelData .= implode("\t", array_values($gelenMetin)) . "\n"; 
+            }
+        }
+        // Headers for download 
+        header("Content-Type: application/vnd.ms-excel"); 
+        header("Content-Disposition: attachment; filename=\"$fileName\""); 
         
+        // Render excel data 
+        echo $excelData; 
+        exit;
     }
     // Çıkış yapma yapısı
     public function leave()
