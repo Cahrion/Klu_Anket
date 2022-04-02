@@ -1,5 +1,5 @@
 # KLU ANKET 
-Şuanlık 80% kısmı bitmiştir.
+Şuanlık 95% kısmı bitmiştir.
 ## Kalan Kısımlar
 
 ```php
