@@ -63,7 +63,12 @@ class publicAnketler extends Controller
         helper("fonksiyonlar");
         $Islem  = new IslemModel();
         if (isset($_POST["queryString"])) {
-            $gelenQuery = $_POST["queryString"];
+            $gelenQuery = [];
+            foreach($_POST["queryString"] as $groupKey => $groupSoru){
+                foreach($groupSoru as $groupSoruKey => $groupSoruCevap){
+                    $gelenQuery[$groupKey][$groupSoruKey] = GuvenlikFiltresi($groupSoruCevap); // Tek tek guvenlik filtresinden geçirdik.
+                }
+            }
         } else {
             $gelenQuery = "";
         }
@@ -72,17 +77,51 @@ class publicAnketler extends Controller
         }else{
             $anketID    = "";
         }
-        // Kullanıcı bilgilerini kullanmak amacıyla IslemModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
+        
         if ($gelenQuery != "" and $anketID != "") {
-            $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
-            $gelenIp            = $_SERVER["REMOTE_ADDR"]; // IP adresini yeniden cevap vermesini engellemek için tutalım.
+            // Frontend kısımda eğğer bir hile yapılmayı çalışıp gerekli kısımlar gelmemişse burada yeniden kontrol ederek frontend kısma gönderiyoruz.
 
-            $Islem->setAnketResult($anketID, $gelenSerialize, $gelenIp); 
-
-            echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
+            $anketBilgisi       = $Islem->getAnketProject($anketID);
+            $anketBilgisiSer    = unserialize($anketBilgisi->serialize);
+            $zorunluAlan = [];
+            foreach($anketBilgisiSer as $keyGroup => $anketBilgisiSerGroup){
+                foreach($anketBilgisiSerGroup[2] as $keySoru => $anketBilgisiSerSorular){ // Kesin dolması gereken kısımları alıyoruz.
+                    if($anketBilgisiSerSorular[1] == "true"){
+                        $zorunluAlan[] = $keyGroup . "-" . $keySoru;
+                    }
+                }
+            }
+            // gelenQuery
+            $hata = 0;
+            foreach($gelenQuery as $groupKey => $groupSoru){ // Soru cevap grouplarını çekiyoruz.
+                foreach($groupSoru as $groupSoruKey => $groupSoruCevap){ // Cevapların soru kısımlarını alıyoruz (Cevap verilmiş mi diye)
+                    foreach($zorunluAlan as $zorunluAlanSoru){
+                        $zorunluAlanExplode         = explode("-",$zorunluAlanSoru);
+                        $zorunluAlanExplodeGroup    = $zorunluAlanExplode[0];
+                        $zorunluAlanExplodeSoru     = $zorunluAlanExplode[1];
+                        if($groupKey == $zorunluAlanExplodeGroup and $groupSoruKey == $zorunluAlanExplodeSoru){ 
+                            // Group ve soru bilgisi eşit ise zorunlu sorulardan biri gelmiş demektir bunu hata kısmına ekleme yaparak yeniden döndürüyoruz.
+                            $hata += 1;
+                        }
+                    }
+                    $gelenQuery[$groupKey][$groupSoruKey] = GuvenlikFiltresi($groupSoruCevap); // Tek tek guvenlik filtresinden geçirdik.
+                }
+            }
+            // gelenQuery
+            if(count($zorunluAlan) != $hata){ // hata kısmında bir sıkıntı çıkmazsa kullanıcı gerekli kısımları doldurmuş demektir.
+                echo "-1";
+                exit();
+            }else{
+                $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
+                $gelenIp            = $_SERVER["REMOTE_ADDR"]; // IP adresini yeniden cevap vermesini engellemek için tutalım.
+    
+                $Islem->setAnketResult($anketID, $gelenSerialize, $gelenIp); 
+    
+                echo "1"; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
+                exit();
+            }
         } else {
-            // Eğer ki verisel bir hata olursa kişiyi KLU sitesine atalım.
-            header("Location: https://www.klu.edu.tr/");
+            echo "0";
             exit();
         }
     }

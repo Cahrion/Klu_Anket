@@ -3,17 +3,12 @@ $(document).ready(function(){
         var zorunluAlanlar = $(".zorunluAlan");
         var zorunluYapi    = [];
         $.each(zorunluAlanlar, function(key, val){
-            var zorunluKisim = $(val).attr("value").split("-");
-            var groupName = zorunluKisim[0];
-            var soruName  = zorunluKisim[1];
-            if(isNaN(zorunluYapi[groupName])){
-                zorunluYapi[groupName] = [];
-            }
-            zorunluYapi[groupName][key] = soruName;
+            var zorunluKisim = $(val).attr("value");
+            zorunluYapi[key] = zorunluKisim;
         });
 
-        var anketAlanCevaplarListesi = {};
-        var anketCevaplarListesi = {};
+        var anketAlanCevaplarListesi    = {};
+        var anketCevaplarListesi        = {};
         var anketAlanlar = $(".anketAlan");
         var hata = 0;
         $.each(anketAlanlar, function(keyIlk, value){ // Anket grup verisi (Birden fazla grup bulunursa bu belirteç olacaktır.)
@@ -24,17 +19,21 @@ $(document).ready(function(){
                     var anketCevap = $(value).children(".form-check").children(".form-check-input").prop("checked");
                     if(anketCevap){
                         anketCevaplarListesi[keyOrta] = $(value).children(".form-check").children(".form-check-input").val();
-                    }else{
+                        return 0;
+                    }
+                });
+            });
+            $.each(anketCevaplarListesi, function(keyZorunlu, valZorunlu){ // Cevaplanmış şıkları alıyoruz.
+                var valZorunluSplit       = valZorunlu.split("-");
+                var valZorunluSoru        = valZorunluSplit[0];
+                var valZorunluCevap       = valZorunluSplit[1];
+                $.each(zorunluYapi, function(keyZorunlu2, valZorunlu2){ // Zorunlu alanlardan geçip geçmediğine bakıyoruz.
+                    var valZorunlu2Split    = valZorunlu2.split("-");
+                    var valZorunlu2Group    = valZorunlu2Split[0];
+                    var valZorunlu2Soru     = valZorunlu2Split[1];
 
-                        // Sistem çalışmadı mola kararı aldım. 
-
-                        // var soruSplit = $(value).children(".form-check").children(".form-check-input").val().split("-");
-                        // var soruSplitSoruNum = soruSplit[0];
-                        // $.each(zorunluYapi[keyIlk], function(keySoru, zorunluSorular){
-                        //     if(zorunluSorular = soruSplitSoruNum){
-                        //         hata = 1;
-                        //     }
-                        // });
+                    if((valZorunlu2Group == keyIlk) && (valZorunluSoru == valZorunlu2Soru)){ // Eğer geçmişse sayaca 1 ekleyip yeniden tekrar ediyoruz.
+                        hata += 1;
                     }
                 });
             });
@@ -42,8 +41,8 @@ $(document).ready(function(){
             anketAlanCevaplarListesi[keyIlk]    = anketCevaplarListesi;
             anketCevaplarListesi                = {}; // dataları sıfırlayalım
         }); 
-        if(hata){
-            return alert("Lütfen (*) gerekli kısımları doldurunuz.");
+        if(zorunluYapi.length != hata){ // Sayılar eşit değilse dolmayan kısım vardır diyoruz.
+            return alert("Lütfen (*) zorunlu kısımları doldurmayı unutmayınız.");
         }
         // Konum verisini sürekli olarak buradan değiştirmek yerine bağlantı kısmından istenilen konumu aldım. (publicAnketler/anketLoading)
         var pathKonum          = window.location.pathname.split("/");
@@ -55,8 +54,14 @@ $(document).ready(function(){
         {
         if(data.length > 0)
         {
-            alert("Anket bilgileri başarıyla gönderildi. Anketimize katıldığınız için teşekkür ederiz.");
-            window.location.href = "https://www.klu.edu.tr/";
+            if(data == "1"){
+                alert("Anket bilgileri başarıyla gönderildi. Anketimize katıldığınız için teşekkür ederiz.");
+                window.location.href = "https://www.klu.edu.tr/";
+            }else if(data == 0){
+                alert("Lütfen boş anket göndermeye çalışmayın.");
+            }else{
+                alert("Lütfen (*) zorunlu kısımları doldurmayı unutmayınız.");
+            }
         }
         });  
     });
