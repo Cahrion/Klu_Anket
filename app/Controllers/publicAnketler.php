@@ -77,7 +77,21 @@ class publicAnketler extends Controller
         }else{
             $anketID    = "";
         }
-        
+        if(isset($_SESSION["guvenlikProtocolu"])){
+            $gelenGuvenlikProtocol = GuvenlikFiltresi($_SESSION["guvenlikProtocolu"]); // Gelen gizli protocol verisini aldık.
+            if($_POST["queryProtocol"]){
+                $gelenQueryProtocol = GuvenlikFiltresi($_POST["queryProtocol"]); // Gelen protocol verisini aldık.
+                if($gelenQueryProtocol == $gelenGuvenlikProtocol){ // Eşitse bir karakter bahşettik.
+                    $gelenGuvenlikProtocol = "*";
+                }
+            }
+        }else{
+            $gelenGuvenlikProtocol = "";
+        }
+        if($gelenGuvenlikProtocol != "*"){ // Protocol koruması
+            echo "2"; // Protocol hatası .
+            exit();
+        }
         if ($gelenQuery != "" and $anketID != "") {
             // Frontend kısımda eğğer bir hile yapılmayı çalışıp gerekli kısımlar gelmemişse burada yeniden kontrol ederek frontend kısma gönderiyoruz.
 
@@ -124,5 +138,19 @@ class publicAnketler extends Controller
             echo "0";
             exit();
         }
+    }
+    public function captchaCreator(){
+        $metin = "";
+		for($baslangic = 0;$baslangic <6;$baslangic++){
+			$rastgeleSayi	    = mt_rand(48,57);
+			$rastgeledeger	    = mt_rand(65,90);
+            if(mt_rand(0,1)){
+                $metin .= chr($rastgeledeger);
+            }else{
+                $metin .= chr($rastgeleSayi);
+            }
+		}
+        $_SESSION["guvenlikProtocolu"] = $metin;
+        echo $metin;
     }
 }

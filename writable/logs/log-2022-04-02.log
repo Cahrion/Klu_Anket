@@ -143,3 +143,60 @@ CRITICAL - 2022-04-02 00:44:40 --> foreach() argument must be of type array|obje
 #3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #5 {main}
+ERROR - 2022-04-02 03:44:35 --> Error connecting to the database: Access denied for user '****'@'localhost' (using password: NO)
+CRITICAL - 2022-04-02 03:44:35 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: NO)
+#0 C:\xampp\htdocs\Klu_Anket\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\Klu_Anket\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\Klu_Anket\app\Models\AyarModel.php(8): CodeIgniter\Database\BaseBuilder->get()
+#3 C:\xampp\htdocs\Klu_Anket\app\Controllers\Home.php(14): App\Models\AyarModel->get_Ayars('SiteLinki')
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-02 04:15:01 --> rand() expects exactly 2 arguments, 1 given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(132): rand(1039358572)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->captchaCreator()
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-02 04:15:58 --> rand() expects exactly 2 arguments, 1 given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(132): rand(217662607)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->captchaCreator()
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-02 04:16:26 --> rand() expects exactly 2 arguments, 1 given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\publicAnketler.php(132): rand(1245363841)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->captchaCreator()
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-02 04:17:15 --> Call to undefined function App\Controllers\random_string()
+#0 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->captchaCreator()
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-04-02 04:24:53 --> Unsupported operand types: string + string
+#0 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->captchaCreator()
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-04-02 04:25:19 --> Unsupported operand types: string + string
+#0 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->captchaCreator()
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-04-02 04:26:19 --> Unsupported operand types: string + string
+#0 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\publicAnketler->captchaCreator()
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\publicAnketler))
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("button").click(function(){
+    $(".publicAnketGonder").click(function(){
         var zorunluAlanlar = $(".zorunluAlan");
         var zorunluYapi    = [];
         $.each(zorunluAlanlar, function(key, val){
@@ -49,16 +49,21 @@ $(document).ready(function(){
         var originKonum        = window.location.origin; 
         var needKonum          = originKonum +  "/" + pathKonum[1] + "/" + pathKonum[2] + "/" + pathKonum[3];
         var anketBilgisi       = $(this).attr("id");
-
-        $.post(needKonum + '/anketLoading/' + anketBilgisi, {queryString: anketAlanCevaplarListesi}, function(data) 
+        var canvasSelector     = $(".canvasSelector").val();
+        if(canvasSelector == ""){
+            return alert("Lütfen güvenlik kodunu giriniz.");
+        }
+        $.post(needKonum + '/anketLoading/' + anketBilgisi, {queryProtocol: canvasSelector.toUpperCase(),queryString: anketAlanCevaplarListesi}, function(data) 
         {
         if(data.length > 0)
         {
-            if(data == "1"){
+            if(data == 1){
                 alert("Anket bilgileri başarıyla gönderildi. Anketimize katıldığınız için teşekkür ederiz.");
                 window.location.href = "https://www.klu.edu.tr/";
             }else if(data == 0){
                 alert("Lütfen boş anket göndermeye çalışmayın.");
+            }else if(data == 2){
+                alert("Lütfen güvenlik kodunu kontrol ediniz.");
             }else{
                 alert("Lütfen (*) zorunlu kısımları doldurmayı unutmayınız.");
             }
@@ -66,3 +71,25 @@ $(document).ready(function(){
         });  
     });
 });
+var islem;
+function baslat(){
+    islem	= document.getElementById("guvenlikkodualani").getContext("2d");
+    islem.fillStyle 	= "#F1F1F1";
+    degistir();
+}
+function degistir(){
+    var pathKonum          = window.location.pathname.split("/");
+    var originKonum        = window.location.origin; 
+    var needKonum          = originKonum +  "/" + pathKonum[1] + "/" + pathKonum[2] + "/" + pathKonum[3];
+
+    $.post(needKonum + '/captchaCreator', function(data) 
+    {
+    if(data.length > 0)
+    {
+        islem.clearRect(0,0,150,50);
+        islem.fillRect(0,0,150,50);
+        islem.font	= "30px calibri";
+        islem.strokeText(data,24,34);
+    }
+    }); 
+}

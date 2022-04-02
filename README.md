@@ -3,7 +3,7 @@
 ## Kalan Kısımlar
 
 ```php
+echo "Boostrap modal";
 echo "Anketör veya Üst Yönetici sonuçları excel olarak alma";
-echo "Captcha eklentisi.";
 echo "Bulundukları fakülte verilerinin alımı.";
 ```

@@ -14,7 +14,7 @@
     <script src="<?php echo $SiteLinki . "public/" ?>js/publicAnketler.js"></script>
 </head>
 
-<body>
+<body onload="baslat()">
 
     <div class="container">
         <div class="text-center mt-5 pb-2" style="border-bottom:1px dotted grey">
@@ -106,9 +106,23 @@
 				</div>
         <?php
         }
-        ?>
-            <div class="d-grid gap-2 mb-5">
-              <button type="button" class="btn btn-secondary" id="<?php echo $anketKaydi->id?>">Anketi Sonlandır.</button>
+        ?>	
+            <div>Güvenlik Kodu: </div>
+            <br>
+            <div class="row col-md-10 col-lg-8 col-xl-6">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <canvas id="guvenlikkodualani" width="150" height="50"></canvas>
+                </div>
+                <div class="col-6 col-md-4 col-lg-6">
+                    <input type="text" class="canvasSelector" placeholder="Güvenlik kodunu giriniz.">
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 mt-1">
+                    <button onClick="degistir()" class="btn btn-primary mt-1">Yeni kod iste</button>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2 mb-5 mt-2">
+              <button type="button" class="publicAnketGonder btn btn-secondary" id="<?php echo $anketKaydi->id?>">Anketi Sonlandır.</button>
             </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->
