@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    $("#myModal").modal('show');
+});
+$(document).ready(function(){
     $(".publicAnketGonder").click(function(){
         var zorunluAlanlar = $(".zorunluAlan");
         var zorunluYapi    = [];

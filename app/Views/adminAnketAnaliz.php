@@ -19,8 +19,8 @@
 	include_once 'includes/topBar.php';
 	?>
 	<div class="row kluCenter">
-		<div class="col-2"></div>
-		<div class="col-8 pt-3">
+		<div class="col-0 col-sm-2"></div>
+		<div class="col-12 col-sm-8 pt-3">
 
 			<?php
 			$SoruGrouplari 	= []; // Grouplar şeklinde datalarımızı tutalım
@@ -51,14 +51,15 @@
 			?>
 
 			<div class="row">
-				<div class="col-2"></div>
-				<div class="col-8">
+				<div class="col-10">
 					<div class="border border-secondary p-4">Toplam <?php echo count($publicVeri)?> kişi anket doldurmuştur. Sonuçları aşağıdaki gibidir.</div>
 				</div>
-				<div class="col-2"></div>
+				<div class="col-2 text-center mt-3">
+					<a href="<?php echo $SiteLinki . "public/ownerController/anketAnalizExcel"?>" class="btn btn-success"><i class='dwn'><i>Export</a>
+				</div>
 			</div>
 
-
+			
 			<?php
 			foreach ($anketUnSerialize as $keyGroup => $anketGroup) {
 			?>
@@ -101,7 +102,7 @@
 
 			?>
 		</div>
-		<div class="col-2"></div>
+		<div class="col-0 col-sm-2"></div>
 	</div>
 	<?php
 	include_once 'includes/footer.php';

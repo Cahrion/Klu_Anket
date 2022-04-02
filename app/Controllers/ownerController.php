@@ -363,6 +363,9 @@ class ownerController extends Controller
             exit();
         }
     }
+    public function anketAnalizExcel(){
+        
+    }
     // Çıkış yapma yapısı
     public function leave()
     {

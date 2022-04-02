@@ -43,6 +43,7 @@ class publicAnketler extends Controller
                             // if(!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)){ // Şimdilik kapatıyorum (Sisteme ait verileri düzeltince ve yayınlayınca açılacak.)
                                 $data = array(
                                     "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
+                                    "SiteMetni" => $Ayar->get_Ayars("siteAnketMetni"),
                                     "anketKaydi" => $gelenAnket
                                 );
                                 return view('public/publicAnketler', $data);
