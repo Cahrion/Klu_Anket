@@ -55,8 +55,25 @@
         <?php
         }
         ?>
+        <div class="gorevBilgisi">
+            <div class="mb-3 bransAlan">
+                <label for="brans" class="form-label">Kimlik</label>
+                <select class="form-control bransSelect" name="brans" id="brans" onchange="bransChange(this)">
+                    <option class="brans" value="">Lütfen seçiniz.</option>
+                    <?php
+                    if (!$anketKaydi->anketGiris) {
+                    ?>
+                        <option class="brans" value="ogrenci">Ögrenci</option>
+                    <?php
+                    }
+                    ?>
+                    <option class="brans" value="akademik">Akademik</option>
+                    <option class="brans" value="idari">İdari</option>
+                </select>
+            </div>
+        </div>
         <?php
-        if ($anketKaydi->metin != "") {
+        if ($anketKaydi->aciklama != "") {
         ?>
             <div style="min-height:100px;border-bottom:1px dotted grey">
                 <?php echo $anketKaydi->aciklama; ?>

@@ -138,12 +138,15 @@ class IslemModel extends Model {
         return $result;
     }
 
-    public function setAnketResult($gelenAnketID,$gelenSerialize, $gelenIP){
+    public function setAnketResult($gelenAnketID,$gelenSerialize,$gelenBrans, $gelenFakulte, $gelenBirim, $gelenIP){
         $db = \Config\Database::connect();
         $data = array(
-            "anketID" => $gelenAnketID,
-            "serialize" => $gelenSerialize,
-            "kullaniciIP" => $gelenIP,
+            "anketID"       => $gelenAnketID,
+            "serialize"     => $gelenSerialize,
+            "bransTur"      => $gelenBrans,
+            "fakulteID"     => $gelenFakulte,
+            "birimID"       => $gelenBirim,
+            "kullaniciIP"   => $gelenIP
         );
         $result = $db->table("anketcevaplar")->insert($data);
         return $result;

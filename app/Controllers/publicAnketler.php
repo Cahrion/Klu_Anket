@@ -63,21 +63,29 @@ class publicAnketler extends Controller
     public function anketLoading($gelenAnketID = ""){
         helper("fonksiyonlar");
         $Islem  = new IslemModel();
-        if (isset($_POST["queryString"])) {
-            $gelenQuery = [];
-            foreach($_POST["queryString"] as $groupKey => $groupSoru){
-                foreach($groupSoru as $groupSoruKey => $groupSoruCevap){
-                    $gelenQuery[$groupKey][$groupSoruKey] = GuvenlikFiltresi($groupSoruCevap); // Tek tek guvenlik filtresinden geçirdik.
+        // Brans verilerinin alımı
+        // Eğer ki gelen verilerde kişinin bransı "idari" ise otomatikmen birimID değeri 0 olur.
+
+        if (isset($_POST["queryBrans"])) {
+            $gelenQueryBrans = [];
+            foreach($_POST["queryBrans"] as $keyV => $gelenQueryBransV){
+                if($gelenQueryBransV == ""){ 
+                    if($keyV != 2){ // Birim verisi ise
+                        echo "3"; // Brans hatası .
+                        exit();
+                    }else{
+                        if($gelenQueryBrans[0] != "idari"){ // idari verilerin birim verileri olmayacağından dolayı geçebilir.
+                            echo "3"; // Brans hatası .
+                            exit();
+                        }
+                    }
                 }
+                $gelenQueryBrans[] = GuvenlikFiltresi($gelenQueryBransV);
             }
         } else {
-            $gelenQuery = "";
+            $gelenQueryBrans = "";
         }
-        if($gelenAnketID != ""){
-            $anketID    = GuvenlikFiltresi($gelenAnketID);
-        }else{
-            $anketID    = "";
-        }
+        // Güvenlik bilgilerinin alımı
         if(isset($_SESSION["guvenlikProtocolu"])){
             $gelenGuvenlikProtocol = GuvenlikFiltresi($_SESSION["guvenlikProtocolu"]); // Gelen gizli protocol verisini aldık.
             if($_POST["queryProtocol"]){
@@ -93,6 +101,26 @@ class publicAnketler extends Controller
             echo "2"; // Protocol hatası .
             exit();
         }
+
+
+        // Anket bilgilerinini alımı
+        if (isset($_POST["queryString"])) {
+            $gelenQuery = [];
+            foreach($_POST["queryString"] as $groupKey => $groupSoru){
+                foreach($groupSoru as $groupSoruKey => $groupSoruCevap){
+                    $gelenQuery[$groupKey][$groupSoruKey] = GuvenlikFiltresi($groupSoruCevap); // Tek tek guvenlik filtresinden geçirdik.
+                }
+            }
+        } else {
+            $gelenQuery = "";
+        }
+        // Anket ID değerinin alımı
+        if($gelenAnketID != ""){
+            $anketID    = GuvenlikFiltresi($gelenAnketID);
+        }else{
+            $anketID    = "";
+        }
+
         if ($gelenQuery != "" and $anketID != "") {
             // Frontend kısımda eğğer bir hile yapılmayı çalışıp gerekli kısımlar gelmemişse burada yeniden kontrol ederek frontend kısma gönderiyoruz.
 
@@ -129,8 +157,8 @@ class publicAnketler extends Controller
             }else{
                 $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
                 $gelenIp            = $_SERVER["REMOTE_ADDR"]; // IP adresini yeniden cevap vermesini engellemek için tutalım.
-    
-                $Islem->setAnketResult($anketID, $gelenSerialize, $gelenIp); 
+                // gelenQueryBrans[0] => Brans, gelenQueryBrans[1] => Fakulte, gelenQueryBrans[2] => Birim
+                $Islem->setAnketResult($anketID, $gelenSerialize,$gelenQueryBrans[0], $gelenQueryBrans[1], $gelenQueryBrans[2], $gelenIp); 
     
                 echo "1"; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
                 exit();

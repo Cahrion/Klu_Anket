@@ -1,7 +1,7 @@
 # KLU ANKET 
-Şuanlık 80% kısmı bitmiştir.
+Şuanlık 95% kısmı bitmiştir.
 ## Kalan Kısımlar
 
 ```php
-echo "Bulundukları fakülte verilerinin alımı.";
+echo "KLU'dan fakulte ve birim database yapılarının alımı";
 ```
