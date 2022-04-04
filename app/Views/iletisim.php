@@ -28,7 +28,7 @@
                     <h4 class="card-title">Böyle bir kullanıcı sitemizde bulunmamaktadır ?</h4>
                     <p class="card-text">Eğer sağladığımız anket uygulamasına katılmak istiyorsanız lütfen bilgi işlem daire başkanlığıyla iletişime geçiniz...</p>
                   </div>
-                    <a class="btn btn-secondary" href="<?php echo $SiteLinki . "public/"?>" role="button">Geri Dön</a>
+                    <a class="btn btn-secondary" href="<?php echo base_url();?>" role="button">Geri Dön</a>
                 </div>
 		  </div>
 		  <div class="col-2 col-md-4"></div>

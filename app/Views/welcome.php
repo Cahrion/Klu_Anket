@@ -24,7 +24,7 @@
 		  <div class="col-4"></div>
 		  <div class="col-4">
 				<div class="openMainBlock">
-					<form action="<?php echo $SiteLinki . "public/data";?>" method="POST">
+					<form action="<?php echo base_url("data");?>" method="POST">
 						<h1 class="text-center">Giriş Yap</h1>
 						<div class="mb-3">
 						<label for="email" class="form-label">Email</label>

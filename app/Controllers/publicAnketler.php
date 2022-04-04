@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\AyarModel;
 use App\Models\IslemModel;
 
 \Config\Services::session();
@@ -31,19 +30,15 @@ class publicAnketler extends Controller
                         if($gelenAnket->onay or $yonetimFaktoru){
                             if($gelenAnket->anketGiris){ 
                                 if(!isset($_SESSION["Yonetici"])){
-                                    $Ayar = new AyarModel();
                                     echo "<script>alert('Anketimize katılmak için öncelikle üye girişi yapınız.');</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
                                     
-                                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+                                    header("Location: " . base_url());
                                     exit();
                                 }
                             }
-                            $Ayar  = new AyarModel();
                             $gelenIP = $_SERVER["REMOTE_ADDR"];
                             // if(!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)){ // Şimdilik kapatıyorum (Sisteme ait verileri düzeltince ve yayınlayınca açılacak.)
                                 $data = array(
-                                    "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
-                                    "SiteMetni" => $Ayar->get_Ayars("siteAnketMetni"),
                                     "anketKaydi" => $gelenAnket
                                 );
                                 return view('public/publicAnketler', $data);

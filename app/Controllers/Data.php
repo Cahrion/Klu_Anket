@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use \CodeIgniter\Controller;
 use App\Models\IslemModel;
-use App\Models\AyarModel;
 \Config\Services::session();
 // Database işlemlerinin hepsini yapmak için kullanılan yazılım alanı
 
@@ -13,7 +12,6 @@ class Data extends Controller
     // Normal halde giriş yapmak için kullanılan yapı bulunmakta
     public function index()
     {
-        $Ayar   = new AyarModel();
         helper("fonksiyonlar");
         if(isset($_POST["email"])){
             $gelenEmail = GuvenlikFiltresi($_POST["email"]);
@@ -33,16 +31,16 @@ class Data extends Controller
                 $_SESSION["Yonetici"]	=	$gelenEmail;
                 // Buralarda CURL bağlantısıyla true geldiğini varsayıyorum ve yeni sayfaya aktarıyorum.
                 // Şifre yapıları elimizde olmayacağından dolayı veritabanında da sadece email adresi bıraktım.
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                header("Location: " . base_url("ownerController/adminAnket"));
                 exit();
 
             }else{
                 // İletişime Geçin Sayfasına Yönlendirilicek.
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/Home/Iletisim");
+                header("Location: " . base_url("Home/Iletisim"));
                 exit();
             }
         }else{
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }

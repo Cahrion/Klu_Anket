@@ -1,7 +1,7 @@
+var base_url = $("base").attr("href");
 $(document).ready(function () {
     $("#myModal").modal('show');
-});
-$(document).ready(function () {
+
     $(".publicAnketGonder").click(function () {
         var zorunluAlanlar = $(".zorunluAlan");
         var zorunluYapi = [];
@@ -59,18 +59,15 @@ $(document).ready(function () {
         }else{
             return alert("Lütfen branş bilgilerinizi giriniz.");
         }
-        // Konum verisini sürekli olarak buradan değiştirmek yerine bağlantı kısmından istenilen konumu aldım. (publicAnketler/anketLoading)
-        var pathKonum = window.location.pathname.split("/");
-        var originKonum = window.location.origin;
-        var needKonum = originKonum + "/" + pathKonum[1] + "/" + pathKonum[2] + "/" + pathKonum[3];
-        var anketBilgisi = $(this).attr("id");
 
+        // ID alımı
+        var anketBilgisi = $(this).attr("id");
         // Canvas
         var canvasSelector = $(".canvasSelector").val();
         if (canvasSelector == "") {
             return alert("Lütfen güvenlik kodunu giriniz.");
         }
-        $.post(needKonum + '/anketLoading/' + anketBilgisi, { queryBrans: branslar, queryProtocol: canvasSelector.toUpperCase(), queryString: anketAlanCevaplarListesi }, function (data) {
+        $.post(base_url + '/publicAnketler/anketLoading/' + anketBilgisi, { queryBrans: branslar, queryProtocol: canvasSelector.toUpperCase(), queryString: anketAlanCevaplarListesi }, function (data) {
             if (data.length > 0) {
                 if (data == 1) {
                     alert("Anket bilgileri başarıyla gönderildi. Anketimize katıldığınız için teşekkür ederiz.");
@@ -95,11 +92,7 @@ function baslat() {
     degistir();
 }
 function degistir() {
-    var pathKonum = window.location.pathname.split("/");
-    var originKonum = window.location.origin;
-    var needKonum = originKonum + "/" + pathKonum[1] + "/" + pathKonum[2] + "/" + pathKonum[3];
-
-    $.post(needKonum + '/captchaCreator', function (data) {
+    $.post(base_url + '/publicAnketler/captchaCreator', function (data) {
         if (data.length > 0) {
             islem.clearRect(0, 0, 150, 50);
             islem.fillRect(0, 0, 150, 50);
