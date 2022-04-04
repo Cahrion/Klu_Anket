@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\AyarModel;
 use App\Models\IslemModel;
 
 \Config\Services::session();
@@ -13,46 +12,40 @@ class ownerController extends Controller
     // Ana yapıda sitenin merkez kısmına erişimi koydum kişi buradan öncelikle anket ekleme bölümüne giriş yapar.
     public function index()
     {
-        // Site Ayarlarını kullanmak amacıyla AyarModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             // Kullanıcı bilgilerini kullanmak amacıyla IslemModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
             $Islem  = new IslemModel();
             $data = array(
-                "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
                 "yonetimBilgi" => $Islem->getControlMember($_SESSION["Yonetici"])
             );
             return view('Central', $data);
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function anketler(){
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
             if ($yonetimBilgi->yonetimFaktoru) {
                 $data = array(
-                    "SiteLinki"     => $Ayar->get_Ayars("SiteLinki"),
                     "yonetimBilgi"  => $yonetimBilgi,
                     "anketKayitlari" => $Islem->getAnketProjects()
                 );
                 return view('adminAnketler', $data);
             } else {
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                header("Location: " . base_url("ownerController"));
                 exit();
             }
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function anketOnay($gelenID = ""){ // Anketi onaylıyoruz veya onay kaldırıyoruz.
 
         helper("fonksiyonlar"); // Guvenlik filtresi fonksiyonunu kullanmak amaçlı
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
@@ -65,21 +58,20 @@ class ownerController extends Controller
 
                     $Islem->setAnketProjectUpdOnay($gelenID, $gelenTersOnay);
                 }
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/anketler");
+                header("Location: " . base_url("ownerController/anketler"));
                 exit();
             } else {
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                header("Location: " . base_url("ownerController"));
                 exit();
             }
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function anketAdd()
     {
         helper("fonksiyonlar");
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             if (isset($_POST["queryName"])) {
@@ -126,18 +118,17 @@ class ownerController extends Controller
 
                 echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
             } else {
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                header("Location: " . base_url("ownerController"));
                 exit();
             }
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function anketUpdate()
     {
         helper("fonksiyonlar");
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             $queryName = [];
@@ -180,39 +171,35 @@ class ownerController extends Controller
 
                 echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
             } else {
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController");
+                header("Location: " . base_url("ownerController"));
                 exit();
             }
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
 
     public function adminAnket()
     {
-        // Site Ayarlarını kullanmak amacıyla AyarModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             // Kullanıcı bilgilerini kullanmak amacıyla IslemModel() yapısından veri alıyor ve ön yüze gönderiyoruz.
             $Islem  = new IslemModel();
             $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
             $data = array(
-                "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
                 "yonetimBilgi" => $yonetimBilgi,
                 "anketKayitlarim" => $Islem->getMyAnketProjects($yonetimBilgi->id)
             );
 
             return view('adminAnket', $data);
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function adminAnketSil($gelenVeri = "")
     {
         helper("fonksiyonlar");
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
@@ -227,21 +214,20 @@ class ownerController extends Controller
                     $Islem->setAnketProjectDel($gelenVeri); // ID değerine göre anketi sildik.
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                    header("Location: " . base_url("ownerController/leave"));
                     exit();
                 }
             }
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+            header("Location: " . base_url("ownerController/adminAnket"));
             exit();
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function ustAdminAnketSil($gelenVeri = "")
     {
         helper("fonksiyonlar");
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
@@ -251,21 +237,20 @@ class ownerController extends Controller
                     $gelenVeri          = GuvenlikFiltresi($gelenVeri);
                     $Islem->setAnketProjectDel($gelenVeri); // ID değerine göre anketi sildik.
                 }
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/anketler");
+                header("Location: " . base_url("ownerController/anketler"));
                 exit();
             } else {
-                header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+                header("Location: " . base_url("ownerController/adminAnket"));
                 exit();
             }
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function adminAnketGuncelle($gelenVeri = "")
     {
         helper("fonksiyonlar");
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
@@ -278,27 +263,25 @@ class ownerController extends Controller
 
                 if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa güncelleme hakkı verdik.
                     $data = array(
-                        "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
                         "yonetimBilgi" => $yonetimBilgi,
                         "anketBilgisi" => $anketBilgisi
                     );
                     return view('adminAnketGuncelle', $data);
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                    header("Location: " . base_url("ownerController/leave"));
                     exit();
                 }
             }
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+            header("Location: " . base_url("ownerController/adminAnket"));
             exit();
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function adminAnketLinkOlustur($gelenVeri = ""){ // SEO yapısıyla linkler oluşturalım.
         helper("fonksiyonlar");
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
@@ -310,29 +293,28 @@ class ownerController extends Controller
                     if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
                         $seoLink = SEO($anketBilgisi->baslik, $anketBilgisi->id);
 
-                        header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/publicAnketler/Anketler/" . $seoLink);
+                        header("Location: " . base_url("publicAnketler/Anketler/" . $seoLink));
                         exit();
                     } else {
                         // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                        header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                        header("Location: " . base_url("ownerController/leave"));
                         exit();
                     }
                 }else{
                     // Eğer kişi onaysız açmaya çalışıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                    header("Location: " . base_url("ownerController/leave"));
                     exit();
                 }
             }
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+            header("Location: " . base_url("ownerController/adminAnket"));
             exit();
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function anketAnaliz($gelenVeri = ""){
         helper("fonksiyonlar");
-        $Ayar  = new AyarModel();
         if (isset($_SESSION["Yonetici"])) {
             $Islem  = new IslemModel();
             $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
@@ -343,7 +325,6 @@ class ownerController extends Controller
                 if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
                     $gelenVeri = $Islem->getAnketResult($anketBilgisi->id);
                     $data = array(
-                        "SiteLinki" => $Ayar->get_Ayars("SiteLinki"),
                         "yonetimBilgi" => $yonetimBilgi,
                         "anketBilgisi" => $anketBilgisi,
                         "publicVeri"   => $gelenVeri
@@ -352,20 +333,19 @@ class ownerController extends Controller
                     return view('adminAnketAnaliz', $data);
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/leave");
+                    header("Location: " . base_url("ownerController/leave"));
                     exit();
                 }
             }
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public/ownerController/adminAnket");
+            header("Location: " . base_url("ownerController/adminAnket"));
             exit();
         } else {
-            header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+            header("Location: " . base_url());
             exit();
         }
     }
     public function anketAnalizExcel($gelenVeri = ""){
 
-        $Ayar  = new AyarModel();
         $Islem  = new IslemModel();
         $anketBilgisi = $Islem->getAnketProject($gelenVeri);
         $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
@@ -444,11 +424,10 @@ class ownerController extends Controller
     // Çıkış yapma yapısı
     public function leave()
     {
-        $Ayar  = new AyarModel();
         unset($_SESSION["Yonetici"]);
         session_destroy();
 
-        header("Location: " . $Ayar->get_Ayars("SiteLinki") . "public");
+        header("Location: " . base_url());
         exit();
     }
 }

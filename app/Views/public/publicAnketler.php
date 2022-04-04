@@ -9,9 +9,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS v5.0.2 -->
+    <base href="<?php echo base_url();?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php echo $SiteLinki . "public/" ?>css/publicAnketler.css">
-    <script src="<?php echo $SiteLinki . "public/" ?>js/publicAnketler.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url("css/publicAnketler.css");?>">
+    <script src="<?php echo base_url("js/publicAnketler.js");?>"></script>
 </head>
 
 <body onload="baslat()">
@@ -38,8 +39,8 @@
         </div>
     </div>
     <div class="container">
-        <div class="text-center mt-5 pb-2" style="border-bottom:1px dotted grey">
-            <img src="<?php echo $SiteLinki . "public/" ?>img/kluLogo.jpg" alt="KLU" title="KLU">
+        <div class="text-center mt-2 pb-2" style="border-bottom:1px dotted grey">
+            <img src="<?php echo base_url("img/kluLogo.png")?>" alt="KLU" title="KLU" width="100" height="100">
             <div class="anketBaslik">
                 T.C. <br>
                 KIRKLARELİ ÜNİVERSİTESİ <br>
@@ -147,12 +148,11 @@
         }
         ?>
         <div>Güvenlik Kodu: </div>
-        <br>
         <div class="row col-md-10 col-lg-8 col-xl-6">
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-6 col-md-4 col-lg-4">
                 <canvas id="guvenlikkodualani" width="150" height="50"></canvas>
             </div>
-            <div class="col-6 col-md-4 col-lg-6">
+            <div class="col-6 col-md-4 col-lg-5">
                 <input type="text" class="canvasSelector" placeholder="Güvenlik kodunu giriniz.">
             </div>
             <div class="col-12 col-md-4 col-lg-3 mt-1">
