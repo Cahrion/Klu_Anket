@@ -15,7 +15,6 @@ input:focus{
     border-radius: 5px;
     min-height: 150px;
     width: 100%;
-    border-left: 4px solid blue;
 }
 .anketGroupHeadCoverager{
     position: relative;

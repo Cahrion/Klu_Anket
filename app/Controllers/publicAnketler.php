@@ -69,7 +69,7 @@ class publicAnketler extends Controller
                         echo "3"; // Brans hatası .
                         exit();
                     }else{
-                        if($gelenQueryBrans[0] != "idari"){ // idari verilerin birim verileri olmayacağından dolayı geçebilir.
+                        if($gelenQueryBrans[0] != "idari" or $gelenQueryBrans[0] != "herkes"){ // idari verilerin birim verileri olmayacağından dolayı geçebilir.
                             echo "3"; // Brans hatası .
                             exit();
                         }

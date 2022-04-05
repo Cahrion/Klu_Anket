@@ -37,17 +37,21 @@
 				</div>
 				<div class="row formAlanKapsayici">
 					<div class="col-8 formKitle">
-						<select class="form-control mb-3" id="formKitleSelected">
-							<option value="">Lütfen bir kitle seçiniz</option>
-							<option value="ogrenci">Ögrenci</option>
-							<option value="akademik">Akademik</option>
-							<option value="idari">İdari</option>
+						<select class="form-select mb-3" id="formKitleSelected">
+							<option value="">Anket Kimler Tarafından Doldurulacak?</option>
+							<option value="akademik">Akademik Personeller</option>
+							<option value="idari">İdari Personeller</option>
+							<option value="ogrenci">Öğrenciler</option>
+							<option value="herkes">Herkes</option>
 						</select>
 					</div>
 					<div class="col-4 formCheck">
 						<div class="form-check form-switch formAlan" style="float: right;">
 							<input class="form-check-input" type="checkbox" id="anketGirisZorunluluk" onclick="anketGirisZorunluluk(this)">
-							<label class="form-check-label" for="anketGirisZorunluluk" style="color:red;font-weight:bold">Uyelik Şart</label>
+							<label class="form-check-label" for="anketGirisZorunluluk" style="color:black;font-weight:bold;">Eposta ile Girişi Zorunlu Tut
+							<span style="font-size:10px;display:block" class="text-muted">(Sadece klu.edu.tr uzantılı e-postaya sahip olanlar girebilir.)</span>
+
+							</label>
 						</div>
 					</div>
 				</div>
@@ -57,7 +61,7 @@
 				<div class="col-12 col-sm-8 anketPlatform">
 					<div class="GroupCoverager mt-4">
 						<div class="anketGroupHeadCoverager">
-							<div class="renkAlani" onclick='renkAlani(this)'></div>
+							<div class="renkAlani" onclick='renkAlani(this)' style="background-color:rgb(0,0,0)"></div>
 							<div class="baslik">
 								<input type="text" placeholder="Grup Başlığı" class="anketGroupHeadCoveragerHeader">
 							</div>
@@ -69,9 +73,10 @@
 									<input type="text" placeholder="Seçenekler" class="anketGroupOptions">
 								</div>
 								<!-- Kullanıcı şık ekleme alanı -->
-								<div class="col-2 text-center">
-									<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
+								<div class="col-2 text-center secenekAlan">
+                					<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
 								</div>
+								
 							</div>
 						</div>
 						<div class="anketCoverager">
@@ -79,8 +84,8 @@
 								<input type="text" placeholder="Soru" class="anketSoruVal">
 							</div>
 							<div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-								<input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' checked>
-								<label class="form-check-label" for="" style="color:red;font-weight:bold">Zorunlu</label>
+								<input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)'>
+								<label class="form-check-label" for="" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
 							</div>
 							<!-- Kullanıcı soru ekleme alanı -->
 							<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>

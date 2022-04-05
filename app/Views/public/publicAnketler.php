@@ -9,10 +9,11 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS v5.0.2 -->
-    <base href="<?php echo base_url();?>">
+    <base href="<?php echo base_url(); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php echo base_url("css/publicAnketler.css");?>">
-    <script src="<?php echo base_url("js/publicAnketler.js");?>"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="<?php echo base_url("css/publicAnketler.css"); ?>">
+    <script src="<?php echo base_url("js/publicAnketler.js"); ?>"></script>
 </head>
 
 <body onload="baslat()">
@@ -40,7 +41,7 @@
     </div>
     <div class="container">
         <div class="text-center mt-2 pb-2" style="border-bottom:1px dotted grey">
-            <img src="<?php echo base_url("img/kluLogo.png")?>" alt="KLU" title="KLU" width="100" height="100">
+            <img src="<?php echo base_url("img/kluLogo.png") ?>" alt="KLU" title="KLU" width="100" height="100">
             <div class="anketBaslik">
                 T.C. <br>
                 KIRKLARELİ ÜNİVERSİTESİ <br>
@@ -57,7 +58,7 @@
         }
         ?>
         <div class="gorevBilgisi">
-            <div class="mb-3 fakulteAlan" name="<?php echo $anketKaydi->anketKitle;?>">
+            <div class="mb-3 fakulteAlan" name="<?php echo $anketKaydi->anketKitle; ?>">
                 <label for="fakulte" class="form-label">Görev fakülte yeriniz</label>
                 <select class="form-control fakulteSelect" name="fakulte" id="fakulte" onchange="fakulteChange(this)">
                     <option class="fakulte" value="">Lütfen seçiniz</option>
@@ -93,10 +94,13 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" class="text-muted" style="background-color:<?php echo $anketGroup[0][0] ?>;"><?php echo $anketGroup[0][1]; ?></th>
+                            <?php
+
+                            ?>
+                            <th scope="col" class="text-<?php echo $anketGroup[0][0] == "rgb(0, 0, 0)" ? 'muted' : 'dark'; ?>" style="background-color:<?php echo $anketGroup[0][0] ?>;"><?php echo $anketGroup[0][1]; ?></th>
                             <?php
                             foreach ($anketGroup[1] as $anketSecenek) { // Seçenekler oluyor.
-                                echo "<th scope='col'>$anketSecenek</th>";
+                                echo "<th scope='col' class='text-center'>$anketSecenek</th>";
                             }
                             ?>
                         </tr>
@@ -109,7 +113,7 @@
                                 <td class="soruBasligi">
                                     <?php
                                     if ($anketSoru[1] == "true") {
-                                        $anketZorunluluk = "<span class='zorunluAlan' value='" . $ustKey . "-" . $key + 1 . "'>(*)</span>";
+                                        $anketZorunluluk = "<span class='zorunluAlan' value='" . $ustKey . "-" . ($key + 1) . "'>(*)</span>";
                                     } else {
                                         $anketZorunluluk = "";
                                     }
@@ -140,21 +144,28 @@
         <?php
         }
         ?>
-        <div>Güvenlik Kodu: </div>
-        <div class="row col-md-10 col-lg-8 col-xl-6">
-            <div class="col-6 col-md-4 col-lg-4">
-                <canvas id="guvenlikkodualani" width="150" height="50"></canvas>
+        <div class="row mb-5">
+            <div class="col-0 col-lg-2"></div>
+            <div class="col-12 col-lg-8 text-center">
+                <div>Güvenlik Kodu: </div>
+                <div class="row">
+                <div class="row col-12 col-lg-9">
+                    <div class="col-4 col-lg-4" style="text-align:right">
+                        <canvas id="guvenlikkodualani" width="150" height="50"></canvas>
+                    </div>
+                    <div class="col-4 col-lg-2 pt-2" style="text-align:left">
+                        <button onClick="degistir()" class="btn btn-secondary"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                    </div>
+                    <div class="col-4 col-lg-6">
+                        <input type="text" class="canvasSelector" placeholder="Güvenlik kodunu giriniz.">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <button type="button" class="publicAnketGonder btn btn-success" id="<?php echo $anketKaydi->id ?>">Anketi Gönder.</button>
+                </div>
+                </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-5">
-                <input type="text" class="canvasSelector" placeholder="Güvenlik kodunu giriniz.">
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 mt-1">
-                <button onClick="degistir()" class="btn btn-primary mt-1">Yeni kod iste</button>
-            </div>
-        </div>
-
-        <div class="d-grid gap-2 mb-5 mt-2">
-            <button type="button" class="publicAnketGonder w-50 btn btn-success" id="<?php echo $anketKaydi->id ?>">Anketi Gönder.</button>
+            <div class="col-0 col-lg-2"></div>
         </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->

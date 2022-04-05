@@ -1,4 +1,6 @@
 var base_url = $("base").attr("href");
+var renkler = ["rgb(0, 0, 0)", "rgb(234, 228, 135)","rgb(168, 234, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)"];
+
 function anketIcerigiEkle(node){
     $(node).css("display", "none");
     $(node).siblings(".anketGroupEkle").css("display", "none");
@@ -9,8 +11,8 @@ function anketIcerigiEkle(node){
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
             <div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' checked>
-                <label class="form-check-label" style="color:red;font-weight:bold">Zorunlu</label>
+                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)'>
+                <label class="form-check-label" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
             <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
@@ -28,19 +30,31 @@ function soruSecenekEkle(node){
                 <input type="text" placeholder="Seçenekler" class="anketGroupOptions">
             </div>
             <!-- Kullanıcı şık ekleme alanı -->
-            <div class="col-2 text-center">
+            <div class="col-2 text-center secenekAlan">
+                <button class="btn btn-primary soruSecenekSil" onclick="soruSecenekSil(this)"><i class="fa-solid fa-minus"></i></button>
                 <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
             </div>
         </div>
     `;
     $(node).parent().parent().parent().append(html);
 }
+function soruSecenekSil(node){
+    var html = `
+        <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
+    `;
+    $(node).parent().parent().prev().children(".secenekAlan").append(html);
+    $(node).parent().parent().remove();
+}
 function anketGroupEkle(node){
+    var ustAlan     = $(node).parent().parent();
+    var renk        = $(ustAlan).children(".anketGroupHeadCoverager").children(".renkAlani").css("background-color");
+    var index       = $.inArray(renk, renkler);
+    var renkVeri = renkler[index + 1];
     var html = `
     <div class="GroupCoverager mt-4">
         <div class="anketGroupHeadCoverager">
             <span class="anketGroupSil" onclick="anketGroupSil(this)">Grup Sil</span>
-            <div class="renkAlani" onclick='renkAlani(this)'></div>
+            <div class="renkAlani" onclick='renkAlani(this)' style="background-color: ` + renkVeri + `"></div>
             <div class="baslik">
                 <input type="text" placeholder="Grup Başlığı" class="anketGroupHeadCoveragerHeader">
             </div>
@@ -57,13 +71,13 @@ function anketGroupEkle(node){
                 </div>
             </div>
         </div>
-        <div class="anketCoverager">
+        <div class="anketCoverager" style="border-left: 6px solid ` + renkVeri + `">
             <div class="anketSoru">
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
             <div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' checked>
-                <label class="form-check-label" for="" style="color:red;font-weight:bold">Zorunlu</label>
+                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)'>
+                <label class="form-check-label" for="" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
             <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
@@ -71,7 +85,7 @@ function anketGroupEkle(node){
         </div>
     </div>
     `;
-    $(".anketPlatform").append(html);
+    $(ustAlan).after(html);
 }
 function anketGroupSil(node){
     $(node).parent().parent().remove();
@@ -85,27 +99,30 @@ function anketIcerigiSil(node){
     $(node).parent().remove();
 }
 function renkAlani(node){
-    var renkler = ["rgb(0, 0, 0)", "rgb(234, 228, 135)","rgb(168, 234, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)"];
     var renk = $(node).css("background-color");
     var index = $.inArray(renk, renkler);
-    if(index == renkler.length-1){
-        index = -1;
+    var randomInt = Math.floor((Math.random() * 10) + 1);
+    if(randomInt > (renkler.length - 1)){
+        randomInt -= (renkler.length - 1);
     }
-    $(node).css("background-color", renkler[index + 1]);
-    $(node).parent().siblings().css("border-left", "4px solid " + renkler[index + 1])
+    if(index == randomInt){
+        randomInt = -1;
+    }
+    $(node).css("background-color", renkler[randomInt]);
+    $(node).parent().siblings().css("border-left", "4px solid " + renkler[randomInt])
 }
 function zorunlulukFaktor(node){
     if($(node).prop("checked")){
-        $(node).siblings("label").css("color","red");
+        $(node).siblings("label").css("color","darkred");
     }else{
-        $(node).siblings("label").css("color","green");
+        $(node).siblings("label").css("color","#c0c5c0");
     }
 }
 function anketGirisZorunluluk(node){
     if($(node).prop("checked")){
-        $(node).siblings("label").css("color","red");
+        $(node).siblings("label").css("color","darkred");
     }else{
-        $(node).siblings("label").css("color","green");
+        $(node).siblings("label").css("color","black");
     }
 }
 

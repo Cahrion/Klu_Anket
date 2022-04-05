@@ -51,7 +51,7 @@ $(document).ready(function () {
         var brans = $(".fakulteAlan").attr("name");
         var fakulte = $(".fakulteSelect").val();
         var birim   = $(".birimSelect").val();
-        if((fakulte != "" && birim != "") || (brans == "idari" && fakulte != "" && birim == undefined)){
+        if((fakulte != "" && birim != "") || ((brans == "idari" || brans == "herkes") && fakulte != "" && birim == undefined)){
             if(birim == undefined){
                 birim = "";
             }
@@ -106,7 +106,7 @@ function degistir() {
 function fakulteChange(node){
     // Alt birimleri olmayan yapılar getirilecek.
     var gelenBrans = $(".fakulteAlan").attr("name");
-    if(gelenBrans != "idari"){
+    if(gelenBrans != "idari" || gelenBrans != "herkes"){
         var html = `
             <div class="mb-3 birimAlan">
                 <label for="birim" class="form-label">Görev birim yeriniz</label>

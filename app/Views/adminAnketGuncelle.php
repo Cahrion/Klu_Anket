@@ -39,11 +39,12 @@
 				
 				<div class="row formAlanKapsayici">
 					<div class="col-8 formKitle">
-						<select class="form-control mb-3" id="formKitleSelected">
-							<option>Lütfen bir kitle seçiniz</option>
-							<option value="ogrenci" <?php echo $anketBilgisi->anketKitle=="ogrenci"?"selected":"";?> >Ögrenci</option>
-							<option value="akademik" <?php echo $anketBilgisi->anketKitle=="akademik"?"selected":"";?>>Akademik</option>
-							<option value="idari" <?php echo $anketBilgisi->anketKitle=="idari"?"selected":"";?>>İdari</option>
+						<select class="form-select mb-3" id="formKitleSelected">
+							<option>Anket Kimler Tarafından Doldurulacak?</option>
+							<option value="akademik" <?php echo $anketBilgisi->anketKitle=="akademik"?"selected":"";?>>Akademik Personeller</option>
+							<option value="idari" <?php echo $anketBilgisi->anketKitle=="idari"?"selected":"";?>>İdari Personeller</option>
+							<option value="ogrenci" <?php echo $anketBilgisi->anketKitle=="ogrenci"?"selected":"";?> >Ögrenciler</option>
+							<option value="herkes" <?php echo $anketBilgisi->anketKitle=="herkes"?"selected":"";?>>Herkes</option>
 						</select>
 					</div>
 					<div class="col-4 formCheck">
@@ -52,7 +53,7 @@
 							// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
 							?>
 							<input class="form-check-input" type="checkbox" id="anketGirisZorunluluk" <?php echo $anketBilgisi->anketGiris ? 'checked' : ''; ?> onclick='anketGirisZorunluluk(this)'>
-							<label class="form-check-label" for="anketGirisZorunluluk" style="color: red;font-weight:bold">Uyelik Şart</label>
+							<label class="form-check-label" for="anketGirisZorunluluk" style="color:<?php echo $anketBilgisi->anketGiris ? "darkred": "#c0c5c0";?>;font-weight:bold">Uyelik Şart</label>
 						</div>
 					</div>
 				</div>
@@ -91,7 +92,7 @@
 										<?php
 										if (count($gelenGroupCoveragerler[1]) == $keyOne + 1) { // Eğer son seçenek kısmındaysak seçenek ekleme başlıkları otomatikmen son olana eklensin.
 										?>
-											<div class="col-2 text-center">
+											<div class="col-2 text-center secenekAlan">
 												<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
 											</div>
 										<?php
@@ -116,7 +117,7 @@
 										// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
 										?>
 										<input class="form-check-input anketSoruZorunluluk" type="checkbox" <?php echo $gelenAnketCoveragerlar[1] == 'true' ? 'checked' : ''; ?> onclick='zorunlulukFaktor(this)'>
-										<label class="form-check-label" for="" style="color:red;font-weight:bold">Zorunlu</label>
+										<label class="form-check-label" for="" style="color:<?php echo $gelenAnketCoveragerlar[1] == 'true' ? "darkred": "#c0c5c0";?>;font-weight:bold">Zorunlu</label>
 									</div>
 									<!-- Kullanıcı soru ekleme alanı -->
 									<?php

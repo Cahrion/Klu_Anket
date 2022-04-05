@@ -1,0 +1,35 @@
+ERROR - 2022-04-05 11:28:01 --> Error connecting to the database: Access denied for user '****'@'localhost' (using password: NO)
+CRITICAL - 2022-04-05 11:28:01 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: NO)
+#0 C:\xampp\htdocs\Klu_Anket\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\Klu_Anket\system\Database\BaseBuilder.php(1588): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\Klu_Anket\app\Models\IslemModel.php(14): CodeIgniter\Database\BaseBuilder->getWhere(Array)
+#3 C:\xampp\htdocs\Klu_Anket\app\Controllers\Data.php(29): App\Models\IslemModel->getControlMember('icabikrz@gmail....')
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\Data->index()
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-05 12:35:47 --> Undefined array key 2
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketGuncelle.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 82)
+#1 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketGunce...', Array, true)
+#4 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(271): view('adminAnketGunce...', Array)
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->adminAnketGuncelle('53')
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-04-05 13:26:29 --> Error connecting to the database: Access denied for user '****'@'localhost' (using password: NO)
+CRITICAL - 2022-04-05 13:26:29 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: NO)
+#0 C:\xampp\htdocs\Klu_Anket\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\Klu_Anket\system\Database\BaseBuilder.php(1588): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\Klu_Anket\app\Models\IslemModel.php(14): CodeIgniter\Database\BaseBuilder->getWhere(Array)
+#3 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(190): App\Models\IslemModel->getControlMember('icabikrz@gmail....')
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->adminAnket()
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}

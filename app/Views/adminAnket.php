@@ -58,8 +58,8 @@
 					</div>
 
 					<div class="col-4 p-4" style="text-align:right">
-						<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #0000FF; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
-						<a href="<?php echo base_url("ownerController/adminAnketSil/" . $anketKaydi->id);?>" style="color: #FF0000; text-decoration: none;"><i class="fa-solid fa-ban" style="color:red"></i> Sil</a>
+						<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
+						<a href="<?php echo base_url("ownerController/adminAnketSil/" . $anketKaydi->id);?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
 					</div>
 				</div>
 			<?php
