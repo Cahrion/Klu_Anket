@@ -48,10 +48,10 @@ $(document).ready(function () {
             return alert("Lütfen (*) zorunlu kısımları doldurmayı unutmayınız.");
         }
         // Görev yeri bilgilerinin alımı
-        var brans   = $(".bransSelect").val();
+        var brans = $(".fakulteAlan").attr("name");
         var fakulte = $(".fakulteSelect").val();
         var birim   = $(".birimSelect").val();
-        if((brans != "" && fakulte != "" && birim != "") || (brans == "idari" && fakulte != "" && birim == undefined)){
+        if((fakulte != "" && birim != "") || (brans == "idari" && fakulte != "" && birim == undefined)){
             if(birim == undefined){
                 birim = "";
             }
@@ -103,30 +103,10 @@ function degistir() {
 }
 
 // Brans seçme alanı
-function bransChange(node){
-    var html = `
-        <div class="mb-3 fakulteAlan">
-            <label for="fakulte" class="form-label">Görev fakülte yeriniz</label>
-            <select class="form-control fakulteSelect" name="fakulte" id="fakulte" onchange="fakulteChange(this)">
-                <option class="fakulte" value="">Lütfen seçiniz</option>
-                <option class="fakulte" value="1">Muhendislik</option>
-                <option class="fakulte" value="2">Hukuk</option>
-            </select>
-        </div>
-    `;
-    if($(node).val() == "idari"){
-        if($(".gorevBilgisi").children("div").length > 2){ // İdari alanın birimi olmayacağından dolayı sildik. (Ek olarak div bakımından 3 adet yoksa silme işlemine almadık.)
-            $(".birimAlan").remove();
-        }
-    }
-    if($(".gorevBilgisi").children("div").length < 2){
-        $(".bransAlan").after(html); // Sayfada gösterimde olan 2 veya daha fazla veri varsa eklemedik.
-    }
-}
 function fakulteChange(node){
     // Alt birimleri olmayan yapılar getirilecek.
-    var gelenFakulte = $(".bransSelect").val();
-    if(gelenFakulte != "idari"){
+    var gelenBrans = $(".fakulteAlan").attr("name");
+    if(gelenBrans != "idari"){
         var html = `
             <div class="mb-3 birimAlan">
                 <label for="birim" class="form-label">Görev birim yeriniz</label>
@@ -137,13 +117,8 @@ function fakulteChange(node){
                 </select>
         </div>
         `;
-        if($(".gorevBilgisi").children("div").length < 3){ // Sayfada gösterimde olan 3 veya daha fazla veri varsa eklemedik.
+        if($(".gorevBilgisi").children("div").length < 2){ // Sayfada gösterimde olan 3 veya daha fazla veri varsa eklemedik.
             $(".fakulteAlan").after(html);
-        }
-    }else{
-        if($(".gorevBilgisi").children("div").length > 2){ // İdari alanın birimi olmayacağından dolayı sildik. (Ek olarak div bakımından 3 adet yoksa silme işlemine almadık.)
-            $(".birimAlan").remove();
         }
     }
 }
-

@@ -36,13 +36,24 @@
 				<div class="aciklamaMetni">
 					<textarea class="text-muted anketHeadCoveragerExplanationText" cols="30" rows="10" placeholder="Anket hakkında açıklama yapınız."><?php echo $anketBilgisi->aciklama ?></textarea>
 				</div>
-				<div class="formCheck p-4">
-					<div class="form-check form-switch formAlan" style="float: right;">
-						<?php
-						// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
-						?>
-						<input class="form-check-input" type="checkbox" id="anketGirisZorunluluk" <?php echo $anketBilgisi->anketGiris ? 'checked' : ''; ?> onclick='anketGirisZorunluluk(this)'>
-						<label class="form-check-label" for="anketGirisZorunluluk" style="color: red;font-weight:bold">Uyelik Şart</label>
+				
+				<div class="row formAlanKapsayici">
+					<div class="col-8 formKitle">
+						<select class="form-control mb-3" id="formKitleSelected">
+							<option>Lütfen bir kitle seçiniz</option>
+							<option value="ogrenci" <?php echo $anketBilgisi->anketKitle=="ogrenci"?"selected":"";?> >Ögrenci</option>
+							<option value="akademik" <?php echo $anketBilgisi->anketKitle=="akademik"?"selected":"";?>>Akademik</option>
+							<option value="idari" <?php echo $anketBilgisi->anketKitle=="idari"?"selected":"";?>>İdari</option>
+						</select>
+					</div>
+					<div class="col-4 formCheck">
+						<div class="form-check form-switch formAlan" style="float: right;">
+							<?php
+							// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
+							?>
+							<input class="form-check-input" type="checkbox" id="anketGirisZorunluluk" <?php echo $anketBilgisi->anketGiris ? 'checked' : ''; ?> onclick='anketGirisZorunluluk(this)'>
+							<label class="form-check-label" for="anketGirisZorunluluk" style="color: red;font-weight:bold">Uyelik Şart</label>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -57,19 +57,12 @@
         }
         ?>
         <div class="gorevBilgisi">
-            <div class="mb-3 bransAlan">
-                <label for="brans" class="form-label">Kimlik</label>
-                <select class="form-control bransSelect" name="brans" id="brans" onchange="bransChange(this)">
-                    <option class="brans" value="">Lütfen seçiniz.</option>
-                    <?php
-                    if (!$anketKaydi->anketGiris) {
-                    ?>
-                        <option class="brans" value="ogrenci">Ögrenci</option>
-                    <?php
-                    }
-                    ?>
-                    <option class="brans" value="akademik">Akademik</option>
-                    <option class="brans" value="idari">İdari</option>
+            <div class="mb-3 fakulteAlan" name="<?php echo $anketKaydi->anketKitle;?>">
+                <label for="fakulte" class="form-label">Görev fakülte yeriniz</label>
+                <select class="form-control fakulteSelect" name="fakulte" id="fakulte" onchange="fakulteChange(this)">
+                    <option class="fakulte" value="">Lütfen seçiniz</option>
+                    <option class="fakulte" value="1">Muhendislik</option>
+                    <option class="fakulte" value="2">Hukuk</option>
                 </select>
             </div>
         </div>
@@ -161,7 +154,7 @@
         </div>
 
         <div class="d-grid gap-2 mb-5 mt-2">
-            <button type="button" class="publicAnketGonder btn btn-secondary" id="<?php echo $anketKaydi->id ?>">Anketi Sonlandır.</button>
+            <button type="button" class="publicAnketGonder w-50 btn btn-success" id="<?php echo $anketKaydi->id ?>">Anketi Gönder.</button>
         </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->

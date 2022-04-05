@@ -123,14 +123,20 @@ $(document).ready(function(){
         }
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children(".anketHeadCoveragerHeadText").val(); // Anket Metni
         var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children(".anketHeadCoveragerExplanationText").val(); // Anket Açıklama Metni
+        var anketKitle      = $("#formKitleSelected").val();
         var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
+        
+        if(anketKitle == ""){
+            alert("Lütfen hitap edilen kitleyi seçiniz.");
+            return $("#formKitleSelected").focus();;
+        }
         if(anketGiris){
             anketGiris = 1;
         }else{
             anketGiris = 0;
         }
         
-        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketGiris];
+        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketKitle,anketGiris];
 
         var UstGrup     = $(".GroupCoverager");
         var UstList     = {};  // Liste ataması kullanarak sırayı karıştırmayalım
@@ -163,7 +169,7 @@ $(document).ready(function(){
             soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
         
-        $.post(base_url + 'ownerController/anketAdd', {queryName: temelAnketVerileri,queryString: UstList}, function(data) 
+        $.post(base_url + '/ownerController/anketAdd', {queryName: temelAnketVerileri,queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {
@@ -186,14 +192,19 @@ $(document).ready(function(){
         }
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children(".anketHeadCoveragerHeadText").val(); // Anket Metni
         var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children(".anketHeadCoveragerExplanationText").val(); // Anket Açıklama Metni
+        var anketKitle      = $("#formKitleSelected").val();
         var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
         var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
+        if(anketKitle == ""){
+            alert("Lütfen hitap edilen kitleyi seçiniz.");
+            return $("#formKitleSelected").focus();;
+        }
         if(anketGiris){
             anketGiris = 1;
         }else{
             anketGiris = 0;
         }
-        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketGiris,anketID];
+        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketKitle,anketGiris,anketID];
 
         // Anket içinin verilerinin alımı.
         var UstGrup     = $(".GroupCoverager");
@@ -227,7 +238,7 @@ $(document).ready(function(){
             soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
         
-        $.post(base_url + 'ownerController/anketUpdate', {queryName: temelAnketVerileri,queryString: UstList}, function(data) 
+        $.post(base_url + '/ownerController/anketUpdate', {queryName: temelAnketVerileri,queryString: UstList}, function(data) 
         {
         if(data.length > 0)
         {

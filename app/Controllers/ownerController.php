@@ -106,7 +106,8 @@ class ownerController extends Controller
                 $gelenBaslik        = $queryName[0]; // [0] parametre göndermede baslik olarak gönderilmişti.
                 $gelenBaslikmetni   = $queryName[1]; // [1] parametre göndermede baslik metni olarak gönderilmişti.
                 $gelenAciklamaMetni = $queryName[2]; // [2] parametre göndermede açıklama metni olarak gönderilmişti.
-                $gelenAnketGiris    = $queryName[3]; // [3] parametre göndermede ankete giriş bilgisi olarak gönderilmişti.
+                $gelenAnketKitle    = $queryName[3]; // [3] parametre göndermede anket kitle bilgisi olarak gönderilmişti.
+                $gelenAnketGiris    = $queryName[4]; // [4] parametre göndermede ankete giriş bilgisi olarak gönderilmişti.
                 $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
                 $onay               = 0; // Normal olarak 0 lakin üst düzey ise aşağıda düzelticez.
 
@@ -114,7 +115,7 @@ class ownerController extends Controller
                 if ($yoneticiBilgisi->yonetimFaktoru) {
                     $onay           = 1;
                 }
-                $Islem->setAnketProject($yoneticiBilgisi->id, $gelenBaslik, $gelenBaslikmetni, $gelenAciklamaMetni, $gelenAnketGiris, $gelenSerialize, $onay); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
+                $Islem->setAnketProject($yoneticiBilgisi->id, $gelenBaslik, $gelenBaslikmetni, $gelenAciklamaMetni, $gelenAnketKitle, $gelenAnketGiris, $gelenSerialize, $onay); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
 
                 echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
             } else {
@@ -163,12 +164,13 @@ class ownerController extends Controller
                 $gelenBaslik        = $queryName[0]; // [0] parametre göndermede baslik olarak gönderilmişti.
                 $gelenBaslikMetni   = $queryName[1]; // [1] parametre göndermede baslik metni olarak gönderilmişti.
                 $gelenAciklamaMetni = $queryName[2]; // [2] parametre göndermede açıklama metni olarak gönderilmişti.
-                $gelenAnketGiris    = $queryName[3]; // [3] parametre göndermede ankete giriş bilgisi olarak gönderilmişti.
-                $gelenID            = $queryName[4]; // [3] parametre göndermede anketin ID değeri olarak gönderilmişti.
+                $gelenAnketKitle    = $queryName[3]; // [3] parametre göndermede anket kitle bilgisi olarak gönderilmişti.
+                $gelenAnketGiris    = $queryName[4]; // [4] parametre göndermede ankete giriş bilgisi olarak gönderilmişti.
+                $gelenID            = $queryName[5]; // [5] parametre göndermede anketin ID değeri olarak gönderilmişti.
                 $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
 
-                $Islem->setAnketProjectUpd($gelenID, $gelenBaslik, $gelenBaslikMetni, $gelenAciklamaMetni,$gelenAnketGiris, $gelenSerialize); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
-
+                $Islem->setAnketProjectUpd($gelenID, $gelenBaslik, $gelenBaslikMetni, $gelenAciklamaMetni,$gelenAnketKitle,$gelenAnketGiris, $gelenSerialize); // Sistemden ekleme işlemi isteği yolladık. (Yonetici verilerinin kayıtlı olması için id ekledik.)
+                
                 echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
             } else {
                 header("Location: " . base_url("ownerController"));
