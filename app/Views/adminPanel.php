@@ -27,12 +27,12 @@
 					foreach($YoneticilerKayitlari as $YoneticilerSatirlari){
 			?>	
 				<div class="row border border-secondary mt-2">
-					<div class="col-4 p-4"><b><i class="fa-solid fa-square-envelope"></i> Gmail</b> = <?php echo $YoneticilerSatirlari->emailAdresi; ?></div>
+					<div class="col-4 p-4"><i class="fa-solid fa-square-envelope"></i> <?php echo $YoneticilerSatirlari->emailAdresi; ?></div>
 					<?php
 						// Ternary yapısıyla yöneticinin durumunu isimlendiriyorum.
 						$yonetimDurumu = $YoneticilerSatirlari->yonetimFaktoru?"Üst Düzey Yönetici":"Yönetici";
 					?>
-					<div class="col-4 p-4"><b><i class="fa-solid fa-person-circle-check"></i> Yonetici Durumu</b> = <?php echo $yonetimDurumu; ?> </div>
+					<div class="col-4 p-4"><i class="fa-solid fa-person-circle-check"></i> <?php echo $yonetimDurumu; ?> </div>
 					
 					<div class="col-4 p-4" style="text-align:right">
 						<a href="<?php echo base_url("adminController/adminGuncelle/" . $YoneticilerSatirlari->id); ?>" style="color: #0000FF; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>

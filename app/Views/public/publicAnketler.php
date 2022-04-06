@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS v5.0.2 -->
     <base href="<?php echo base_url(); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?php echo base_url("css/publicAnketler.css"); ?>">
     <script src="<?php echo base_url("js/publicAnketler.js"); ?>"></script>
 </head>
@@ -60,7 +60,7 @@
         <div class="gorevBilgisi">
             <div class="mb-3 fakulteAlan" name="<?php echo $anketKaydi->anketKitle; ?>">
                 <label for="fakulte" class="form-label">Görev fakülte yeriniz</label>
-                <select class="form-control fakulteSelect" name="fakulte" id="fakulte" onchange="fakulteChange(this)">
+                <select class="form-select fakulteSelect" name="fakulte" id="fakulte" onchange="fakulteChange(this)">
                     <option class="fakulte" value="">Lütfen seçiniz</option>
                     <option class="fakulte" value="1">Muhendislik</option>
                     <option class="fakulte" value="2">Hukuk</option>
@@ -124,12 +124,10 @@
                                 <?php
                                 foreach ($anketGroup[1] as $icKey => $anketSecenek) {
                                 ?>
-                                    <td class="soruCevaplari">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="<?php echo ($key + 1) . "-" . $anketSecenek; ?>" name="<?php echo $ustKey . "-" . $key; ?>">
-                                            <?php // checkbox sorunu yaşanmasın diye key bilgileriyle beraber gelicek veriyi özelleştirdik. 
-                                            ?>
-                                        </div>
+                                    <td class="soruCevaplari text-center">
+                                        <input class="form-check-input soruSecenekler" type="radio" value="<?php echo ($key + 1) . "-" . $anketSecenek; ?>" name="<?php echo $ustKey . "-" . $key; ?>">
+                                        <?php // checkbox sorunu yaşanmasın diye key bilgileriyle beraber gelicek veriyi özelleştirdik. 
+                                        ?>
                                     </td>
                                 <?php
                                 }
@@ -145,27 +143,23 @@
         }
         ?>
         <div class="row mb-5">
-            <div class="col-0 col-lg-2"></div>
-            <div class="col-12 col-lg-8 text-center">
-                <div>Güvenlik Kodu: </div>
-                <div class="row">
-                <div class="row col-12 col-lg-9">
-                    <div class="col-4 col-lg-4" style="text-align:right">
-                        <canvas id="guvenlikkodualani" width="150" height="50"></canvas>
-                    </div>
-                    <div class="col-4 col-lg-2 pt-2" style="text-align:left">
-                        <button onClick="degistir()" class="btn btn-secondary"><i class="fa-solid fa-arrow-rotate-right"></i></button>
-                    </div>
-                    <div class="col-4 col-lg-6">
-                        <input type="text" class="canvasSelector" placeholder="Güvenlik kodunu giriniz.">
-                    </div>
+            <div class="col-12 col-lg-6 col-xl-4 row">
+                <div class="col-4" style="text-align:left">
+                    <canvas id="guvenlikkodualani" width="150" height="50"></canvas>
                 </div>
-                <div class="col-12 col-lg-3">
-                    <button type="button" class="publicAnketGonder btn btn-success" id="<?php echo $anketKaydi->id ?>">Anketi Gönder.</button>
+                <div class="col-2 col-xl-2 pt-1" style="text-align:center">
+                    <button onClick="degistir()" class="btn btn-secondary"><i class="fa-solid fa-arrow-rotate-right"></i></button>
                 </div>
+                <div class="col-5 pl-3" style="text-align:left">
+                    <input type="text" class="canvasSelector p-3" placeholder="Güvenlik kodu">
                 </div>
             </div>
-            <div class="col-0 col-lg-2"></div>
+            <div class="col-0 col-lg-4 col-xl-6"></div>
+            <div class="col-12 col-lg-2 col-xl-2">
+                <div style="text-align:right">
+                    <button type="button" class="publicAnketGonder btn btn-success" id="<?php echo $anketKaydi->id ?>">Anketi Gönder</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->

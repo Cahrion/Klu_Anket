@@ -29,10 +29,10 @@ class publicAnketler extends Controller
                         }
                         if($gelenAnket->onay or $yonetimFaktoru){
                             if($gelenAnket->anketGiris){ 
-                                if(!isset($_SESSION["Yonetici"])){
+                                if(!(isset($_SESSION["Yonetici"]) or isset($_SESSION["Kullanici"]))){
                                     echo "<script>alert('Anketimize katılmak için öncelikle üye girişi yapınız.');</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
                                     
-                                    header("Location: " . base_url());
+                                    header("Location: " . base_url("Home/giris"));
                                     exit();
                                 }
                             }
@@ -69,7 +69,7 @@ class publicAnketler extends Controller
                         echo "3"; // Brans hatası .
                         exit();
                     }else{
-                        if($gelenQueryBrans[0] != "idari" or $gelenQueryBrans[0] != "herkes"){ // idari verilerin birim verileri olmayacağından dolayı geçebilir.
+                        if(!($gelenQueryBrans[0] == "idari" or $gelenQueryBrans[0] == "herkes")){ // idari verilerin birim verileri olmayacağından dolayı geçebilir.
                             echo "3"; // Brans hatası .
                             exit();
                         }

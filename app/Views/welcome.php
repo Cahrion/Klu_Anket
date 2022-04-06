@@ -5,9 +5,12 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<base href="<?php echo base_url(); ?>">
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<!-- Bootstrap CSS v5.0.2 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="<?php echo base_url("js/welcome.js"); ?>"></script>
 	<style>
 		html{
 			overflow-x: hidden;
@@ -24,7 +27,7 @@
 		  <div class="col-4"></div>
 		  <div class="col-4">
 				<div class="openMainBlock">
-					<form action="<?php echo base_url("data");?>" method="POST">
+					<form action="<?php echo base_url("data/" . $klu_bilgi);?>" method="POST">
 						<h1 class="text-center">Giriş Yap</h1>
 						<div class="mb-3">
 						<label for="email" class="form-label">Email</label>
@@ -36,7 +39,7 @@
 						<input type="password"
 							class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Şifreniz">
 						</div>
-						<input class="btn btn-secondary" type="submit" value="Giriş Yap">
+						<input class="btn btn-secondary girisYap" value="Giriş Yap">
 					</form>
 				</div>
 		  </div>

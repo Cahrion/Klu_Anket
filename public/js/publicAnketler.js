@@ -15,13 +15,13 @@ $(document).ready(function () {
         var anketAlanlar = $(".anketAlan");
         var hata = 0;
         $.each(anketAlanlar, function (keyIlk, value) { // Anket grup verisi (Birden fazla grup bulunursa bu belirteç olacaktır.)
-            var anketSoruCevaplari = $(value).children(".table").children("tbody").children("tr");
+            var anketSoruCevaplari = $(value).children("table").children("tbody").children("tr");
             $.each(anketSoruCevaplari, function (keyOrta, value) { // Anket soru verisi (Birden fazla soru bulunursa bu belirteç olacaktır.)
                 var anketSoruCevap = $(value).children(".soruCevaplari");
                 $.each(anketSoruCevap, function (keySon, value) { // Anket şık verisi (Birden fazla şık bulunursa bu belirteç olacaktır.)
-                    var anketCevap = $(value).children(".form-check").children(".form-check-input").prop("checked");
+                    var anketCevap = $(value).children(".soruSecenekler").prop("checked");
                     if (anketCevap) {
-                        anketCevaplarListesi[keyOrta] = $(value).children(".form-check").children(".form-check-input").val();
+                        anketCevaplarListesi[keyOrta] = $(value).children(".soruSecenekler").val();
                         return 0;
                     }
                 });
@@ -94,10 +94,10 @@ function baslat() {
 function degistir() {
     $.post(base_url + '/publicAnketler/captchaCreator', function (data) {
         if (data.length > 0) {
-            islem.clearRect(0, 0, 150, 50);
-            islem.fillRect(0, 0, 150, 50);
-            islem.font = "30px calibri";
-            islem.strokeText(data, 24, 34);
+            islem.clearRect(0, 0, 135, 50);
+            islem.fillRect(0, 0, 135, 50);
+            islem.font = "28px calibri";
+            islem.strokeText(data, 12, 34);
         }
     });
 }
@@ -106,7 +106,7 @@ function degistir() {
 function fakulteChange(node){
     // Alt birimleri olmayan yapılar getirilecek.
     var gelenBrans = $(".fakulteAlan").attr("name");
-    if(gelenBrans != "idari" || gelenBrans != "herkes"){
+    if(gelenBrans != "idari" && gelenBrans != "herkes"){
         var html = `
             <div class="mb-3 birimAlan">
                 <label for="birim" class="form-label">Görev birim yeriniz</label>

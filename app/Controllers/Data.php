@@ -10,7 +10,7 @@ use App\Models\IslemModel;
 class Data extends Controller
 {
     // Normal halde giriş yapmak için kullanılan yapı bulunmakta
-    public function index()
+    public function yn_giris()
     {
         helper("fonksiyonlar");
         if(isset($_POST["email"])){
@@ -41,6 +41,35 @@ class Data extends Controller
             }
         }else{
             header("Location: " . base_url());
+            exit();
+        }
+    }
+    public function klu_giris() // Ogrenciler ve benzeri kişilerin giriş alanı
+    {
+        helper("fonksiyonlar");
+        if(isset($_POST["gelenEmail"])){
+            $gelenEmail = GuvenlikFiltresi($_POST["gelenEmail"]);
+        }else{
+            $gelenEmail = "";
+        }
+        if(isset($_POST["gelenPass"])){
+            $gelenPassword = GuvenlikFiltresi($_POST["gelenPass"]);
+        }else{
+            $gelenPassword = "";
+        }
+        if($gelenEmail != "" and $gelenPassword != ""){
+            
+            $_SESSION["Kullanici"]	=	$gelenEmail; // Öğrenciler de bu sistemi kullanacağından dolayı eğer bir öğrenci girecekse kullanici sessionu'nu alsın
+            // publicAnketler kısmında Hem kullanici hem de yönetici etiketlerine bakacağız bu yüzden ikisinden biri olması o siteye girmesi için yeterli olucaktır.
+
+            // Buralarda CURL bağlantısıyla true geldiğini varsayıyorum ve yeni sayfaya aktarıyorum.
+            // Şifre yapıları elimizde olmayacağından dolayı veritabanında da sadece email adresi bıraktım.
+            
+            echo "1"; // Başarılı
+            exit();
+
+        }else{
+            echo "0";
             exit();
         }
     }

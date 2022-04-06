@@ -14,3 +14,8 @@
     height: 50%;
     line-height: 100%;
 }
+@media screen and (max-width: 992px) {
+    body {
+      font-size: 10px;
+    }
+  }

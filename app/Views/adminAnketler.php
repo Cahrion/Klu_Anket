@@ -20,46 +20,54 @@
 	include_once 'includes/topBar.php';
 	?>
 	<div class="row kluCenter">
-		<div class="col-0 col-sm-1 col-md-2"></div>
-		<div class="col-12 col-sm-10 col-md-8 pt-3">
+		<div class="col-1 col-md-2"></div>
+		<div class="col-10 col-md-8 pt-3">
 			<div class="adminButton"><a href="<?php echo base_url("ownerController"); ?>"><i class="fa-solid fa-circle-plus"></i> Yeni Anket Ekle</a></div>
+			<div class="row">
 			<?php
 			foreach ($anketKayitlari as $anketKaydi) { // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
 			?>
-				<div class="row border border-secondary mt-2">
-					<div class="col-2 p-4"><?php echo $anketKaydi->baslik; ?></div>
-					<?php
-					// Ternary yapısıyla anketin durumunu isimlendiriyorum.
-					$onayDurumu     = $anketKaydi->onay ? "Onaylandı" : "Onaylanmadı";
-					$onayRenk       = $anketKaydi->onay ? "success" : "danger";
-					$title          = $anketKaydi->onay ? "Onay kaldır." : "Onayla";
-					?>
-					<div class="col-2 pt-3">
-						<a class="btn btn-<?php echo $onayRenk; ?>" href="<?php echo base_url("ownerController/anketOnay/" . $anketKaydi->id);?>" role="button" title="<?php echo $title ?>">
-							<?php echo $onayDurumu ?>
-						</a>
+			<div class="col-12 col-md-6 col-xl-4 p-3">
+				<div class="card">
+					<div class="card-header ">
+						<?php echo $anketKaydi->baslik; ?>
 					</div>
-					<div class="col-2 pt-3">
-						<a class="btn btn-dark" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id);?>">
-							Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
-						</a>
+					<div class="card-body">
+
+						<h4 class="card-title">
+
+								<a class="btn btn-dark" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
+									Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
+								</a>
+								<a class="btn btn-secondary" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
+									<i class="fa-solid fa-link"></i>
+									Link
+								</a>
+						</h4>
+						<?php
+						// Ternary yapısıyla anketin durumunu isimlendiriyorum.
+							$onayDurumu     = $anketKaydi->onay ? "Onaylandı" : "Onaylanmadı";
+							$onayRenk       = $anketKaydi->onay ? "success" : "danger";
+							$title          = $anketKaydi->onay ? "Onay kaldır." : "Onayla";
+						?>
+						<p class="card-text text-end mt-4">
+							<a class="btn btn-<?php echo $onayRenk; ?>" href="<?php echo base_url("ownerController/anketOnay/" . $anketKaydi->id);?>" role="button" title="<?php echo $title ?>">
+								<?php echo $onayDurumu ?>
+							</a>
+						</p>
 					</div>
-					<div class="col-2 pt-3">
-						<a class="btn btn-secondary" href="<?php echo base_url("/ownerController/adminAnketLinkOlustur/" . $anketKaydi->id);?>" role="button">
-							Link Oluştur
-							<i class="fa-solid fa-link"></i>
-						</a>
-					</div>
-					<div class="col-4 p-4" style="text-align:right">
+					<div class="card-footer">
 						<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #0000FF; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
 						<a href="<?php echo base_url("ownerController/ustAdminAnketSil/" . $anketKaydi->id);?>" style="color: #FF0000; text-decoration: none;"><i class="fa-solid fa-ban" style="color:red"></i> Sil</a>
 					</div>
 				</div>
+			</div>
 			<?php
 			}
 			?>
+			</div>
 		</div>
-		<div class="col-0 col-sm-1 col-md-2"></div>
+		<div class="col-1 col-md-2"></div>
 	</div>
 	<?php
 	include_once 'includes/footer.php';
