@@ -49,8 +49,7 @@
 						<div class="form-check form-switch formAlan" style="float: right;">
 							<input class="form-check-input" type="checkbox" id="anketGirisZorunluluk" onclick="anketGirisZorunluluk(this)">
 							<label class="form-check-label" for="anketGirisZorunluluk" style="color:black;font-weight:bold;">Eposta ile Girişi Zorunlu Tut
-							<span style="font-size:10px;display:block" class="text-muted">(Sadece klu.edu.tr uzantılı e-postaya sahip olanlar girebilir.)</span>
-
+								<span style="font-size:10px;display:block" class="text-muted">(Sadece klu.edu.tr uzantılı e-postaya sahip olanlar girebilir.)</span>
 							</label>
 						</div>
 					</div>
@@ -74,9 +73,9 @@
 								</div>
 								<!-- Kullanıcı şık ekleme alanı -->
 								<div class="col-2 text-center secenekAlan">
-                					<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
+									<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
 								</div>
-								
+
 							</div>
 						</div>
 						<div class="anketCoverager">

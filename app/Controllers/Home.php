@@ -11,7 +11,7 @@ class Home extends BaseController
             $data = array(
                 "klu_bilgi" => "yn_giris"
             );
-            return view('welcome',$data);
+            return view('welcomeOwner',$data);
         }else{
             header("Location: " . base_url("ownerController/adminAnket"));
             exit();

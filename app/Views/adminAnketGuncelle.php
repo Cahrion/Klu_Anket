@@ -6,15 +6,15 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<base href="<?php echo base_url();?>">
+	<base href="<?php echo base_url(); ?>">
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<!-- Bootstrap CSS v5.0.2 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="<?php echo base_url("css/minRequire.css");?>">
-	<link rel="stylesheet" href="<?php echo base_url("css/Central.css");?>">
-	<script src="<?php echo base_url("js/Central.js");?>"></script>
+	<link rel="stylesheet" href="<?php echo base_url("css/minRequire.css"); ?>">
+	<link rel="stylesheet" href="<?php echo base_url("css/Central.css"); ?>">
+	<script src="<?php echo base_url("js/Central.js"); ?>"></script>
 
 </head>
 
@@ -36,15 +36,15 @@
 				<div class="aciklamaMetni">
 					<textarea class="text-muted anketHeadCoveragerExplanationText" cols="30" rows="10" placeholder="Anket hakkında açıklama yapınız."><?php echo $anketBilgisi->aciklama ?></textarea>
 				</div>
-				
+
 				<div class="row formAlanKapsayici">
 					<div class="col-8 formKitle">
 						<select class="form-select mb-3" id="formKitleSelected">
 							<option>Anket Kimler Tarafından Doldurulacak?</option>
-							<option value="akademik" <?php echo $anketBilgisi->anketKitle=="akademik"?"selected":"";?>>Akademik Personeller</option>
-							<option value="idari" <?php echo $anketBilgisi->anketKitle=="idari"?"selected":"";?>>İdari Personeller</option>
-							<option value="ogrenci" <?php echo $anketBilgisi->anketKitle=="ogrenci"?"selected":"";?> >Ögrenciler</option>
-							<option value="herkes" <?php echo $anketBilgisi->anketKitle=="herkes"?"selected":"";?>>Herkes</option>
+							<option value="akademik" <?php echo $anketBilgisi->anketKitle == "akademik" ? "selected" : ""; ?>>Akademik Personeller</option>
+							<option value="idari" <?php echo $anketBilgisi->anketKitle == "idari" ? "selected" : ""; ?>>İdari Personeller</option>
+							<option value="ogrenci" <?php echo $anketBilgisi->anketKitle == "ogrenci" ? "selected" : ""; ?>>Ögrenciler</option>
+							<option value="herkes" <?php echo $anketBilgisi->anketKitle == "herkes" ? "selected" : ""; ?>>Herkes</option>
 						</select>
 					</div>
 					<div class="col-4 formCheck">
@@ -53,7 +53,9 @@
 							// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
 							?>
 							<input class="form-check-input" type="checkbox" id="anketGirisZorunluluk" <?php echo $anketBilgisi->anketGiris ? 'checked' : ''; ?> onclick='anketGirisZorunluluk(this)'>
-							<label class="form-check-label" for="anketGirisZorunluluk" style="color:<?php echo $anketBilgisi->anketGiris ? "darkred": "#c0c5c0";?>;font-weight:bold">Uyelik Şart</label>
+							<label class="form-check-label" for="anketGirisZorunluluk" style="color:black;font-weight:bold;">Eposta ile Girişi Zorunlu Tut
+								<span style="font-size:10px;display:block" class="text-muted">(Sadece klu.edu.tr uzantılı e-postaya sahip olanlar girebilir.)</span>
+							</label>
 						</div>
 					</div>
 				</div>
@@ -70,7 +72,7 @@
 								<?php
 								if ($keyGroup != 0) {
 								?>
-            						<span class="anketGroupSil" onclick="anketGroupSil(this)">Grup Sil</span>
+									<span class="anketGroupSil" onclick="anketGroupSil(this)">Grup Sil</span>
 								<?php
 								}
 								?>
@@ -89,15 +91,23 @@
 											<input type="text" value="<?php echo $gelenAnketSecenekler; ?>" placeholder="Seçenekler" class="anketGroupOptions">
 										</div>
 										<!-- Kullanıcı şık ekleme alanı -->
-										<?php
-										if (count($gelenGroupCoveragerler[1]) == $keyOne + 1) { // Eğer son seçenek kısmındaysak seçenek ekleme başlıkları otomatikmen son olana eklensin.
-										?>
-											<div class="col-2 text-center secenekAlan">
+										<div class="col-2 text-center secenekAlan">
+											<?php
+											if ($keyOne != 0) {
+											?>
+												<button class="btn btn-primary soruSecenekSil" onclick="soruSecenekSil(this)"><i class="fa-solid fa-minus"></i></button>
+											<?php
+											}
+											?>
+											<?php
+											if (count($gelenGroupCoveragerler[1]) == $keyOne + 1) { // Eğer son seçenek kısmındaysak seçenek ekleme başlıkları otomatikmen son olana eklensin.
+											?>
 												<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
-											</div>
-										<?php
-										}
-										?>
+											<?php
+											}
+											?>
+										</div>
+
 									</div>
 								<?php
 								}
@@ -107,7 +117,7 @@
 
 							foreach ($gelenGroupCoveragerler[2] as $keyTwo => $gelenAnketCoveragerlar) { // [1] verisinde anket bölümü bulunmakta bizde onu tek tek açıyoruz.
 							?>
-						
+
 								<div class="anketCoverager" style="border-left: 4px solid <?php echo $gelenGroupCoveragerler[0][0] ?>">
 									<div class="anketSoru">
 										<input type="text" value="<?php echo $gelenAnketCoveragerlar[0]; ?>" placeholder="Soru" class="anketSoruVal">
@@ -117,7 +127,7 @@
 										// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
 										?>
 										<input class="form-check-input anketSoruZorunluluk" type="checkbox" <?php echo $gelenAnketCoveragerlar[1] == 'true' ? 'checked' : ''; ?> onclick='zorunlulukFaktor(this)'>
-										<label class="form-check-label" for="" style="color:<?php echo $gelenAnketCoveragerlar[1] == 'true' ? "darkred": "#c0c5c0";?>;font-weight:bold">Zorunlu</label>
+										<label class="form-check-label" for="" style="color:<?php echo $gelenAnketCoveragerlar[1] == 'true' ? "darkred" : "#c0c5c0"; ?>;font-weight:bold">Zorunlu</label>
 									</div>
 									<!-- Kullanıcı soru ekleme alanı -->
 									<?php
