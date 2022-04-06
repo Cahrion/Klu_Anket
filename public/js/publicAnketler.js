@@ -2,6 +2,22 @@ var base_url = $("base").attr("href");
 $(document).ready(function () {
     $("#myModal").modal('show');
 
+    // Seçenek kalıp alan
+    $(".soruCevaplari").click(function(){
+        var interval = 0;
+        var veriT = $(this);
+        var veriTIntial = $(veriT).css("box-shadow");
+        var zamanlayici = setInterval(function(){
+            interval += 1;
+            $(veriT).css("box-shadow", "inset 0 0 5px " + interval + "px grey");
+            if(interval == 30){
+                $(veriT).css("box-shadow",veriTIntial);
+                clearInterval(zamanlayici);
+            }
+        },10);
+        $(this).children(".soruSecenekler").prop('checked', true);
+    });
+
     $(".publicAnketGonder").click(function () {
         var zorunluAlanlar = $(".zorunluAlan");
         var zorunluYapi = [];

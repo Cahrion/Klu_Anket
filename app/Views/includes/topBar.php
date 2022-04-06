@@ -1,9 +1,8 @@
 <link rel="stylesheet" href="<?php echo base_url("css/navbar_kontrol.css");?>">
 <nav id="baslik" class='navbar navbar-expand-md navbar-dark shadow bg-dark'>
-    <a href=<?php echo base_url("img/kluLogo.png");?> id="DisLogo" class="topLogo"><img src="<?php echo base_url("img/kluLogo.png");?>" alt="KluLogo" title="KluLogo" style="padding-left: 50px;"></a>
+    <a href=<?php echo base_url("ownerController/adminAnket");?> id="DisLogo" class="topLogo"><img src="<?php echo base_url("img/kluLogo.png");?>" alt="KluLogo" title="KluLogo" style="padding-left: 50px;"></a>
     <div class='container'>
-    <a href=<?php echo base_url("img/kluLogo.png");?> id="IcLogo" class="topLogo"><img src="<?php echo base_url("/img/kluLogo.png");?>" alt="KluLogo" title="KluLogo"></a>
-    
+    <a href=<?php echo base_url("ownerController/adminAnket");?> id="IcLogo" class="topLogo"><img src="<?php echo base_url("img/kluLogo.png");?>" alt="KluLogo" title="KluLogo"></a>
         <div class='text-right'>
             <ul class='navbar-nav'>
                     <li class='nav-item text-muted'>

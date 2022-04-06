@@ -58,7 +58,7 @@
 			<div class="row">
 				<div class="col-0 col-sm-2"></div>
 				<div class="col-12 col-sm-8 anketPlatform">
-					<div class="GroupCoverager mt-4">
+					<div class="GroupCoverager mt-4" name="1">
 						<div class="anketGroupHeadCoverager">
 							<div class="renkAlani" onclick='renkAlani(this)' style="background-color:rgb(0,0,0)"></div>
 							<div class="baslik">
@@ -67,7 +67,7 @@
 							<div class="baslikMetni">
 								<textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Detay bilgisini giriniz"></textarea>
 							</div>
-							<div class="anketSecenekler row">
+							<div class="anketSecenekler row" name="1secenek1">
 								<div class="col-10 anketSeceneklerIcAlan">
 									<input type="text" placeholder="Seçenekler" class="anketGroupOptions">
 								</div>
@@ -78,7 +78,7 @@
 
 							</div>
 						</div>
-						<div class="anketCoverager">
+						<div class="anketCoverager" name="1soru1">
 							<div class="anketSoru">
 								<input type="text" placeholder="Soru" class="anketSoruVal">
 							</div>

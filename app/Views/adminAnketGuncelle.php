@@ -68,7 +68,7 @@
 					foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupCoveragerler) { // [0][0] = renkAlani, [0][1] = Group başlığı, [0][2] = Group Detay Metni, [1] => Seçenekler, [2] => Sorular
 					?>
 						<div class="GroupCoverager mt-4">
-							<div class="anketGroupHeadCoverager">
+							<div class="anketGroupHeadCoverager" name="<?php echo ($keyGroup+1)?>">
 								<?php
 								if ($keyGroup != 0) {
 								?>
@@ -86,7 +86,7 @@
 								<?php
 								foreach ($gelenGroupCoveragerler[1] as $keyOne => $gelenAnketSecenekler) {
 								?>
-									<div class="anketSecenekler row">
+									<div class="anketSecenekler row" name="<?php echo ($keyGroup+1)."secenek".($keyOne+1)?>">
 										<div class="col-10 anketSeceneklerIcAlan">
 											<input type="text" value="<?php echo $gelenAnketSecenekler; ?>" placeholder="Seçenekler" class="anketGroupOptions">
 										</div>
@@ -118,7 +118,7 @@
 							foreach ($gelenGroupCoveragerler[2] as $keyTwo => $gelenAnketCoveragerlar) { // [1] verisinde anket bölümü bulunmakta bizde onu tek tek açıyoruz.
 							?>
 
-								<div class="anketCoverager" style="border-left: 4px solid <?php echo $gelenGroupCoveragerler[0][0] ?>">
+								<div class="anketCoverager" style="border-left: 4px solid <?php echo $gelenGroupCoveragerler[0][0] ?>" name="<?php echo ($keyGroup+1)."soru".($keyTwo+1)?>">
 									<div class="anketSoru">
 										<input type="text" value="<?php echo $gelenAnketCoveragerlar[0]; ?>" placeholder="Soru" class="anketSoruVal">
 									</div>

@@ -118,7 +118,7 @@
                                         $anketZorunluluk = "";
                                     }
                                     ?>
-                                    <span class="soruMetni"><?php echo ($key + 1) . ". " . $anketSoru[0]; ?></span>
+                                    <span class="soruMetni"><?php echo "<span style='font-weight:bold'>" . ($key + 1) . ". </span>" . $anketSoru[0]; ?></span>
                                     <?php echo $anketZorunluluk; ?>
                                 </td>
                                 <?php

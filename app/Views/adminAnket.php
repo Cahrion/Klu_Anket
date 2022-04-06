@@ -30,47 +30,59 @@
 				?>
 					<div class="col-12 col-md-6 col-xl-4 p-3">
 						<div class="card">
-							<div class="card-header">
+							<div class="card-header" style="height:120px;overflow-y:hidden">
 								<?php echo $anketKaydi->baslik; ?>
 							</div>
 							<div class="card-body">
-
-								<h4 class="card-title">
-
-									<?php
-									if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
+								<?php
+								if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
+								?>
+									<a class="btn btn-danger col-12 mb-2" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
+										Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
+									</a>
+								<?php
+								}else{
+								?>
+									<a class="btn btn-danger col-12 mb-2 disabled">
+										Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
+									</a>
+								<?php
+							}
+								?>
+								<?php
+								if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
+								?>
+									<a class="btn btn-primary col-12 mb-2" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
+										<i class="fa-solid fa-link"></i>
+										Link
+									</a>
+								<?php
+								}else{
 									?>
-										<a class="btn btn-dark" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
-											Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
-										</a>
-									<?php
-									}
-									?>
-									<?php
-									if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
-									?>
-										<a class="btn btn-secondary" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
+										<a class="btn btn-primary col-12 mb-2 disabled" role="button">
 											<i class="fa-solid fa-link"></i>
 											Link
 										</a>
 									<?php
-									}
-									?>
-								</h4>
+								}
+								?>
 								<?php
 								// Ternary yapısıyla anketin durumunu isimlendiriyorum.
 								$onayDurumu 	= $anketKaydi->onay ? "Onaylandı" : "Onay Bekleniyor";
 								$onayRenk	 	= $anketKaydi->onay ? "success" : "danger";
 								?>
-								<p class="card-text text-end mt-4">
-									<span class="btn btn-<?php echo $onayRenk?> disabled">
-										<?php echo $onayDurumu; ?> 
-									</span>
-								</p>
 							</div>
-							<div class="card-footer">
-								<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
-								<a class="m-2" href="<?php echo base_url("ownerController/adminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
+							<div class="card-footer row">
+								<div class="col-6 pt-2">
+									<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
+									<a class="" href="<?php echo base_url("ownerController/adminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
+
+								</div>
+								<div class="col-6">
+									<span class="btn btn-<?php echo $onayRenk ?> disabled col-12 ">
+										<?php echo $onayDurumu; ?>
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>

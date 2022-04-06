@@ -4,9 +4,15 @@ var renkler = ["rgb(0, 0, 0)", "rgb(234, 228, 135)","rgb(168, 234, 135)","rgb(23
 function anketIcerigiEkle(node){
     $(node).css("display", "none");
     $(node).siblings(".anketGroupEkle").css("display", "none");
+
+    var gelenName = $(node).parent().attr("name"); // 1soru1
+    var gelenNameSplit = gelenName.split("soru");
+    var gelenNameSplitAr = parseInt(gelenNameSplit[1]) + 1;
+    var istenenName = gelenNameSplit[0] + "soru" + gelenNameSplitAr;
+
     var myColor = $(node).parent().siblings(".anketGroupHeadCoverager").children(".renkAlani").css("background-color");
     var html = `
-        <div class="anketCoverager" style="border-left: 4px solid ` + myColor + `">
+        <div class="anketCoverager" style="border-left: 4px solid ` + myColor + `" name="` + (istenenName) + `">
             <div class="anketSoru">
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
@@ -22,10 +28,44 @@ function anketIcerigiEkle(node){
     `;
     $(node).parent().parent().append(html);
 }
+function anketIcerigiSil(node){
+    var html = `
+        <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
+        <span class="anketGroupEkle" onclick="anketGroupEkle(this)">Grup Ekle</span>
+    `;
+    var mainName = $(node).parent().attr("name"); // 1soru1
+    var mainNameSpl = mainName.split("soru"); 
+    var mainGroupIndex = mainNameSpl[0]; 
+    var mainSoruIndex  = mainNameSpl[1]; 
+
+    var boyut = $(".GroupCoverager[name='" + mainGroupIndex + "'] .anketCoverager").length;
+
+    if(boyut == mainSoruIndex){
+        $(node).parent().prev().append(html);
+        $(node).parent().remove();
+    }else{
+        var gelenUstSorular = $(node).parent().siblings(".anketCoverager");
+        $.each(gelenUstSorular, function(key, value){
+            var gelenUstName        = $(value).attr("name");
+            var gelenUstNameSpl     = gelenUstName.split("soru"); 
+            var ustSoruIndex        = gelenUstNameSpl[1];
+            if(parseInt(ustSoruIndex) > parseInt(mainSoruIndex)){
+                $(value).attr("name", mainGroupIndex + "soru" + (ustSoruIndex-1));
+            }
+        });
+        $(node).parent().remove();
+    }
+}
 function soruSecenekEkle(node){
     $(node).css("display", "none");
+
+    var gelenName = $(node).parent().parent().attr("name"); // 1secenek1
+    var gelenNameSplit = gelenName.split("secenek");
+    var gelenNameSplitAr = parseInt(gelenNameSplit[1]) + 1;
+    var istenenName = gelenNameSplit[0] + "secenek" + gelenNameSplitAr;
+
     var html = `
-        <div class="anketSecenekler row">
+        <div class="anketSecenekler row" name="` + istenenName + `">
             <div class="col-10 anketSeceneklerIcAlan">
                 <input type="text" placeholder="Seçenekler" class="anketGroupOptions">
             </div>
@@ -42,16 +82,42 @@ function soruSecenekSil(node){
     var html = `
         <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
     `;
-    $(node).parent().parent().prev().children(".secenekAlan").append(html);
-    $(node).parent().parent().remove();
+    var mainName = $(node).parent().parent().attr("name"); // 1secenek1
+    var mainNameSpl         = mainName.split("secenek"); 
+    var mainGroupIndex      = mainNameSpl[0]; 
+    var mainSecenekIndex    = mainNameSpl[1]; 
+
+    var boyut = $(".GroupCoverager[name='" + mainGroupIndex + "'] .anketGroupHeadCoverager .anketSecenekler").length;
+    if(boyut == mainSecenekIndex){
+        $(node).parent().parent().prev().children(".secenekAlan").append(html);
+        $(node).parent().parent().remove();
+    }else{
+        var gelenUstSorular = $(node).parent().parent().siblings(".anketSecenekler");
+        $.each(gelenUstSorular, function(key, value){
+            var gelenUstName        = $(value).attr("name");
+            var gelenUstNameSpl     = gelenUstName.split("secenek");
+            var ustSoruIndex        = gelenUstNameSpl[1];
+            if(parseInt(ustSoruIndex) > parseInt(mainSecenekIndex)){
+                $(value).attr("name", mainGroupIndex + "secenek" + (ustSoruIndex-1));
+            }
+        });
+        $(node).parent().parent().remove();
+    }
 }
 function anketGroupEkle(node){
     var ustAlan     = $(node).parent().parent();
     var renk        = $(ustAlan).children(".anketGroupHeadCoverager").children(".renkAlani").css("background-color");
     var index       = $.inArray(renk, renkler);
     var renkVeri = renkler[index + 1];
+
+
+    var gelenName = $(node).parent().parent().attr("name"); // 1
+    var gelenNameSplitAr = parseInt(gelenName) + 1;
+    var istenenName = gelenNameSplitAr;
+
+
     var html = `
-    <div class="GroupCoverager mt-4">
+    <div class="GroupCoverager mt-4" name="` + istenenName + `">
         <div class="anketGroupHeadCoverager">
             <span class="anketGroupSil" onclick="anketGroupSil(this)">Grup Sil</span>
             <div class="renkAlani" onclick='renkAlani(this)' style="background-color: ` + renkVeri + `"></div>
@@ -59,9 +125,9 @@ function anketGroupEkle(node){
                 <input type="text" placeholder="Grup Başlığı" class="anketGroupHeadCoveragerHeader">
             </div>
             <div class="baslikMetni">
-                <textarea class="text-muted" cols="30" rows="10" placeholder="Detay bilgisini giriniz" class="anketGroupHeadCoveragerHeadText"></textarea>
+                <textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Detay bilgisini giriniz"></textarea>
             </div>
-            <div class="anketSecenekler row">
+            <div class="anketSecenekler row" name="` + istenenName + `secenek1">
                 <div class="col-10 anketSeceneklerIcAlan">
                     <input type="text" placeholder="Seçenekler" class="anketGroupOptions">
                 </div>
@@ -71,7 +137,7 @@ function anketGroupEkle(node){
                 </div>
             </div>
         </div>
-        <div class="anketCoverager" style="border-left: 6px solid ` + renkVeri + `">
+        <div class="anketCoverager" style="border-left: 6px solid ` + renkVeri + `" name="` + istenenName + `soru1">
             <div class="anketSoru">
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
@@ -89,14 +155,6 @@ function anketGroupEkle(node){
 }
 function anketGroupSil(node){
     $(node).parent().parent().remove();
-}
-function anketIcerigiSil(node){
-    var html = `
-        <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
-        <span class="anketGroupEkle" onclick="anketGroupEkle(this)">Grup Ekle</span>
-    `;
-    $(node).parent().prev().append(html);
-    $(node).parent().remove();
 }
 function renkAlani(node){
     var renk = $(node).css("background-color");
