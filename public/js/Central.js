@@ -1,8 +1,30 @@
 var base_url = $("base").attr("href");
 var renkler = ["rgb(168, 234, 135)","rgb(234, 228, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)"];
 
+function secretNumCreator(gelenSayi){
+    if(gelenSayi < 10){
+        var secretNumVal = gelenSayi;
+        var htmlSecretNum = `
+            <i class="secretNumFont fa-solid fa-` + secretNumVal + `"></i>
+        `;
+    }else if((gelenSayi < 100) && (gelenSayi >= 10)){
+        var secretNumVal = gelenSayi.toString().split("");
+        var htmlSecretNum = `
+            <i class="secretNumFont fa-solid fa-` + secretNumVal[0] + `"></i>
+            <i class="secretNumFont fa-solid fa-` + secretNumVal[1] + `"></i>
+        `;
+    }else if((gelenSayi < 1000) && (gelenSayi >= 100)){
+        var secretNumVal = gelenSayi.toString().split("");
+        var htmlSecretNum = `
+            <i class="secretNumFont fa-solid fa-` + secretNumVal[0] + `"></i>
+            <i class="secretNumFont fa-solid fa-` + secretNumVal[1] + `"></i>
+            <i class="secretNumFont fa-solid fa-` + secretNumVal[2] + `"></i>
+        `;
+    }
+    return htmlSecretNum;
+}
+
 function anketIcerigiEkle(node){
-    $(node).css("display", "none");
     $(node).siblings(".anketGroupEkle").css("display", "none");
 
     var gelenName = $(node).parent().attr("name"); // 1soru1
@@ -10,9 +32,13 @@ function anketIcerigiEkle(node){
     var gelenNameSplitAr = parseInt(gelenNameSplit[1]) + 1;
     var istenenName = gelenNameSplit[0] + "soru" + gelenNameSplitAr;
 
+    var htmlSecretNum = secretNumCreator(gelenNameSplitAr);
     var myColor = $(node).parent().siblings(".anketGroupHeadCoverager").children(".renkAlani").css("background-color");
     var html = `
         <div class="anketCoverager" style="border-left: 4px solid ` + myColor + `" name="` + (istenenName) + `">
+            <div class="secretNum">
+                ` + htmlSecretNum + `
+            </div>
             <div class="anketSoru">
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
@@ -22,11 +48,36 @@ function anketIcerigiEkle(node){
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
             <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
-            <span class="anketGroupEkle" onclick="anketGroupEkle(this)">Grup Ekle</span>
             <span class="anketIcerigiSil" onclick="anketIcerigiSil(this)">Soru Sil</span>
+    `;
+    var htmlDefault = `
         </div>
     `;
-    $(node).parent().parent().append(html);
+    var htmlPlus = `
+            <span class="anketGroupEkle" onclick="anketGroupEkle(this)">Grup Ekle</span>
+    `;
+    var mainGroupIndex = gelenNameSplit[0];
+    var mainSoruIndex  = gelenNameSplit[1];
+    var boyut = $(".GroupCoverager[name='" + mainGroupIndex + "'] .anketCoverager").length;
+
+    if(boyut == mainSoruIndex){
+        $(node).parent().after(html + htmlPlus + htmlDefault);
+    }else{
+        var gelenUstSorular = $(node).parent().siblings(".anketCoverager");
+        $.each(gelenUstSorular, function(key, value){
+            var gelenUstName        = $(value).attr("name");
+            var gelenUstNameSpl     = gelenUstName.split("soru");
+            var ustSoruIndex        = gelenUstNameSpl[1];
+            if(parseInt(ustSoruIndex) > parseInt(mainSoruIndex)){
+                var newVal =  mainGroupIndex + "soru" + (parseInt(ustSoruIndex)+1);
+                $(value).attr("name", newVal);
+                var newHtmlSecretNum = secretNumCreator((parseInt(ustSoruIndex)+1));
+                $(value).children(".secretNum").html(newHtmlSecretNum);
+            }
+        });
+        $(node).parent().after(html + htmlDefault);
+    }
+
 }
 function anketIcerigiSil(node){
     var html = `
@@ -50,10 +101,11 @@ function anketIcerigiSil(node){
             var gelenUstNameSpl     = gelenUstName.split("soru");
             var ustSoruIndex        = gelenUstNameSpl[1];
             if(parseInt(ustSoruIndex) > parseInt(mainSoruIndex)){
-                var newVal =  mainGroupIndex + "soru" + (ustSoruIndex-1);
+                var newVal =  mainGroupIndex + "soru" + (parseInt(ustSoruIndex)-1);
                 $(value).attr("name", newVal);
                 $(value).children(".anketGroupcompulsory").children(".anketSoruZorunluluk").attr("id", newVal);
                 $(value).children(".anketGroupcompulsory").children(".anketZorunlulukLabel").attr("for", newVal);
+                $(value).children(".secretNum").children(".secretNumFont").attr("class", "secretNumFont fa-solid fa-" + (parseInt(ustSoruIndex)-1));
             }
         });
         $(node).parent().remove();
@@ -101,7 +153,7 @@ function soruSecenekSil(node){
             var gelenUstNameSpl     = gelenUstName.split("secenek");
             var ustSoruIndex        = gelenUstNameSpl[1];
             if(parseInt(ustSoruIndex) > parseInt(mainSecenekIndex)){
-                $(value).attr("name", mainGroupIndex + "secenek" + (ustSoruIndex-1));
+                $(value).attr("name", mainGroupIndex + "secenek" + (parseInt(ustSoruIndex)-1));
             }
         });
         $(node).parent().parent().remove();
@@ -144,6 +196,9 @@ function anketGroupEkle(node){
             </div>
         </div>
         <div class="anketCoverager" style="border-left: 6px solid ` + renkVeri + `" name="` + istenenName + `soru1">
+            <div class="secretNum">
+                <i class="secretNumFont fa-solid fa-1"></i>
+            </div>
             <div class="anketSoru">
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>

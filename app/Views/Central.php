@@ -78,6 +78,9 @@
 							</div>
 						</div>
 						<div class="anketCoverager" name="1soru1">
+							<div class="secretNum">
+								<i class="secretNumFont fa-solid fa-1"></i>
+							</div>
 							<div class="anketSoru">
 								<input type="text" placeholder="Soru" class="anketSoruVal">
 							</div>

@@ -118,6 +118,25 @@
 							?>
 
 								<div class="anketCoverager" style="border-left: 4px solid <?php echo $gelenGroupCoveragerler[0][0] ?>" name="<?php echo ($keyGroup+1)."soru".($keyTwo+1)?>">
+									<div class="secretNum">
+										<?php
+											if(($keyTwo+1) < 10){
+												$secretNumVal = $keyTwo+1;
+												echo '<i class="secretNumFont fa-solid fa-' . $secretNumVal . '"></i>';
+											}else if( (($keyTwo+1) < 100) and (($keyTwo+1) >= 10) ){
+												$keySecretNum = strval($keyTwo+1);
+												echo '<i class="secretNumFont fa-solid fa-' . $keySecretNum[0] . '"></i>';
+												echo '<i class="secretNumFont fa-solid fa-' . $keySecretNum[1] . '"></i>';
+											}else if( (($keyTwo+1) < 1000) and (($keyTwo+1) >= 100) ){
+												$keySecretNum = strval($keyTwo+1);
+												$secretNumVal = explode("", $keySecretNum);
+												echo '<i class="secretNumFont fa-solid fa-' . $keySecretNum[0] . '"></i>';
+												echo '<i class="secretNumFont fa-solid fa-' . $keySecretNum[1] . '"></i>';
+												echo '<i class="secretNumFont fa-solid fa-' . $keySecretNum[2] . '"></i>';
+											}
+										?>										
+										
+									</div>
 									<div class="anketSoru">
 										<input type="text" value="<?php echo $gelenAnketCoveragerlar[0]; ?>" placeholder="Soru" class="anketSoruVal">
 									</div>
@@ -129,10 +148,10 @@
 										<label class="form-check-label" for="<?php echo ($keyGroup+1)."soru".($keyTwo+1)?>" style="color:<?php echo $gelenAnketCoveragerlar[1] == 'true' ? "darkred" : "#c0c5c0"; ?>;font-weight:bold">Zorunlu</label>
 									</div>
 									<!-- Kullanıcı soru ekleme alanı -->
+										<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
 									<?php
 									if (count($gelenGroupCoveragerler[2]) == $keyTwo + 1) { // Eğer son Soru başlığındaysak soru ekleme başlıkları otomatikmen son olana eklensin.
 									?>
-										<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
 										<span class="anketGroupEkle" onclick="anketGroupEkle(this)">Grup Ekle</span>
 									<?php
 									}

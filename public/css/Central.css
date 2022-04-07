@@ -191,3 +191,11 @@ input:focus{
 .anketSecenekler input:focus{
     border-bottom: 1px solid grey;
 }
+.secretNum{
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.2;
+    transform: rotateZ(-35deg);
+    bottom: 7px;
+    left: 14px;
+}
