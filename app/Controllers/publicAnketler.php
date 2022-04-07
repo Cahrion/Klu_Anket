@@ -31,7 +31,7 @@ class publicAnketler extends Controller
                             if($gelenAnket->anketGiris){ 
                                 if(!(isset($_SESSION["Yonetici"]) or isset($_SESSION["Kullanici"]))){
                                     echo "<script>alert('Anketimize katılmak için öncelikle üye girişi yapınız.');</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
-                                    
+                                    $_SESSION["link"] = $_SERVER["PHP_SELF"];
                                     header("Location: " . base_url("Home/giris"));
                                     exit();
                                 }

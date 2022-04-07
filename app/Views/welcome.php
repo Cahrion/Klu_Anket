@@ -39,7 +39,7 @@
 						<input type="password"
 							class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Şifreniz">
 						</div>
-						<input class="btn btn-secondary girisYap" value="Giriş Yap">
+						<input class="btn btn-secondary" type="submit" value="Giriş Yap">
 					</form>
 				</div>
 		  </div>

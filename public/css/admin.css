@@ -12,9 +12,9 @@
     padding: 10px;
     border: 1px solid grey;
     border-radius: 5px;
-    transition: all 1s;
+    transition: all 0.5s;
 }
-.adminButton a:link,.adminButton a:active,.adminButton a:visited{
+.adminButton a:link,.a.dminButton a:active,.adminButton a:visited{
 	font-family: Arial, "Helvatica Neue", Helvatica, sans-serif;
 	color: rgba(78, 27, 167, 0.831);
 	font-style: normal;

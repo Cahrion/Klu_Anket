@@ -25,7 +25,7 @@ input:focus{
 }
 .renkAlani{
     cursor: pointer;
-    background-color: black;
+    background-color: rgb(168, 234, 135);
     height: 20px;
     width: 100%;
 }
@@ -36,7 +36,7 @@ input:focus{
     border-radius: 5px;
     min-height: 140px;
     width: 100%;
-    border-left: 6px solid black;
+    border-left: 6px solid rgb(168, 234, 135);
     margin-top: 20px;
 }
 .baslik{

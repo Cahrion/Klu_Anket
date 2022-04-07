@@ -29,7 +29,7 @@
 				foreach ($anketKayitlarim as $anketKaydi) { // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
 				?>
 					<div class="col-12 col-md-6 col-xl-4 p-3">
-						<div class="card">
+						<div class="card shadow-sm">
 							<div class="card-header" style="height:120px;overflow-y:hidden">
 								<?php echo $anketKaydi->baslik; ?>
 							</div>
@@ -37,13 +37,13 @@
 								<?php
 								if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
 								?>
-									<a class="btn btn-danger col-12 mb-2" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
+									<a class="btn col-12 mb-2" style="background-color:darkred;color:white" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
 										Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
 									</a>
 								<?php
 								}else{
 								?>
-									<a class="btn btn-danger col-12 mb-2 disabled">
+									<a class="btn col-12 mb-2 disabled" style="background-color:darkred;color:white" >
 										Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
 									</a>
 								<?php
@@ -52,14 +52,14 @@
 								<?php
 								if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
 								?>
-									<a class="btn btn-primary col-12 mb-2" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
+									<a class="btn btn-primary col-12 mb-2" style="background-color:#212529;color:white"  href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
 										<i class="fa-solid fa-link"></i>
 										Link
 									</a>
 								<?php
 								}else{
 									?>
-										<a class="btn btn-primary col-12 mb-2 disabled" role="button">
+										<a class="btn btn-primary col-12 mb-2 disabled" style="background-color:#212529;color:white"  role="button">
 											<i class="fa-solid fa-link"></i>
 											Link
 										</a>
@@ -72,7 +72,7 @@
 								$onayRenk	 	= $anketKaydi->onay ? "success" : "danger";
 								?>
 							</div>
-							<div class="card-footer row">
+							<div class="card-footer row m-0">
 								<div class="col-6 pt-2">
 									<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
 									<a class="" href="<?php echo base_url("ownerController/adminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>

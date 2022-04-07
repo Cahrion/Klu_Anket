@@ -383,7 +383,7 @@ class ownerController extends Controller
         $gelenSatirArray = []; // Gelen verileri satırlar diye ayırdık.
         foreach ($anketUnSerialize as $keyGroup => $anketGroup) {
             $SutunArray = [];
-            $SutunArray[] = "Sorular";
+            $SutunArray[] = $anketGroup[0][1]; // Grup başlık verisi
             foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Seçenekler oluyor.
                 $gelenSoruSecenekler = mb_convert_encoding($gelenSoruSecenekler, "windows-1254","utf-8"); // Türkçe karakter doğrulaması.
                 $SutunArray[] = $gelenSoruSecenekler;
@@ -401,26 +401,35 @@ class ownerController extends Controller
             $gelenSatirArray[$keyGroup] = $SatirArray;
         }
         $fileName = "klu_anket_" . $anketBilgisi->id ."_" . date('Y-m-d') . ".xls"; 
-        $excelData = "";
-        foreach($gelenSutunArray as $keyArr => $gelenSutunArr){
-            // Column names  
-            $fields = $gelenSutunArray[$keyArr];
-            if($keyArr == 0){
-                $excelData = implode("\t", array_values($fields)) . "\n"; 
-            }else{
-                $excelData .= "\n" . implode("\t", array_values($fields)) . "\n"; 
-            }
-            foreach($gelenSatirArray[$keyArr] as $gelenMetin){
-                $gelenMetin = mb_convert_encoding($gelenMetin, "windows-1254","utf-8");
-                $excelData .= implode("\t", array_values($gelenMetin)) . "\n"; 
-            }
-        }
+
         // Headers for download 
         header("Content-Type: application/vnd.ms-excel"); 
         header("Content-Disposition: attachment; filename=\"$fileName\""); 
         
         // Render excel data 
-        echo $excelData; 
+        foreach($gelenSutunArray as $keyArr => $gelenSutunArr){
+            // Column names  
+            echo "<table style='border:1px solid black;border-collapse: collapse;'>";
+                echo "<tr>";
+                    foreach($gelenSutunArr as $gelenSutunName){
+                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
+                            echo $gelenSutunName;
+                        echo "</th>";
+                    }
+                echo "</tr>";
+            foreach($gelenSatirArray[$keyArr] as $gelenSatirAlan){
+                echo "<tr>";
+                foreach($gelenSatirAlan as $gelenMetin){
+                    echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
+                        $gelenMetin = mb_convert_encoding($gelenMetin, "windows-1254","utf-8");
+                        echo $gelenMetin;
+                    echo "</td>";
+                }
+                echo "</tr>";
+            }
+            echo "</table>";
+            echo "<br>";
+        }
         exit;
     }
     // Çıkış yapma yapısı

@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="text-center mt-2 pb-2" style="border-bottom:1px dotted grey">
+        <div class="text-center mt-2 pb-2">
             <img src="<?php echo base_url("img/kluLogo.png") ?>" alt="KLU" title="KLU" width="100" height="100">
             <div class="anketBaslik">
                 T.C. <br>
@@ -57,9 +57,9 @@
         <?php
         }
         ?>
-        <div class="gorevBilgisi">
+        <div class="gorevBilgisi mt-3" style="border-bottom: 1px dotted grey;">
             <div class="mb-3 fakulteAlan" name="<?php echo $anketKaydi->anketKitle; ?>">
-                <label for="fakulte" class="form-label">Görev fakülte yeriniz</label>
+                <label for="fakulte" class="form-label" style="font-weight:bold">Görev fakülte yeriniz</label>
                 <select class="form-select fakulteSelect" name="fakulte" id="fakulte" onchange="fakulteChange(this)">
                     <option class="fakulte" value="">Lütfen seçiniz</option>
                     <option class="fakulte" value="1">Muhendislik</option>
@@ -70,7 +70,8 @@
         <?php
         if ($anketKaydi->aciklama != "") {
         ?>
-            <div style="min-height:100px;border-bottom:1px dotted grey">
+            <div class="mt-5" style="min-height:100px;border-bottom:1px dotted grey">
+                <div style="font-weight:bold">Açıklama</div>
                 <?php echo $anketKaydi->aciklama; ?>
             </div>
         <?php

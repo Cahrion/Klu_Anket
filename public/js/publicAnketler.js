@@ -125,7 +125,7 @@ function fakulteChange(node){
     if(gelenBrans != "idari" && gelenBrans != "herkes"){
         var html = `
             <div class="mb-3 birimAlan">
-                <label for="birim" class="form-label">Görev birim yeriniz</label>
+                <label for="birim" class="form-label" style="font-weight:bold">Görev birim yeriniz</label>
                 <select class="form-control birimSelect" name="birim" id="birim">
                     <option class="birim" value="">Lütfen seçiniz</option>
                     <option class="birim" value="1">Muhendislik</option>

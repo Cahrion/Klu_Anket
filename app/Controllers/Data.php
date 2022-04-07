@@ -47,25 +47,27 @@ class Data extends Controller
     public function klu_giris() // Ogrenciler ve benzeri kişilerin giriş alanı
     {
         helper("fonksiyonlar");
-        if(isset($_POST["gelenEmail"])){
-            $gelenEmail = GuvenlikFiltresi($_POST["gelenEmail"]);
+        if(isset($_POST["email"])){
+            $gelenEmail = GuvenlikFiltresi($_POST["email"]);
         }else{
             $gelenEmail = "";
         }
-        if(isset($_POST["gelenPass"])){
-            $gelenPassword = GuvenlikFiltresi($_POST["gelenPass"]);
+        if(isset($_POST["password"])){
+            $gelenPassword = GuvenlikFiltresi($_POST["password"]);
         }else{
             $gelenPassword = "";
         }
         if($gelenEmail != "" and $gelenPassword != ""){
             
             $_SESSION["Kullanici"]	=	$gelenEmail; // Öğrenciler de bu sistemi kullanacağından dolayı eğer bir öğrenci girecekse kullanici sessionu'nu alsın
-            // publicAnketler kısmında Hem kullanici hem de yönetici etiketlerine bakacağız bu yüzden ikisinden biri olması o siteye girmesi için yeterli olucaktır.
+            if(isset($_SESSION["link"])){
+                header("Location: " . $_SESSION["link"]);
+                exit();
+            }
 
             // Buralarda CURL bağlantısıyla true geldiğini varsayıyorum ve yeni sayfaya aktarıyorum.
             // Şifre yapıları elimizde olmayacağından dolayı veritabanında da sadece email adresi bıraktım.
             
-            echo "1"; // Başarılı
             exit();
 
         }else{

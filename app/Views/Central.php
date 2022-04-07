@@ -22,8 +22,8 @@
 	include_once 'includes/topBar.php';
 	?>
 	<div class="row kluCenter">
-		<div class="col-2"></div>
-		<div class="col-8">
+		<div class="col-0 col-sm-1 col-xl-2"></div>
+		<div class="col-12 col-sm-10 col-xl-8">
 			<!-- Anket bilgilerini seçiçek ve dolduracak		 -->
 			<div class="anketHeadCoverager mt-4">
 				<div class="baslik">
@@ -60,7 +60,7 @@
 				<div class="col-12 col-sm-8 anketPlatform">
 					<div class="GroupCoverager mt-4" name="1">
 						<div class="anketGroupHeadCoverager">
-							<div class="renkAlani" onclick='renkAlani(this)' style="background-color:rgb(0,0,0)"></div>
+							<div class="renkAlani" onclick='renkAlani(this)'></div>
 							<div class="baslik">
 								<input type="text" placeholder="Grup Başlığı" class="anketGroupHeadCoveragerHeader">
 							</div>
@@ -68,14 +68,13 @@
 								<textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Detay bilgisini giriniz"></textarea>
 							</div>
 							<div class="anketSecenekler row" name="1secenek1">
-								<div class="col-10 anketSeceneklerIcAlan">
+								<div class="col-8 col-sm-6 col-md-7 col-lg-9 col-xl-10 anketSeceneklerIcAlan">
 									<input type="text" placeholder="Seçenekler" class="anketGroupOptions">
 								</div>
 								<!-- Kullanıcı şık ekleme alanı -->
-								<div class="col-2 text-center secenekAlan">
+								<div class="col-4 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center secenekAlan">
 									<button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
 								</div>
-
 							</div>
 						</div>
 						<div class="anketCoverager" name="1soru1">
@@ -83,8 +82,8 @@
 								<input type="text" placeholder="Soru" class="anketSoruVal">
 							</div>
 							<div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-								<input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)'>
-								<label class="form-check-label" for="" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
+								<input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="1soru1">
+								<label class="form-check-label anketZorunlulukLabel" for="1soru1" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
 							</div>
 							<!-- Kullanıcı soru ekleme alanı -->
 							<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
@@ -103,7 +102,7 @@
 				<div class="col-0 col-sm-2"></div>
 			</div>
 		</div>
-		<div class="col-2"></div>
+		<div class="col-0 col-sm-1 col-xl-2"></div>
 	</div>
 	<?php
 	include_once 'includes/footer.php';

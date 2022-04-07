@@ -40,7 +40,7 @@
 				<div class="row formAlanKapsayici">
 					<div class="col-8 formKitle">
 						<select class="form-select mb-3" id="formKitleSelected">
-							<option>Anket Kimler Tarafından Doldurulacak?</option>
+							<option value="">Anket Kimler Tarafından Doldurulacak?</option>
 							<option value="akademik" <?php echo $anketBilgisi->anketKitle == "akademik" ? "selected" : ""; ?>>Akademik Personeller</option>
 							<option value="idari" <?php echo $anketBilgisi->anketKitle == "idari" ? "selected" : ""; ?>>İdari Personeller</option>
 							<option value="ogrenci" <?php echo $anketBilgisi->anketKitle == "ogrenci" ? "selected" : ""; ?>>Ögrenciler</option>
@@ -67,8 +67,8 @@
 					$gelenUnSerializeVeri = unserialize($anketBilgisi->serialize);
 					foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupCoveragerler) { // [0][0] = renkAlani, [0][1] = Group başlığı, [0][2] = Group Detay Metni, [1] => Seçenekler, [2] => Sorular
 					?>
-						<div class="GroupCoverager mt-4">
-							<div class="anketGroupHeadCoverager" name="<?php echo ($keyGroup+1)?>">
+						<div class="GroupCoverager mt-4" name="<?php echo ($keyGroup+1)?>">
+							<div class="anketGroupHeadCoverager">
 								<?php
 								if ($keyGroup != 0) {
 								?>
@@ -87,11 +87,11 @@
 								foreach ($gelenGroupCoveragerler[1] as $keyOne => $gelenAnketSecenekler) {
 								?>
 									<div class="anketSecenekler row" name="<?php echo ($keyGroup+1)."secenek".($keyOne+1)?>">
-										<div class="col-10 anketSeceneklerIcAlan">
+										<div class="col-8 col-sm-6 col-md-7 col-lg-9 col-xl-10 anketSeceneklerIcAlan">
 											<input type="text" value="<?php echo $gelenAnketSecenekler; ?>" placeholder="Seçenekler" class="anketGroupOptions">
 										</div>
 										<!-- Kullanıcı şık ekleme alanı -->
-										<div class="col-2 text-center secenekAlan">
+										<div class="col-4 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center secenekAlan">
 											<?php
 											if ($keyOne != 0) {
 											?>
@@ -107,7 +107,6 @@
 											}
 											?>
 										</div>
-
 									</div>
 								<?php
 								}
@@ -126,8 +125,8 @@
 										<?php
 										// Ternary Yapısıyla verinin onaylanıp onaylanmadığını sorguladık.
 										?>
-										<input class="form-check-input anketSoruZorunluluk" type="checkbox" <?php echo $gelenAnketCoveragerlar[1] == 'true' ? 'checked' : ''; ?> onclick='zorunlulukFaktor(this)'>
-										<label class="form-check-label" for="" style="color:<?php echo $gelenAnketCoveragerlar[1] == 'true' ? "darkred" : "#c0c5c0"; ?>;font-weight:bold">Zorunlu</label>
+										<input class="form-check-input anketSoruZorunluluk" type="checkbox" <?php echo $gelenAnketCoveragerlar[1] == 'true' ? 'checked' : ''; ?> onclick='zorunlulukFaktor(this)'  id="<?php echo ($keyGroup+1)."soru".($keyTwo+1)?>">
+										<label class="form-check-label" for="<?php echo ($keyGroup+1)."soru".($keyTwo+1)?>" style="color:<?php echo $gelenAnketCoveragerlar[1] == 'true' ? "darkred" : "#c0c5c0"; ?>;font-weight:bold">Zorunlu</label>
 									</div>
 									<!-- Kullanıcı soru ekleme alanı -->
 									<?php

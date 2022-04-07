@@ -68,7 +68,7 @@
 					<table class="table table-striped">
 						<thead>
 							<tr class="tableSutunlar">
-								<th scope="col">Soru</th>
+								<th scope="col"><?php echo $anketGroup[0][1];// Anket group adı ?></th>
 								<?php
 								foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Seçenekler oluyor.
 									echo "<th>$gelenSoruSecenekler</th>";

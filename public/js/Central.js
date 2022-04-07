@@ -1,5 +1,5 @@
 var base_url = $("base").attr("href");
-var renkler = ["rgb(0, 0, 0)", "rgb(234, 228, 135)","rgb(168, 234, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)"];
+var renkler = ["rgb(168, 234, 135)","rgb(234, 228, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)"];
 
 function anketIcerigiEkle(node){
     $(node).css("display", "none");
@@ -17,8 +17,8 @@ function anketIcerigiEkle(node){
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
             <div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)'>
-                <label class="form-check-label" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
+                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="` + (istenenName) + `">
+                <label class="form-check-label anketZorunlulukLabel" for="` + (istenenName) + `" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
             <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
@@ -34,9 +34,9 @@ function anketIcerigiSil(node){
         <span class="anketGroupEkle" onclick="anketGroupEkle(this)">Grup Ekle</span>
     `;
     var mainName = $(node).parent().attr("name"); // 1soru1
-    var mainNameSpl = mainName.split("soru"); 
-    var mainGroupIndex = mainNameSpl[0]; 
-    var mainSoruIndex  = mainNameSpl[1]; 
+    var mainNameSpl = mainName.split("soru");
+    var mainGroupIndex = mainNameSpl[0];
+    var mainSoruIndex  = mainNameSpl[1];
 
     var boyut = $(".GroupCoverager[name='" + mainGroupIndex + "'] .anketCoverager").length;
 
@@ -47,10 +47,13 @@ function anketIcerigiSil(node){
         var gelenUstSorular = $(node).parent().siblings(".anketCoverager");
         $.each(gelenUstSorular, function(key, value){
             var gelenUstName        = $(value).attr("name");
-            var gelenUstNameSpl     = gelenUstName.split("soru"); 
+            var gelenUstNameSpl     = gelenUstName.split("soru");
             var ustSoruIndex        = gelenUstNameSpl[1];
             if(parseInt(ustSoruIndex) > parseInt(mainSoruIndex)){
-                $(value).attr("name", mainGroupIndex + "soru" + (ustSoruIndex-1));
+                var newVal =  mainGroupIndex + "soru" + (ustSoruIndex-1);
+                $(value).attr("name", newVal);
+                $(value).children(".anketGroupcompulsory").children(".anketSoruZorunluluk").attr("id", newVal);
+                $(value).children(".anketGroupcompulsory").children(".anketZorunlulukLabel").attr("for", newVal);
             }
         });
         $(node).parent().remove();
@@ -66,11 +69,11 @@ function soruSecenekEkle(node){
 
     var html = `
         <div class="anketSecenekler row" name="` + istenenName + `">
-            <div class="col-10 anketSeceneklerIcAlan">
+            <div class="col-8 col-sm-6 col-md-7 col-lg-9 col-xl-10 anketSeceneklerIcAlan">
                 <input type="text" placeholder="Seçenekler" class="anketGroupOptions">
             </div>
             <!-- Kullanıcı şık ekleme alanı -->
-            <div class="col-2 text-center secenekAlan">
+            <div class="col-4 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center secenekAlan">
                 <button class="btn btn-primary soruSecenekSil" onclick="soruSecenekSil(this)"><i class="fa-solid fa-minus"></i></button>
                 <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
             </div>
@@ -83,9 +86,9 @@ function soruSecenekSil(node){
         <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
     `;
     var mainName = $(node).parent().parent().attr("name"); // 1secenek1
-    var mainNameSpl         = mainName.split("secenek"); 
-    var mainGroupIndex      = mainNameSpl[0]; 
-    var mainSecenekIndex    = mainNameSpl[1]; 
+    var mainNameSpl         = mainName.split("secenek");
+    var mainGroupIndex      = mainNameSpl[0];
+    var mainSecenekIndex    = mainNameSpl[1];
 
     var boyut = $(".GroupCoverager[name='" + mainGroupIndex + "'] .anketGroupHeadCoverager .anketSecenekler").length;
     if(boyut == mainSecenekIndex){
@@ -107,9 +110,12 @@ function soruSecenekSil(node){
 function anketGroupEkle(node){
     var ustAlan     = $(node).parent().parent();
     var renk        = $(ustAlan).children(".anketGroupHeadCoverager").children(".renkAlani").css("background-color");
-    var index       = $.inArray(renk, renkler);
-    var renkVeri = renkler[index + 1];
-
+    var renkIndex       = $.inArray(renk, renkler);
+    if(renkIndex == (renkler.length-1)){
+        var renkVeri    = renkler[0];
+    }else{
+        var renkVeri    = renkler[renkIndex + 1];
+    }
 
     var gelenName = $(node).parent().parent().attr("name"); // 1
     var gelenNameSplitAr = parseInt(gelenName) + 1;
@@ -128,11 +134,11 @@ function anketGroupEkle(node){
                 <textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Detay bilgisini giriniz"></textarea>
             </div>
             <div class="anketSecenekler row" name="` + istenenName + `secenek1">
-                <div class="col-10 anketSeceneklerIcAlan">
+                <div class="col-8 col-sm-6 col-md-7 col-lg-9 col-xl-10 anketSeceneklerIcAlan">
                     <input type="text" placeholder="Seçenekler" class="anketGroupOptions">
                 </div>
                 <!-- Kullanıcı şık ekleme alanı -->
-                <div class="col-2 text-center">
+                <div class="col-4 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center">
                     <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
                 </div>
             </div>
@@ -142,8 +148,8 @@ function anketGroupEkle(node){
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
             <div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)'>
-                <label class="form-check-label" for="" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
+                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="` + istenenName + `soru1">
+                <label class="form-check-label anketZorunlulukLabel" for="` + istenenName + `soru1" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
             <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
@@ -158,13 +164,13 @@ function anketGroupSil(node){
 }
 function renkAlani(node){
     var renk = $(node).css("background-color");
-    var index = $.inArray(renk, renkler);
-    var randomInt = Math.floor((Math.random() * 10) + 1);
+    var renkIndex = $.inArray(renk, renkler);
+    var randomInt = Math.floor((Math.random() * (renkler.length-1)) + 1);
     if(randomInt > (renkler.length - 1)){
         randomInt -= (renkler.length - 1);
     }
-    if(index == randomInt){
-        randomInt = -1;
+    if(renkIndex == randomInt){
+        randomInt -= 1;
     }
     $(node).css("background-color", renkler[randomInt]);
     $(node).parent().siblings().css("border-left", "4px solid " + renkler[randomInt])
@@ -188,29 +194,35 @@ function anketGirisZorunluluk(node){
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $("#veriGonder").click(function(){
-        
+        $(this).prop("disabled", true);
+        var OncekiHal = $(this).html();
+        $(this).html('<i class="fa-solid fa-arrows-rotate"></i> Anket Oluşturuluyor...');
         // Üst anket verilerin alımı.
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children(".anketHeadCoveragerHeader").val(); // Anket Başlığı
         if(anketBaslik == ""){
             alert("Lütfen başlık kısmını doldurunuz.");
             $(".anketHeadCoverager").children(".baslik").children("input").focus();
+            $(this).prop("disabled", false);
+            $(this).html(OncekiHal);
             return $(".anketHeadCoverager").children(".baslik").children("input").attr("placeholder", "Burası boş geçilemez.");
         }
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children(".anketHeadCoveragerHeadText").val(); // Anket Metni
         var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children(".anketHeadCoveragerExplanationText").val(); // Anket Açıklama Metni
         var anketKitle      = $("#formKitleSelected").val();
         var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
-        
+
         if(anketKitle == ""){
             alert("Lütfen hitap edilen kitleyi seçiniz.");
-            return $("#formKitleSelected").focus();;
+            $(this).prop("disabled", false);
+            $(this).html(OncekiHal);
+            return $("#formKitleSelected").focus();
         }
         if(anketGiris){
             anketGiris = 1;
         }else{
             anketGiris = 0;
         }
-        
+
         var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketKitle,anketGiris];
 
         var UstGrup     = $(".GroupCoverager");
@@ -233,7 +245,7 @@ $(document).ready(function(){
 
             var groupAnketGroup             = $(value).children(".anketCoverager"); // Birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
             $.each(groupAnketGroup, function(key, value){
-                
+
                 var anketSoru               = $(value).children(".anketSoru").children(".anketSoruVal").val();
                 var anketSoruZorunluluk     = $(value).children(".anketGroupcompulsory").children(".anketSoruZorunluluk").prop("checked");
                 soruList[key]               = [anketSoru,anketSoruZorunluluk];
@@ -243,8 +255,8 @@ $(document).ready(function(){
             secenekList     = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
             soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
-        
-        $.post(base_url + '/ownerController/anketAdd', {queryName: temelAnketVerileri,queryString: UstList}, function(data) 
+
+        $.post(base_url + '/ownerController/anketAdd', {queryName: temelAnketVerileri,queryString: UstList}, function(data)
         {
         if(data.length > 0)
         {
@@ -257,11 +269,15 @@ $(document).ready(function(){
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $("#veriGuncelle").click(function(){
-
+        $(this).prop( "disabled", true);
+        var OncekiHal = $(this).html();
+        $(this).html('<i class="fa-solid fa-arrows-rotate"></i> Anket Güncelleniyor...');
         // Üst anket verilerin alımı.
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children(".anketHeadCoveragerHeader").val(); // Anket Başlığı
         if(anketBaslik == ""){
             alert("Lütfen başlık kısmını doldurunuz.");
+            $(this).prop("disabled", false);
+            $(this).html(OncekiHal);
             $(".anketHeadCoverager").children(".baslik").children("input").focus();
             return $(".anketHeadCoverager").children(".baslik").children("input").attr("placeholder", "Burası boş geçilemez.");
         }
@@ -272,7 +288,9 @@ $(document).ready(function(){
         var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
         if(anketKitle == ""){
             alert("Lütfen hitap edilen kitleyi seçiniz.");
-            return $("#formKitleSelected").focus();;
+            $(this).prop( "disabled", false);
+            $(this).html(OncekiHal);
+            return $("#formKitleSelected").focus();
         }
         if(anketGiris){
             anketGiris = 1;
@@ -302,7 +320,7 @@ $(document).ready(function(){
 
             var groupAnketGroup             = $(value).children(".anketCoverager"); // Birden fazla olabilir bu yüzden yeniden foreach yapısına tabi tutuyoruz
             $.each(groupAnketGroup, function(key, value){
-                
+
                 var anketSoru               = $(value).children(".anketSoru").children(".anketSoruVal").val();
                 var anketSoruZorunluluk     = $(value).children(".anketGroupcompulsory").children(".anketSoruZorunluluk").prop("checked");
                 soruList[key]               = [anketSoru,anketSoruZorunluluk];
@@ -312,14 +330,14 @@ $(document).ready(function(){
             secenekList     = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
             soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
-        
-        $.post(base_url + '/ownerController/anketUpdate', {queryName: temelAnketVerileri,queryString: UstList}, function(data) 
+
+        $.post(base_url + '/ownerController/anketUpdate', {queryName: temelAnketVerileri,queryString: UstList}, function(data)
         {
         if(data.length > 0)
         {
             history.back();
         }
         });
-        
+
     });
 });
