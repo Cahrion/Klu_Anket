@@ -43,8 +43,8 @@ function anketIcerigiEkle(node){
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
             <div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="` + (istenenName) + `">
-                <label class="form-check-label anketZorunlulukLabel" for="` + (istenenName) + `" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
+                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="` + (istenenName) + `" checked>
+                <label class="form-check-label anketZorunlulukLabel" for="` + (istenenName) + `" style="color:darkred;font-weight:bold">Zorunlu</label>
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
             <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>
@@ -71,6 +71,10 @@ function anketIcerigiEkle(node){
             if(parseInt(ustSoruIndex) > parseInt(mainSoruIndex)){
                 var newVal =  mainGroupIndex + "soru" + (parseInt(ustSoruIndex)+1);
                 $(value).attr("name", newVal);
+
+                $(value).children(".anketGroupcompulsory").children(".anketSoruZorunluluk").attr("id", newVal);
+                $(value).children(".anketGroupcompulsory").children(".anketZorunlulukLabel").attr("for", newVal);
+
                 var newHtmlSecretNum = secretNumCreator((parseInt(ustSoruIndex)+1));
                 $(value).children(".secretNum").html(newHtmlSecretNum);
             }
@@ -190,7 +194,7 @@ function anketGroupEkle(node){
                     <input type="text" placeholder="Seçenekler" class="anketGroupOptions">
                 </div>
                 <!-- Kullanıcı şık ekleme alanı -->
-                <div class="col-4 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center">
+                <div class="col-4 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center secenekAlan">
                     <button class="btn btn-primary soruSecenekEkle" onclick="soruSecenekEkle(this)"><i class="fa-solid fa-plus"></i> </button>
                 </div>
             </div>
@@ -203,8 +207,8 @@ function anketGroupEkle(node){
                 <input type="text" placeholder="Soru" class="anketSoruVal">
             </div>
             <div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="` + istenenName + `soru1">
-                <label class="form-check-label anketZorunlulukLabel" for="` + istenenName + `soru1" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
+                <input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="` + istenenName + `soru1" checked>
+                <label class="form-check-label anketZorunlulukLabel" for="` + istenenName + `soru1" style="color:darkred;font-weight:bold">Zorunlu</label>
             </div>
             <!-- Kullanıcı soru ekleme alanı -->
             <span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>

@@ -86,8 +86,8 @@
 								<input type="text" placeholder="Soru" class="anketSoruVal">
 							</div>
 							<div class="form-check form-switch mt-3 anketGroupcompulsory" style="float:right">
-								<input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="1soru1">
-								<label class="form-check-label anketZorunlulukLabel" for="1soru1" style="color:#c0c5c0;font-weight:bold">Zorunlu</label>
+								<input class="form-check-input anketSoruZorunluluk" type="checkbox" onclick='zorunlulukFaktor(this)' id="1soru1" checked>
+								<label class="form-check-label anketZorunlulukLabel" for="1soru1" style="color:darkred;font-weight:bold">Zorunlu</label>
 							</div>
 							<!-- Kullanıcı soru ekleme alanı -->
 							<span class="anketIcerigiEkle" onclick="anketIcerigiEkle(this)">Soru Ekle</span>

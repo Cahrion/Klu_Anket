@@ -3,19 +3,27 @@ $(document).ready(function () {
     $("#myModal").modal('show');
 
     // Seçenek kalıp alan
+    var intervalFlag = true;
     $(".soruCevaplari").click(function(){
-        var interval = 0;
-        var veriT = $(this);
-        var veriTIntial = $(veriT).css("box-shadow");
-        var zamanlayici = setInterval(function(){
-            interval += 1;
-            $(veriT).css("box-shadow", "inset 0 0 5px " + interval + "px grey");
-            if(interval == 30){
-                $(veriT).css("box-shadow",veriTIntial);
-                clearInterval(zamanlayici);
-            }
-        },10);
-        $(this).children(".soruSecenekler").prop('checked', true);
+        if(intervalFlag){
+            intervalFlag = false;
+            var interval = 20;
+            var veriT = $(this).children(".soruSecenekler");
+            var veriTIntial = $(veriT).css("box-shadow");
+            var zamanlayici = setInterval(function(){
+                interval -= 1;
+
+                $(veriT).css("transform","scale(1.4)");
+                $(veriT).css("box-shadow", "0 0 5px " + interval + "px #7db1fe");
+                if(interval == 0){
+                    $(veriT).css("transform","scale(1)");
+                    $(veriT).css("box-shadow",veriTIntial);
+                    clearInterval(zamanlayici);
+                    intervalFlag = true;
+                }
+            },10);
+            $(this).children(".soruSecenekler").prop('checked', true);
+        }
     });
 
     $(".publicAnketGonder").click(function () {
