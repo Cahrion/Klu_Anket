@@ -412,6 +412,7 @@ class ownerController extends Controller
             echo "<table style='border:1px solid black;border-collapse: collapse;'>";
                 echo "<tr>";
                     foreach($gelenSutunArr as $gelenSutunName){
+                        $gelenSutunName = mb_convert_encoding($gelenSutunName, "windows-1254","utf-8");
                         echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
                             echo $gelenSutunName;
                         echo "</th>";
