@@ -27,6 +27,7 @@
 		<div class="col-8">
 			<!-- Anket bilgilerini seçiçek ve dolduracak		 -->
 			<div class="anketHeadCoverager mt-4" id="<?php echo $anketBilgisi->id ?>">
+				<button class="veriGuncelle btn btn-success mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Güncelle</button>
 				<div class="baslik">
 					<input type="text" value="<?php echo $anketBilgisi->baslik ?>" placeholder="ANKET BAŞLIĞI" class="anketHeadCoveragerHeader">
 				</div>
@@ -176,7 +177,7 @@
 				<div class="row">
 					<div class="col-0 col-sm-2"></div>
 					<div class="col-12 col-sm-8" style="text-align:right">
-						<button id="veriGuncelle" type="button" class="btn btn-primary mt-4"><i class="fa-solid fa-plus"></i> Anketi Güncelle</button>
+						<button class="veriGuncelle btn btn-success mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Güncelle</button>
 					</div>
 					<div class="col-0 col-sm-2"></div>
 				</div>

@@ -26,6 +26,7 @@
 		<div class="col-12 col-sm-10 col-xl-8">
 			<!-- Anket bilgilerini seçiçek ve dolduracak		 -->
 			<div class="anketHeadCoverager mt-4">
+				<button class="veriGonder btn btn-primary mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Oluştur</button>
 				<div class="baslik">
 					<input type="text" placeholder="ANKET BAŞLIĞI" class="anketHeadCoveragerHeader">
 				</div>
@@ -100,7 +101,7 @@
 			<div class="row">
 				<div class="col-0 col-sm-2"></div>
 				<div class="col-12 col-sm-8" style="text-align:right">
-					<button id="veriGonder" type="button" class="btn btn-primary mt-4"><i class="fa-solid fa-plus"></i> Anketi Oluştur</button>
+					<button class="veriGonder btn btn-primary mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Oluştur</button>
 				</div>
 				<div class="col-0 col-sm-2"></div>
 			</div>

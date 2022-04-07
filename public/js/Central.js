@@ -248,7 +248,7 @@ function anketGirisZorunluluk(node){
 
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
-    $("#veriGonder").click(function(){
+    $(".veriGonder").click(function(){
         $(this).prop("disabled", true);
         var OncekiHal = $(this).html();
         $(this).html('<i class="fa-solid fa-arrows-rotate"></i> Anket Oluşturuluyor...');
@@ -323,7 +323,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
-    $("#veriGuncelle").click(function(){
+    $(".veriGuncelle").click(function(){
         $(this).prop( "disabled", true);
         var OncekiHal = $(this).html();
         $(this).html('<i class="fa-solid fa-arrows-rotate"></i> Anket Güncelleniyor...');
