@@ -17,7 +17,7 @@
 	<script src="<?php echo base_url("js/Central.js"); ?>"></script>
 </head>
 
-<body>
+<body onscroll="scrollSelector(this)">
 	<?php
 	include_once 'includes/topBar.php';
 	?>
@@ -26,7 +26,6 @@
 		<div class="col-12 col-sm-10 col-xl-8">
 			<!-- Anket bilgilerini seçiçek ve dolduracak		 -->
 			<div class="anketHeadCoverager mt-4">
-				<button class="veriGonder btn btn-primary mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Oluştur</button>
 				<div class="baslik">
 					<input type="text" placeholder="ANKET BAŞLIĞI" class="anketHeadCoveragerHeader">
 				</div>
@@ -55,6 +54,9 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="text-end ustVeriAlan" style="display: none">
+				<button class="veriGonder btn btn-primary mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Oluştur</button>
 			</div>
 			<div class="row">
 				<div class="col-0 col-sm-2"></div>
@@ -98,12 +100,18 @@
 				<div class="col-0 col-sm-2"></div>
 			</div>
 
-			<div class="row">
-				<div class="col-0 col-sm-2"></div>
-				<div class="col-12 col-sm-8" style="text-align:right">
+			<div class="row text-center">
+				<div class="col-lg-2 col-sm-2 col-0"></div>
+				<div class="col-lg-6 col-sm-4 col-6">
+					<div class="flex mt-2" style="font-size: 14px;text-align:left;word-wrap: break-word;">
+					<input class="form-check-input" type="checkbox" id="detaySormaAlan">
+					<label class="form-check-label" for="detaySormaAlan">Kullanıcıdan yorum istensin mi ? <span class="text-muted">(Kullanıcının bu anket için düşünceleri sorulur.)</span></label>
+					</div>
+				</div>
+				<div class="col-lg-2 col-sm-4  col-6" style="text-align:right">
 					<button class="veriGonder btn btn-primary mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Oluştur</button>
 				</div>
-				<div class="col-0 col-sm-2"></div>
+				<div class="col-lg-2 col-sm-2  col-0"></div>
 			</div>
 		</div>
 		<div class="col-0 col-sm-1 col-xl-2"></div>

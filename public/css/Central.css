@@ -200,13 +200,3 @@ input:focus{
     bottom: 7px;
     left: 14px;
 }
-.anketHeadCoverager .veriGonder{
-    position: absolute;
-    right: -175px;
-    top: -10px;
-}
-.anketHeadCoverager .veriGuncelle{
-    position: absolute;
-    right: -175px;
-    top: -10px;
-}

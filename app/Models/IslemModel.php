@@ -64,7 +64,7 @@ class IslemModel extends Model {
     // -- Anket için
     // --------------------------------
     
-    public function setAnketProject($gelenYonetici, $baslik, $metin, $aciklama,$gelenAnketKitle,$gelenAnketGiris, $serialize, $onay){
+    public function setAnketProject($gelenYonetici, $baslik, $metin, $aciklama,$gelenAnketKitle,$gelenAnketGiris,$gelenAnketGorus, $serialize, $onay){
         // ID verisi girilerek güncelleme işlemi yapılabilir. (Email ve Faktor)
         $db = \Config\Database::connect();
         $data = array(
@@ -74,6 +74,7 @@ class IslemModel extends Model {
             "aciklama" => $aciklama,
             "anketKitle" => $gelenAnketKitle,
             "anketGiris" => $gelenAnketGiris,
+            "anketGorus" => $gelenAnketGorus,
             "serialize" => $serialize,
             "onay" => $onay
         );
@@ -81,7 +82,7 @@ class IslemModel extends Model {
         return $result;
     }
 
-    public function setAnketProjectUpd($gelenAnketID, $baslik, $metin, $aciklama, $gelenAnketKitle, $gelenAnketGiris, $serialize){
+    public function setAnketProjectUpd($gelenAnketID, $baslik, $metin, $aciklama, $gelenAnketKitle, $gelenAnketGiris, $gelenAnketGorus, $serialize){
         // ID verisi girilerek güncelleme işlemi yapılabilir. (Email ve Faktor)
         $db = \Config\Database::connect();
         $data = array(
@@ -92,6 +93,7 @@ class IslemModel extends Model {
             "metin" => $metin,
             "aciklama" => $aciklama,
             "anketKitle" => $gelenAnketKitle,
+            "anketGorus" => $gelenAnketGorus,
             "anketGiris" => $gelenAnketGiris,
             "serialize" => $serialize
         );
@@ -140,17 +142,27 @@ class IslemModel extends Model {
         return $result;
     }
 
-    public function setAnketResult($gelenAnketID,$gelenSerialize,$gelenBrans, $gelenFakulte, $gelenBirim, $gelenIP){
+    public function setAnketResult($gelenAnketID,$gelenSerialize,$anketGorus, $gelenBrans, $gelenFakulte, $gelenBirim, $gelenIP, $getDate){
         $db = \Config\Database::connect();
         $data = array(
             "anketID"       => $gelenAnketID,
             "serialize"     => $gelenSerialize,
+            "anketGorus"    => $anketGorus,
             "bransTur"      => $gelenBrans,
             "fakulteID"     => $gelenFakulte,
             "birimID"       => $gelenBirim,
-            "kullaniciIP"   => $gelenIP
+            "kullaniciIP"   => $gelenIP,
+            "gonderimTarihi"   => $getDate
         );
         $result = $db->table("anketcevaplar")->insert($data);
+        return $result;
+    }
+    public function setAnketResultsDel($gelenAnketID){ // Anket cevapları ID değerine göre silinir.
+        $db = \Config\Database::connect();
+        $data = array(
+            "anketID" => $gelenAnketID
+        );
+        $result = $db->table("anketcevaplar")->delete($data);
         return $result;
     }
     public function getAnketResult($gelenAnketID){
@@ -159,6 +171,14 @@ class IslemModel extends Model {
             "anketID" => $gelenAnketID,
         );
         $result = $db->table("anketcevaplar")->getWhere($data)->getResult();
+        return $result;
+    }
+    public function getAnketResultExcel($gelenAnketID){
+        $db = \Config\Database::connect();
+        $data = array(
+            "anketID" => $gelenAnketID,
+        );
+        $result = $db->table("anketcevaplar")->orderBy("fakulteID", "ASC")->getWhere($data)->getResult();
         return $result;
     }
     public function getAnketIpReport($gelenAnketID, $gelenIP){ // İp adresiyle önceden anket doldurulmuş mu ona baktık.

@@ -1,0 +1,263 @@
+CRITICAL - 2022-04-08 03:15:30 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(480): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 480)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:17:31 --> Uninitialized string offset 0
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(451): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Uninitialized s...', 'C:\\xampp\\htdocs...', 451)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:17:38 --> Uninitialized string offset 0
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(451): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Uninitialized s...', 'C:\\xampp\\htdocs...', 451)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:17:53 --> Array to string conversion
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(450): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string...', 'C:\\xampp\\htdocs...', 450)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:24:49 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 474)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:24:51 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 474)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:24:51 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 474)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:24:52 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 474)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:24:53 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 474)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:24:53 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 474)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:24:58 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 474)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:25:03 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 474)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:25:20 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(472): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 472)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:25:48 --> foreach() argument must be of type array|object, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(475): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\xampp\\htdocs...', 475)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:36:52 --> Array to string conversion
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(496): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string...', 'C:\\xampp\\htdocs...', 496)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:37:23 --> Array to string conversion
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(496): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string...', 'C:\\xampp\\htdocs...', 496)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:37:24 --> Array to string conversion
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(496): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string...', 'C:\\xampp\\htdocs...', 496)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketAnalizExcelPlus('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 03:41:13 --> syntax error, unexpected token "foreach", expecting "," or ";"
+#0 C:\xampp\htdocs\Klu_Anket\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('ownerController...')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('ownerController...')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 06:53:16 --> Undefined array key 4
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(177): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 177)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 06:54:08 --> Undefined array key 4
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(177): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 177)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:01:42 --> Undefined array key 2
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(166): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 166)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:02:07 --> Undefined array key 2
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(166): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 166)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:02:50 --> Uninitialized string offset 0
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(166): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Uninitialized s...', 'C:\\xampp\\htdocs...', 166)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:05:19 --> Illegal offset type
+#0 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-04-08 07:05:24 --> Illegal offset type
+#0 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-04-08 07:05:31 --> Illegal offset type
+#0 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-04-08 07:05:54 --> Unclosed '(' does not match ']'
+#0 C:\xampp\htdocs\Klu_Anket\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('ownerController...')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('ownerController...')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:09:12 --> count(): Argument #1 ($value) must be of type Countable|array, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(156): count('Detay 1')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:09:49 --> count(): Argument #1 ($value) must be of type Countable|array, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(156): count('Detay 1')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:10:25 --> count(): Argument #1 ($value) must be of type Countable|array, string given
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(156): count('Detay 1')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:15:02 --> syntax error, unexpected token "=="
+#0 C:\xampp\htdocs\Klu_Anket\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('ownerController...')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('ownerController...')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:15:10 --> Array to string conversion
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(173): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string...', 'C:\\xampp\\htdocs...', 173)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:16:32 --> Undefined array key 4
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 185)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:17:13 --> Undefined array key 4
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 185)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:17:36 --> Undefined array key 4
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(187): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:17:56 --> Undefined array key 4
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(187): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:18:22 --> Undefined array key 5
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(187): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketUpdate('64')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-08 07:18:42 --> Unclosed '{' on line 155 does not match ')'
+#0 C:\xampp\htdocs\Klu_Anket\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('ownerController...')
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('ownerController...')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

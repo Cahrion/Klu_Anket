@@ -115,6 +115,11 @@ class publicAnketler extends Controller
         }else{
             $anketID    = "";
         }
+        if(isset($_POST["anketGorus"])){
+            $anketGorus    = GuvenlikFiltresi($_POST["anketGorus"]);
+        }else{
+            $anketGorus    = "";
+        }
 
         if ($gelenQuery != "" and $anketID != "") {
             // Frontend kısımda eğğer bir hile yapılmayı çalışıp gerekli kısımlar gelmemişse burada yeniden kontrol ederek frontend kısma gönderiyoruz.
@@ -153,7 +158,9 @@ class publicAnketler extends Controller
                 $gelenSerialize     = serialize($gelenQuery); // Gelen array yapısını serialize ederek database de tutabiliriz. 
                 $gelenIp            = $_SERVER["REMOTE_ADDR"]; // IP adresini yeniden cevap vermesini engellemek için tutalım.
                 // gelenQueryBrans[0] => Brans, gelenQueryBrans[1] => Fakulte, gelenQueryBrans[2] => Birim
-                $Islem->setAnketResult($anketID, $gelenSerialize,$gelenQueryBrans[0], $gelenQueryBrans[1], $gelenQueryBrans[2], $gelenIp); 
+                $getDate            = date("Y.m.d H:i:s", time());
+            
+                $Islem->setAnketResult($anketID, $gelenSerialize, $anketGorus,$gelenQueryBrans[0], $gelenQueryBrans[1], $gelenQueryBrans[2], $gelenIp, $getDate); 
     
                 echo "1"; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
                 exit();

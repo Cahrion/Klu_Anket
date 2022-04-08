@@ -1,5 +1,14 @@
 var base_url = $("base").attr("href");
-var renkler = ["rgb(168, 234, 135)","rgb(234, 228, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)"];
+var renkler = ["rgb(168, 234, 135)","rgb(234, 228, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)","rgb(204, 169, 126)", "rgb(32, 39, 43)","rgb(99, 36, 81)"];
+
+function scrollSelector(){
+    var hesapla 		= $("body").get(0).scrollHeight;
+    if(hesapla > 2000){
+        $(".ustVeriAlan").show();
+    }else{
+        $(".ustVeriAlan").hide();
+    }
+}
 
 function secretNumCreator(gelenSayi){
     if(gelenSayi < 10){
@@ -109,7 +118,8 @@ function anketIcerigiSil(node){
                 $(value).attr("name", newVal);
                 $(value).children(".anketGroupcompulsory").children(".anketSoruZorunluluk").attr("id", newVal);
                 $(value).children(".anketGroupcompulsory").children(".anketZorunlulukLabel").attr("for", newVal);
-                $(value).children(".secretNum").children(".secretNumFont").attr("class", "secretNumFont fa-solid fa-" + (parseInt(ustSoruIndex)-1));
+                var newSecretNum = secretNumCreator((parseInt(ustSoruIndex)-1));
+                $(value).children(".secretNum").html(newSecretNum);
             }
         });
         $(node).parent().remove();
@@ -269,6 +279,7 @@ $(document).ready(function(){
         var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children(".anketHeadCoveragerExplanationText").val(); // Anket Açıklama Metni
         var anketKitle      = $("#formKitleSelected").val();
         var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
+        var anketGorus      = $("#detaySormaAlan").prop("checked"); // Anket Detay sorulsun mu 
 
         if(anketKitle == ""){
             alert("Lütfen hitap edilen kitleyi seçiniz.");
@@ -281,8 +292,13 @@ $(document).ready(function(){
         }else{
             anketGiris = 0;
         }
-
-        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketKitle,anketGiris];
+        if(anketGorus){
+            anketGorus = 1;
+        }else{
+            anketGorus = 0;
+        }
+        
+        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketKitle,anketGiris,anketGorus];
 
         var UstGrup     = $(".GroupCoverager");
         var UstList     = {};  // Liste ataması kullanarak sırayı karıştırmayalım
@@ -344,6 +360,7 @@ $(document).ready(function(){
         var anketBaslikA    = $(".anketHeadCoverager").children(".aciklamaMetni").children(".anketHeadCoveragerExplanationText").val(); // Anket Açıklama Metni
         var anketKitle      = $("#formKitleSelected").val();
         var anketGiris      = $("#anketGirisZorunluluk").prop("checked"); // Anket Giriş
+        var anketGorus      = $("#detaySormaAlan").prop("checked"); // Anket Detay sorulsun mu 
         var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
         if(anketKitle == ""){
             alert("Lütfen hitap edilen kitleyi seçiniz.");
@@ -356,7 +373,12 @@ $(document).ready(function(){
         }else{
             anketGiris = 0;
         }
-        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketKitle,anketGiris,anketID];
+        if(anketGorus){
+            anketGorus = 1;
+        }else{
+            anketGorus = 0;
+        }
+        var temelAnketVerileri = [anketBaslik,anketBaslikM,anketBaslikA,anketKitle,anketGiris,anketGorus,anketID];
 
         // Anket içinin verilerinin alımı.
         var UstGrup     = $(".GroupCoverager");
@@ -390,7 +412,9 @@ $(document).ready(function(){
             soruList        = {}; // Listelerin içindeki veriyi temizlememek gerektiğinden temizledik.
         });
 
-        $.post(base_url + '/ownerController/anketUpdate', {queryName: temelAnketVerileri,queryString: UstList}, function(data)
+        gelenAnketBilgisi = $("body").attr("name");
+
+        $.post(base_url + '/ownerController/anketUpdate/' + gelenAnketBilgisi, {queryName: temelAnketVerileri,queryString: UstList}, function(data)
         {
         if(data.length > 0)
         {

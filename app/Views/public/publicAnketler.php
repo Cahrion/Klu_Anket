@@ -142,7 +142,24 @@
             </div>
         <?php
         }
+        if($anketKaydi->anketGorus){
+            ?>
+            <div>
+                <div style="font-weight: bold;border-bottom: 1px dotted grey;" class="mb-2">Diğer Bilgiler</div>
+                <div>
+                    <div class="mb-3">
+                      <label for="anketGorus" class="form-label">Ayrıca belirtmek istediğiniz bir konu varsa görüş ve önerilerinizi kısaca yazınız.</label>
+                      <textarea class="form-control" name="anketGorus" id="anketGorus" rows="3"></textarea>
+                    </div>
+                </div>
+            
+            </div>
+            <?php
+        }
         ?>
+        <div class="text-primary mb-2">
+            Anketi doldurduğunuz için teşekkür ederiz.
+        </div>
         <div class="row mb-5">
             <div class="col-12 col-lg-6 col-xl-4 row">
                 <div class="col-4" style="text-align:left">

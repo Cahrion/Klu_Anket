@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body onscroll="scrollSelector(this)" name="<?php echo $anketBilgisi->id?>">
 	<?php
 	include_once 'includes/topBar.php';
 	?>
@@ -27,7 +27,6 @@
 		<div class="col-8">
 			<!-- Anket bilgilerini seçiçek ve dolduracak		 -->
 			<div class="anketHeadCoverager mt-4" id="<?php echo $anketBilgisi->id ?>">
-				<button class="veriGuncelle btn btn-success mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Güncelle</button>
 				<div class="baslik">
 					<input type="text" value="<?php echo $anketBilgisi->baslik ?>" placeholder="ANKET BAŞLIĞI" class="anketHeadCoveragerHeader">
 				</div>
@@ -60,6 +59,9 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="text-end ustVeriAlan">
+				<button class="veriGuncelle btn btn-success mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Güncelle</button>
 			</div>
 			<div class="row">
 				<div class="col-0 col-sm-2"></div>
@@ -173,13 +175,18 @@
 					}
 					?>
 				</div>
-				<div class="col-0 col-sm-2"></div>
-				<div class="row">
-					<div class="col-0 col-sm-2"></div>
-					<div class="col-12 col-sm-8" style="text-align:right">
+				<div class="row text-center">
+					<div class="col-lg-2 col-sm-2 col-0"></div>
+					<div class="col-lg-6 col-sm-4 col-6">
+						<div class="flex mt-2" style="font-size: 14px;text-align:left;word-wrap: break-word;">
+						<input class="form-check-input" type="checkbox" id="detaySormaAlan"<?php echo $anketBilgisi->anketGorus?"checked":""?>>
+						<label class="form-check-label" for="detaySormaAlan">Kullanıcıdan yorum istensin mi ? <span class="text-muted">(Kullanıcının bu anket için düşünceleri sorulur.)</span></label>
+						</div>
+					</div>
+					<div class="col-lg-2 col-sm-4  col-6" style="text-align:right">
 						<button class="veriGuncelle btn btn-success mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Güncelle</button>
 					</div>
-					<div class="col-0 col-sm-2"></div>
+					<div class="col-lg-2 col-sm-2  col-0"></div>
 				</div>
 			</div>
 		</div>

@@ -84,6 +84,8 @@ $(document).ready(function () {
             return alert("Lütfen branş bilgilerinizi giriniz.");
         }
 
+        // Anket görüş alımı
+        var anketGorus = $("#anketGorus").val();
         // ID alımı
         var anketBilgisi = $(this).attr("id");
         // Canvas
@@ -91,7 +93,7 @@ $(document).ready(function () {
         if (canvasSelector == "") {
             return alert("Lütfen güvenlik kodunu giriniz.");
         }
-        $.post(base_url + '/publicAnketler/anketLoading/' + anketBilgisi, { queryBrans: branslar, queryProtocol: canvasSelector.toUpperCase(), queryString: anketAlanCevaplarListesi }, function (data) {
+        $.post(base_url + '/publicAnketler/anketLoading/' + anketBilgisi, { queryBrans: branslar, queryProtocol: canvasSelector.toUpperCase(), queryString: anketAlanCevaplarListesi ,anketGorus: anketGorus}, function (data) {
             if (data.length > 0) {
                 if (data == 1) {
                     alert("Anket bilgileri başarıyla gönderildi. Anketimize katıldığınız için teşekkür ederiz.");
