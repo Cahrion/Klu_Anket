@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3307
--- Üretim Zamanı: 05 Nis 2022, 01:57:50
+-- Üretim Zamanı: 08 Nis 2022, 14:31:36
 -- Sunucu sürümü: 10.4.19-MariaDB
 -- PHP Sürümü: 8.0.7
 
@@ -31,32 +31,13 @@ CREATE TABLE `anketcevaplar` (
   `id` int(11) UNSIGNED NOT NULL,
   `anketID` int(11) UNSIGNED NOT NULL,
   `serialize` text NOT NULL,
+  `anketGorus` text NOT NULL,
   `bransTur` varchar(255) NOT NULL,
   `fakulteID` int(11) NOT NULL,
   `birimID` int(11) NOT NULL,
-  `kullaniciIP` varchar(255) NOT NULL
+  `kullaniciIP` varchar(255) NOT NULL,
+  `gonderimTarihi` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Tablo döküm verisi `anketcevaplar`
---
-
-INSERT INTO `anketcevaplar` (`id`, `anketID`, `serialize`, `bransTur`, `fakulteID`, `birimID`, `kullaniciIP`) VALUES
-(1, 21, 'a:1:{i:0;a:2:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";}}', '', 0, 0, '::1'),
-(2, 21, 'a:1:{i:1;a:5:{i:0;s:3:\"1-B\";i:1;s:3:\"2-A\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-A\";}}', '', 0, 0, '::1'),
-(3, 18, 'a:2:{i:0;a:3:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";i:2;s:3:\"3-C\";}i:1;a:2:{i:0;s:6:\"1-Evet\";i:1;s:14:\"2-Kısmen evet\";}}', '', 0, 0, '::1'),
-(4, 18, 'a:2:{i:0;a:3:{i:0;s:3:\"1-C\";i:1;s:3:\"2-C\";i:2;s:3:\"3-C\";}i:1;a:2:{i:0;s:16:\"1-Kısmen hayır\";i:1;s:16:\"2-Kısmen hayır\";}}', '', 0, 0, '::1'),
-(5, 21, 'a:2:{i:0;a:8:{i:0;s:3:\"1-B\";i:1;s:3:\"2-B\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-B\";i:5;s:3:\"6-B\";i:6;s:3:\"7-B\";i:7;s:3:\"8-B\";}i:1;a:5:{i:0;s:3:\"1-B\";i:1;s:3:\"2-B\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-B\";}}', '', 0, 0, '::1'),
-(6, 21, 'a:1:{i:1;a:1:{i:4;s:3:\"5-B\";}}', '', 0, 0, '::1'),
-(7, 18, 'a:2:{i:0;a:3:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";i:2;s:3:\"3-A\";}i:1;a:2:{i:0;s:14:\"1-Kısmen evet\";i:1;s:14:\"2-Kısmen evet\";}}', '', 0, 0, '::1'),
-(8, 18, 'a:2:{i:0;a:3:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";i:2;s:3:\"3-A\";}i:1;a:2:{i:0;s:14:\"1-Kısmen evet\";i:1;s:14:\"2-Kısmen evet\";}}', '', 0, 0, '::1'),
-(9, 21, 'a:2:{i:0;a:8:{i:0;s:3:\"1-A\";i:1;s:3:\"2-B\";i:2;s:3:\"3-B\";i:3;s:3:\"4-B\";i:4;s:3:\"5-B\";i:5;s:3:\"6-B\";i:6;s:3:\"7-C\";i:7;s:3:\"8-C\";}i:1;a:5:{i:0;s:3:\"1-D\";i:1;s:3:\"2-D\";i:2;s:3:\"3-D\";i:3;s:3:\"4-D\";i:4;s:3:\"5-D\";}}', '', 0, 0, '::1'),
-(10, 21, 'a:2:{i:0;a:7:{i:0;s:3:\"1-D\";i:1;s:3:\"2-D\";i:2;s:3:\"3-D\";i:3;s:3:\"4-D\";i:5;s:3:\"6-D\";i:6;s:3:\"7-D\";i:7;s:3:\"8-D\";}i:1;a:5:{i:0;s:3:\"1-D\";i:1;s:3:\"2-D\";i:2;s:3:\"3-D\";i:3;s:3:\"4-D\";i:4;s:3:\"5-D\";}}', '', 0, 0, '::1'),
-(11, 21, 'a:1:{i:0;a:3:{i:3;s:3:\"4-D\";i:4;s:3:\"5-D\";i:5;s:3:\"6-D\";}}', '', 0, 0, '::1'),
-(12, 18, 'a:2:{i:0;a:4:{i:0;s:3:\"1-A\";i:1;s:3:\"2-A\";i:2;s:3:\"3-A\";i:3;s:3:\"4-A\";}i:1;a:2:{i:0;s:6:\"1-Evet\";i:1;s:6:\"2-Evet\";}}', '', 0, 0, '::1'),
-(13, 18, 'a:2:{i:0;a:4:{i:0;s:3:\"1-A\";i:1;s:3:\"2-A\";i:2;s:3:\"3-A\";i:3;s:3:\"4-A\";}i:1;a:2:{i:0;s:6:\"1-Evet\";i:1;s:6:\"2-Evet\";}}', 'ogrenci', 1, 1, '::1'),
-(14, 18, 'a:2:{i:0;a:4:{i:0;s:3:\"1-A\";i:1;s:3:\"2-A\";i:2;s:3:\"3-A\";i:3;s:3:\"4-A\";}i:1;a:2:{i:0;s:6:\"1-Evet\";i:1;s:6:\"2-Evet\";}}', 'idari', 1, 0, '::1'),
-(15, 52, 'a:1:{i:0;a:1:{i:0;s:7:\"1-awdaw\";}}', 'idari', 2, 0, '::1');
 
 -- --------------------------------------------------------
 
@@ -72,6 +53,7 @@ CREATE TABLE `anketler` (
   `aciklama` text NOT NULL,
   `anketKitle` varchar(255) NOT NULL,
   `anketGiris` tinyint(1) NOT NULL,
+  `anketGorus` tinyint(3) UNSIGNED NOT NULL,
   `serialize` text NOT NULL,
   `onay` tinyint(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -80,9 +62,14 @@ CREATE TABLE `anketler` (
 -- Tablo döküm verisi `anketler`
 --
 
-INSERT INTO `anketler` (`id`, `yoneticiID`, `baslik`, `metin`, `aciklama`, `anketKitle`, `anketGiris`, `serialize`, `onay`) VALUES
-(31, 3, 'ANKET BAŞLIĞI', 'Anket üst bilgisini giriniz', 'Anket hakkında açıklama yapınız.', '', 0, 'a:3:{i:0;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:17:\"Group Başlığı\";i:2;s:23:\"Detay bilgisini giriniz\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:4:\"true\";}}}i:1;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:17:\"Group Başlığı\";i:2;s:23:\"Detay bilgisini giriniz\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:4:\"true\";}}}i:2;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:17:\"Group Başlığı\";i:2;s:23:\"Detay bilgisini giriniz\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:4:\"true\";}}}}', 1),
-(52, 3, 'dwadaw', 'dawdaw', 'dawdaw', 'idari', 0, 'a:1:{i:0;a:3:{i:0;a:3:{i:0;s:12:\"rgb(0, 0, 0)\";i:1;s:7:\"dawdawd\";i:2;s:6:\"dwadaw\";}i:1;a:1:{i:0;s:5:\"awdaw\";}i:2;a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:4:\"true\";}}}}', 1);
+INSERT INTO `anketler` (`id`, `yoneticiID`, `baslik`, `metin`, `aciklama`, `anketKitle`, `anketGiris`, `anketGorus`, `serialize`, `onay`) VALUES
+(64, 3, 'Anket 1', 'Anket üst bilgisi 1', 'Anket Açıklama 1', 'idari', 1, 1, 'a:2:{i:0;a:3:{i:0;a:3:{i:0;s:18:\"rgb(126, 189, 255)\";i:1;s:33:\"Analiz için farklı isimlendirme\";i:2;s:7:\"Detay 1\";}i:1;a:5:{i:0;s:1:\"A\";i:1;s:1:\"B\";i:2;s:1:\"C\";i:3;s:1:\"D\";i:4;s:0:\"\";}i:2;a:2:{i:0;a:2:{i:0;s:6:\"Soru 1\";i:1;s:5:\"false\";}i:1;a:2:{i:0;s:6:\"Soru 2\";i:1;s:5:\"false\";}}}i:1;a:3:{i:0;a:3:{i:0;s:18:\"rgb(234, 228, 135)\";i:1;s:6:\"Grup 2\";i:2;s:7:\"Detay 2\";}i:1;a:5:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";i:3;s:1:\"4\";i:4;s:1:\"5\";}i:2;a:12:{i:0;a:2:{i:0;s:6:\"Soru 1\";i:1;s:5:\"false\";}i:1;a:2:{i:0;s:6:\"Soru 2\";i:1;s:5:\"false\";}i:2;a:2:{i:0;s:6:\"Soru 3\";i:1;s:5:\"false\";}i:3;a:2:{i:0;s:6:\"Soru 4\";i:1;s:5:\"false\";}i:4;a:2:{i:0;s:6:\"Soru 5\";i:1;s:5:\"false\";}i:5;a:2:{i:0;s:6:\"Soru 6\";i:1;s:5:\"false\";}i:6;a:2:{i:0;s:0:\"\";i:1;s:5:\"false\";}i:7;a:2:{i:0;s:0:\"\";i:1;s:5:\"false\";}i:8;a:2:{i:0;s:0:\"\";i:1;s:5:\"false\";}i:9;a:2:{i:0;s:0:\"\";i:1;s:5:\"false\";}i:10;a:2:{i:0;s:0:\"\";i:1;s:5:\"false\";}i:11;a:2:{i:0;s:0:\"\";i:1;s:5:\"false\";}}}}', 1),
+(65, 3, 'awdawdaw', 'wdawd', 'da', 'idari', 0, 0, 'a:1:{i:0;a:3:{i:0;a:3:{i:0;s:18:\"rgb(168, 234, 135)\";i:1;s:6:\"dawdaw\";i:2;s:6:\"dawdaw\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:5:\"false\";}}}}', 1),
+(66, 3, 'dawdaw', 'dawdaw', 'dawdaw', 'idari', 1, 0, 'a:1:{i:0;a:3:{i:0;a:3:{i:0;s:18:\"rgb(168, 234, 135)\";i:1;s:6:\"dwadaw\";i:2;s:4:\"dawd\";}i:1;a:1:{i:0;s:6:\"dawdaw\";}i:2;a:1:{i:0;a:2:{i:0;s:6:\"dwadaw\";i:1;s:4:\"true\";}}}}', 1),
+(67, 3, 'dawdaw', 'dwadaw', 'dwadwa', 'akademik', 1, 0, 'a:1:{i:0;a:3:{i:0;a:3:{i:0;s:18:\"rgb(168, 234, 135)\";i:1;s:6:\"dawdaw\";i:2;s:6:\"dwadwa\";}i:1;a:1:{i:0;s:6:\"dawdaw\";}i:2;a:1:{i:0;a:2:{i:0;s:6:\"awdawd\";i:1;s:4:\"true\";}}}}', 1),
+(68, 3, 'dawdaw', 'dwadwa', 'wdadaw', 'akademik', 0, 0, 'a:1:{i:0;a:3:{i:0;a:3:{i:0;s:18:\"rgb(168, 234, 135)\";i:1;s:4:\"dawd\";i:2;s:9:\"awdawdawd\";}i:1;a:1:{i:0;s:6:\"dawdaw\";}i:2;a:1:{i:0;a:2:{i:0;s:6:\"dwadaw\";i:1;s:4:\"true\";}}}}', 1),
+(69, 3, 'awdawdaw', 'wdad', 'awdawd', 'akademik', 1, 1, 'a:1:{i:0;a:3:{i:0;a:3:{i:0;s:18:\"rgb(168, 234, 135)\";i:1;s:4:\"dawd\";i:2;s:8:\"awdawdaw\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:6:\"dawdaw\";i:1;s:4:\"true\";}}}}', 1),
+(70, 3, 'dawdaw', 'awdaw', 'dwad', 'akademik', 1, 0, 'a:1:{i:0;a:3:{i:0;a:3:{i:0;s:17:\"rgb(124, 100, 73)\";i:1;s:6:\"dawdaw\";i:2;s:5:\"awdaw\";}i:1;a:1:{i:0;s:0:\"\";}i:2;a:1:{i:0;a:2:{i:0;s:7:\"dwadwad\";i:1;s:4:\"true\";}}}}', 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +89,7 @@ CREATE TABLE `uyeler` (
 
 INSERT INTO `uyeler` (`id`, `emailAdresi`, `yonetimFaktoru`) VALUES
 (3, 'icabikrz@gmail.com', 1),
-(8, 'icabitr@gmail.com', 1);
+(8, 'icabitr@gmail.com', 0);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -134,13 +121,13 @@ ALTER TABLE `uyeler`
 -- Tablo için AUTO_INCREMENT değeri `anketcevaplar`
 --
 ALTER TABLE `anketcevaplar`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `anketler`
 --
 ALTER TABLE `anketler`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `uyeler`
