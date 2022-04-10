@@ -34,36 +34,24 @@
 								<?php echo $anketKaydi->baslik; ?>
 							</div>
 							<div class="card-body">
+								<a class="btn col-12 mb-2" style="background-color:darkred;color:white" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
+									Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
+								</a>
 								<?php
 								if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
 								?>
-									<a class="btn col-12 mb-2" style="background-color:darkred;color:white" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
-										Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
-									</a>
-								<?php
-								}else{
-								?>
-									<a class="btn col-12 mb-2 disabled" style="background-color:darkred;color:white" >
-										Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
-									</a>
-								<?php
-							}
-								?>
-								<?php
-								if ($anketKaydi->onay) { // Onay verilmemişse bu alan gözükmesin.
-								?>
-									<a class="btn btn-primary col-12 mb-2" style="background-color:#212529;color:white"  href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
+									<a class="btn btn-primary col-12 mb-2" style="background-color:#212529;color:white" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
 										<i class="fa-solid fa-link"></i>
 										Link
 									</a>
 								<?php
-								}else{
-									?>
-										<a class="btn btn-primary col-12 mb-2 disabled" style="background-color:#212529;color:white"  role="button">
-											<i class="fa-solid fa-link"></i>
-											Link
-										</a>
-									<?php
+								} else {
+								?>
+									<a class="btn btn-primary col-12 mb-2 disabled" style="background-color:#212529;color:white" role="button">
+										<i class="fa-solid fa-link"></i>
+										Link
+									</a>
+								<?php
 								}
 								?>
 								<?php

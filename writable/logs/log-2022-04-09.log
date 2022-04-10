@@ -1,0 +1,22 @@
+CRITICAL - 2022-04-09 13:26:37 --> Undefined variable $Islem
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketler.php(48): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 48)
+#1 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketler', Array, true)
+#4 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(37): view('adminAnketler', Array)
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketler()
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-04-09 13:26:59 --> Undefined property: stdClass::$email
+#0 C:\xampp\htdocs\Klu_Anket\app\Views\adminAnketler.php(50): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\xampp\\htdocs...', 50)
+#1 C:\xampp\htdocs\Klu_Anket\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Klu_Anket\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\Klu_Anket\system\Common.php(1089): CodeIgniter\View\View->render('adminAnketler', Array, true)
+#4 C:\xampp\htdocs\Klu_Anket\app\Controllers\ownerController.php(37): view('adminAnketler', Array)
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\ownerController->anketler()
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ownerController))
+#7 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

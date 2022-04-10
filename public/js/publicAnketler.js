@@ -1,27 +1,28 @@
 var base_url = $("base").attr("href");
+var maksimum = 850;
+
 $(document).ready(function () {
     $("#myModal").modal('show');
 
     // Seçenek kalıp alan
     var intervalFlag = true;
-    $(".soruCevaplari").click(function(){
-        if(intervalFlag){
+    $(".soruCevaplari").click(function () {
+        if (intervalFlag) {
             intervalFlag = false;
             var interval = 20;
             var veriT = $(this).children(".soruSecenekler");
             var veriTIntial = $(veriT).css("box-shadow");
-            var zamanlayici = setInterval(function(){
+            var zamanlayici = setInterval(function () {
                 interval -= 1;
-
-                $(veriT).css("transform","scale(1.4)");
+                $(veriT).css("transform", "scale(1.4)");
                 $(veriT).css("box-shadow", "0 0 5px " + interval + "px #7db1fe");
-                if(interval == 0){
-                    $(veriT).css("transform","scale(1)");
-                    $(veriT).css("box-shadow",veriTIntial);
+                if (interval == 0) {
+                    $(veriT).css("transform", "scale(1)");
+                    $(veriT).css("box-shadow", veriTIntial);
                     clearInterval(zamanlayici);
                     intervalFlag = true;
                 }
-            },10);
+            }, 10);
             $(this).children(".soruSecenekler").prop('checked', true);
         }
     });
@@ -74,18 +75,25 @@ $(document).ready(function () {
         // Görev yeri bilgilerinin alımı
         var brans = $(".fakulteAlan").attr("name");
         var fakulte = $(".fakulteSelect").val();
-        var birim   = $(".birimSelect").val();
-        if((fakulte != "" && birim != "") || ((brans == "idari" || brans == "herkes") && fakulte != "" && birim == undefined)){
-            if(birim == undefined){
+        var birim = $(".birimSelect").val();
+        if ((fakulte != "" && birim != "") || ((brans == "idari" || brans == "herkes") && fakulte != "" && birim == undefined)) {
+            if (birim == undefined) {
                 birim = "";
             }
             var branslar = [brans, fakulte, birim];
-        }else{
+        } else {
             return alert("Lütfen branş bilgilerinizi giriniz.");
         }
 
         // Anket görüş alımı
-        var anketGorus = $("#anketGorus").val();
+        if($("#anketGorus").length > 0){
+            var anketGorus = $("#anketGorus").val();
+            if (anketGorus.length > maksimum) {
+                return alert("Lütfen görüşünüzü maksimum belirtilen kelime sayısına uygun şekilde değiştiriniz.");
+            }
+        }else{
+            var anketGorus = "";
+        }
         // ID alımı
         var anketBilgisi = $(this).attr("id");
         // Canvas
@@ -93,7 +101,7 @@ $(document).ready(function () {
         if (canvasSelector == "") {
             return alert("Lütfen güvenlik kodunu giriniz.");
         }
-        $.post(base_url + '/publicAnketler/anketLoading/' + anketBilgisi, { queryBrans: branslar, queryProtocol: canvasSelector.toUpperCase(), queryString: anketAlanCevaplarListesi ,anketGorus: anketGorus}, function (data) {
+        $.post(base_url + '/publicAnketler/anketLoading/' + anketBilgisi, { queryBrans: branslar, queryProtocol: canvasSelector.toUpperCase(), queryString: anketAlanCevaplarListesi, anketGorus: anketGorus }, function (data) {
             if (data.length > 0) {
                 if (data == 1) {
                     alert("Anket bilgileri başarıyla gönderildi. Anketimize katıldığınız için teşekkür ederiz.");
@@ -104,6 +112,8 @@ $(document).ready(function () {
                     alert("Lütfen güvenlik kodunu kontrol ediniz.");
                 } else if (data == 3) {
                     alert("Lütfen branş bilgilerinizi kontrol ediniz.");
+                } else if (data == 4) {
+                    alert("Lütfen görüşünüzü maksimum belirtilen kelime sayısına uygun şekilde değiştiriniz.");
                 } else {
                     alert("Lütfen (*) zorunlu kısımları doldurmayı unutmayınız.");
                 }
@@ -128,11 +138,26 @@ function degistir() {
     });
 }
 
+function anketGorusKeyPress(node) {
+    var uzunluk = $(node).val().length;
+
+    if (uzunluk >= maksimum) {
+        var deger = $(node).val();
+        var olustur = deger.substr(0, maksimum);
+        $(node).val(olustur);
+        $(".Kullanilan").css("color", "red");
+        $(".Kullanilan").text(maksimum);
+    } else {
+        var deger = $(node).val();
+        $(".Kullanilan").css("color", "grey");
+        $(".Kullanilan").text(uzunluk);
+    }
+}
 // Brans seçme alanı
-function fakulteChange(node){
+function fakulteChange(node) {
     // Alt birimleri olmayan yapılar getirilecek.
     var gelenBrans = $(".fakulteAlan").attr("name");
-    if(gelenBrans != "idari" && gelenBrans != "herkes"){
+    if (gelenBrans != "idari" && gelenBrans != "herkes") {
         var html = `
             <div class="mb-3 birimAlan">
                 <label for="birim" class="form-label" style="font-weight:bold">Görev birim yeriniz</label>
@@ -143,7 +168,7 @@ function fakulteChange(node){
                 </select>
         </div>
         `;
-        if($(".gorevBilgisi").children("div").length < 2){ // Sayfada gösterimde olan 3 veya daha fazla veri varsa eklemedik.
+        if ($(".gorevBilgisi").children("div").length < 2) { // Sayfada gösterimde olan 3 veya daha fazla veri varsa eklemedik.
             $(".fakulteAlan").after(html);
         }
     }

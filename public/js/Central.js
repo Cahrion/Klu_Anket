@@ -344,8 +344,8 @@ $(document).ready(function(){
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $(".veriGuncelle").click(function(){
-        $(this).prop( "disabled", true);
         var OncekiHal = $(this).html();
+        $(this).prop( "disabled", true);
         $(this).html('<i class="fa-solid fa-arrows-rotate"></i> Anket Güncelleniyor...');
         // Üst anket verilerin alımı.
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children(".anketHeadCoveragerHeader").val(); // Anket Başlığı
@@ -413,14 +413,18 @@ $(document).ready(function(){
         });
 
         gelenAnketBilgisi = $("body").attr("name");
-
-        $.post(base_url + '/ownerController/anketUpdate/' + gelenAnketBilgisi, {queryName: temelAnketVerileri,queryString: UstList}, function(data)
-        {
-        if(data.length > 0)
-        {
-            history.back();
+        var confirmResult = confirm("Veri güncelleme işlemi yaptığınızda anketinize verilen cevaplar silineceketir. (Anket başlığı değiştirme gibi faktörler bu silinme işlemine dahil değildir.)");
+        if(confirmResult){
+            $.post(base_url + '/ownerController/anketUpdate/' + gelenAnketBilgisi, {queryName: temelAnketVerileri,queryString: UstList}, function(data)
+            {
+            if(data.length > 0)
+            {
+                history.back();
+            }
+            });
+        }else{
+            $(this).prop( "disabled", false);
+            return $(this).html(OncekiHal);
         }
-        });
-
     });
 });

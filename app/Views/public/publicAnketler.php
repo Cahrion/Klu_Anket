@@ -147,9 +147,13 @@
             <div>
                 <div style="font-weight: bold;border-bottom: 1px dotted grey;" class="mb-2">Diğer Bilgiler</div>
                 <div>
-                    <div class="mb-3">
+                    <div>
                       <label for="anketGorus" class="form-label">Ayrıca belirtmek istediğiniz bir konu varsa görüş ve önerilerinizi kısaca yazınız.</label>
-                      <textarea class="form-control" name="anketGorus" id="anketGorus" rows="3"></textarea>
+                      <textarea class="form-control" name="anketGorus" id="anketGorus" rows="3" onkeypress="anketGorusKeyPress(this)" onkeyup="anketGorusKeyPress(this)" onkeydown="anketGorusKeyPress(this)"></textarea>
+                    </div>
+                    <div class="text-end mb-3" style="font-size: 13px;">
+                        <span class="Kullanilan">0</span> /
+                        <span class="Maks">850</span>
                     </div>
                 </div>
             
@@ -163,13 +167,13 @@
         <div class="row mb-5">
             <div class="col-12 col-lg-6 col-xl-4 row">
                 <div class="col-4" style="text-align:left">
-                    <canvas id="guvenlikkodualani" width="150" height="50"></canvas>
+                    <canvas id="guvenlikkodualani"></canvas>
                 </div>
-                <div class="col-2 col-xl-2 pt-1" style="text-align:center">
-                    <button onClick="degistir()" class="btn btn-secondary"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                <div class="col-2 col-xl-2" style="text-align:center">
+                    <button onClick="degistir()" class="btn btn-secondary" style="height: 50px;"><i class="fa-solid fa-arrow-rotate-right"></i></button>
                 </div>
                 <div class="col-5 pl-3" style="text-align:left">
-                    <input type="text" class="canvasSelector p-3" placeholder="Güvenlik kodu">
+                    <input type="text" class="canvasSelector p-3"  style="height: 50px;" placeholder="Güvenlik kodu">
                 </div>
             </div>
             <div class="col-0 col-lg-4 col-xl-6"></div>

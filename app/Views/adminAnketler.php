@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
-
+<?php
+use App\Models\IslemModel;
+?>
 <head>
 	<title>Admin Panel</title>
 	<!-- Required meta tags -->
@@ -40,6 +42,14 @@
 									<i class="fa-solid fa-link"></i>
 									Link
 								</a>
+								<div class="col-12 mb-2 text-center"  style=";color:grey" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>">
+									<i class="fa-solid fa-user"></i>
+									<?php
+										$Islem = new IslemModel();
+										$gelenYonetici = $Islem->getControlMemberID($anketKaydi->yoneticiID);
+										echo $gelenYonetici->emailAdresi;
+									?>
+								</div>
 							</div>
 							<div class="card-footer row m-0">
 								<?php

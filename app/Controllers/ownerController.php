@@ -435,7 +435,6 @@ class ownerController extends Controller
             $SutunArray = [];
             $SutunArray[] = $anketGroup[0][1]; // Grup başlık verisi
             foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Seçenekler oluyor.
-                $gelenSoruSecenekler = mb_convert_encoding($gelenSoruSecenekler, "windows-1254", "utf-8"); // Türkçe karakter doğrulaması.
                 $SutunArray[] = $gelenSoruSecenekler;
             }
             $gelenSutunArray[$keyGroup] = $SutunArray;
@@ -462,7 +461,7 @@ class ownerController extends Controller
             echo "<table style='border:1px solid black;border-collapse: collapse;'>";
             echo "<tr>";
             foreach ($gelenSutunArr as $gelenSutunName) {
-                $gelenSutunName = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8");
+                $gelenSutunName = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8"); // Türkçe karakter oluştur.
                 echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
                 echo $gelenSutunName;
                 echo "</th>";
@@ -472,8 +471,8 @@ class ownerController extends Controller
                 echo "<tr>";
                 foreach ($gelenSatirAlan as $gelenMetin) {
                     echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
-                    $gelenMetin = mb_convert_encoding($gelenMetin, "windows-1254", "utf-8");
-                    echo $gelenMetin;
+                    $gelenMetin = mb_convert_encoding($gelenMetin, "windows-1254", "utf-8"); // Türkçe karakter oluştur.
+                    echo $gelenMetin; 
                     echo "</td>";
                 }
                 echo "</tr>";
@@ -520,50 +519,50 @@ class ownerController extends Controller
             $anketGorus       = $publicRowVeri->anketGorus;
             echo "<table style='border:1px solid black;border-collapse: collapse;'>";
             echo "<tr>";
-            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>IP adresi</th>";
-            foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
-                foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
-                    $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
-                    $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>IP adresi</th>";
+                foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
+                    foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
+                        $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
+                        
+                        $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                    }
+                    foreach ($SoruGrouplari[$keyGroup][0] as $gelenSutunName) {
+                        $gelenSutunNameTR = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8");
+                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
+                            echo $gelenSutunNameTR;
+                        echo "</th>";
+                    }
                 }
-                foreach ($SoruGrouplari[$keyGroup][0] as $gelenSutunName) {
-                    $gelenSutunName = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8");
-                    echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
-                    echo $gelenSutunName;
-                    echo "</th>";
+                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Brans</th>";
+                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Fakulte ID</th>";
+                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Birim ID</th>";
+                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Gonderim Tarihi</th>";
+                if ($anketBilgisi->anketGorus) {
+                    echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Anket Gorusu</th>";
                 }
-            }
-            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Brans</th>";
-            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Fakulte ID</th>";
-            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Birim ID</th>";
-            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Gonderim Tarihi</th>";
-            if ($anketBilgisi->anketGorus) {
-                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Anket Gorusu</th>";
-            }
-
             echo "</tr>";
-            echo "<tr>";
-            echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $KullaniciIP . "</td>";
-            foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
-                foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
-                    $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
-                    $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+            echo "<tr style='height:50px'>";
+                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $KullaniciIP . "</td>";
+                foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
+                    foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
+                        $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
+                        $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                    }
+                    foreach ($SoruGrouplari[$keyGroup][1] as $gelenSatirAlan) {
+                        $gelenMetinTR = mb_convert_encoding($gelenSatirAlan, "windows-1254", "utf-8");
+                        echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
+                            echo $gelenMetinTR;
+                        echo "</td>";
+                    }
                 }
-                foreach ($SoruGrouplari[$keyGroup][1] as $gelenSatirAlan) {
-                    echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
-                    $gelenMetin = mb_convert_encoding($gelenSatirAlan, "windows-1254", "utf-8");
-                    echo $gelenMetin;
-                    echo "</td>";
+                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $bransTur . "</td>";
+                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $fakulteID . "</td>";
+                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $birimID . "</td>";
+                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $gonderimTarihi . "</td>";
+                if ($anketBilgisi->anketGorus) {
+                    $anketGorusVeri = mb_convert_encoding($anketGorus, "windows-1254", "utf-8");
+                    echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $anketGorusVeri . "</td>";
                 }
-            }
-            echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $bransTur . "</td>";
-            echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $fakulteID . "</td>";
-            echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $birimID . "</td>";
-            echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $gonderimTarihi . "</td>";
-            if ($anketBilgisi->anketGorus) {
-                $anketGorus = mb_convert_encoding($anketGorus, "windows-1254", "utf-8");
-                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $anketGorus . "</td>";
-            }
             echo "</tr>";
             echo "</table>";
         }

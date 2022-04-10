@@ -120,6 +120,10 @@ class publicAnketler extends Controller
         }else{
             $anketGorus    = "";
         }
+        if(strlen($anketGorus) > 850){
+            echo "4"; // Görüş miktar hatası
+            exit();
+        }
 
         if ($gelenQuery != "" and $anketID != "") {
             // Frontend kısımda eğğer bir hile yapılmayı çalışıp gerekli kısımlar gelmemişse burada yeniden kontrol ederek frontend kısma gönderiyoruz.
