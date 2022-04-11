@@ -61,15 +61,15 @@
 								?>
 							</div>
 							<div class="card-footer row m-0">
-								<div class="col-6 pt-2">
+								<div class="col-12 text-center pt-2">
+									<div class="border-bottom border-<?php echo $onayRenk ?> disabled col-12 text-<?php echo $onayRenk ?>" style="border-bottom-style: dashed!important;font-weight: bold;">
+										<?php echo $onayDurumu; ?>
+									</div>
+								</div>
+								<div class="col-12 pt-2 d-flex justify-content-between">
 									<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
 									<a class="" href="<?php echo base_url("ownerController/adminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
 
-								</div>
-								<div class="col-6">
-									<span class="btn btn-<?php echo $onayRenk ?> disabled col-12 ">
-										<?php echo $onayDurumu; ?>
-									</span>
 								</div>
 							</div>
 						</div>

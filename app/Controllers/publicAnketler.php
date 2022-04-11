@@ -43,8 +43,11 @@ class publicAnketler extends Controller
                                 );
                                 return view('public/publicAnketler', $data);
                             }else{
-                                echo "<script>alert('Anketimize zaten önceden katılmıştınız...')</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
-                                header("Location: https://www.klu.edu.tr/");
+                                echo "
+                                <script>
+                                    alert('Anketimize zaten önceden katılmıştınız...');
+                                    window.location = 'https://www.klu.edu.tr/';
+                                </script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
                                 exit();
                             }
                         }

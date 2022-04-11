@@ -11,14 +11,13 @@ $(document).ready(function () {
             intervalFlag = false;
             var interval = 20;
             var veriT = $(this).children(".soruSecenekler");
-            var veriTIntial = $(veriT).css("box-shadow");
             var zamanlayici = setInterval(function () {
                 interval -= 1;
                 $(veriT).css("transform", "scale(1.4)");
                 $(veriT).css("box-shadow", "0 0 5px " + interval + "px #7db1fe");
                 if (interval == 0) {
                     $(veriT).css("transform", "scale(1)");
-                    $(veriT).css("box-shadow", veriTIntial);
+                    $(veriT).css("box-shadow", "initial");
                     clearInterval(zamanlayici);
                     intervalFlag = true;
                 }

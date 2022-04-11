@@ -34,6 +34,7 @@ class ownerController extends Controller
                     "yonetimBilgi"  => $yonetimBilgi,
                     "anketKayitlari" => $Islem->getAnketProjects()
                 );
+                $_SESSION["link"] = $_SERVER["PHP_SELF"];
                 return view('adminAnketler', $data);
             } else {
                 header("Location: " . base_url("ownerController"));
@@ -60,8 +61,13 @@ class ownerController extends Controller
 
                     $Islem->setAnketProjectUpdOnay($gelenID, $gelenTersOnay);
                 }
-                header("Location: " . base_url("ownerController/anketler"));
-                exit();
+                if(isset($_SESSION["link"])){
+                    header("Location: " . $_SESSION["link"]);
+                    exit();
+                }else{
+                    header("Location: " . base_url("ownerController/anketler"));
+                    exit();
+                }
             } else {
                 header("Location: " . base_url("ownerController"));
                 exit();
@@ -629,7 +635,7 @@ class ownerController extends Controller
                         "gelenYonetici" => $gelenYonetici,
                         "anketKayitlarim" => $Islem->getMyAnketProjects($gelenYonetici->id)
                     );
-
+                    $_SESSION["link"] = $_SERVER["PHP_SELF"];
                     return view('adminProfil', $data);
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
