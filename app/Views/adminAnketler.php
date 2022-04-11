@@ -42,7 +42,7 @@ use App\Models\IslemModel;
 									<i class="fa-solid fa-link"></i>
 									Link
 								</a>
-								<div class="col-12 mb-2 text-center"  style=";color:grey" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>">
+								<div class="col-12 mb-2 text-center"  style=";color:grey">
 									<i class="fa-solid fa-user"></i>
 									<?php
 										$Islem = new IslemModel();
