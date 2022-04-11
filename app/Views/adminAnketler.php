@@ -49,7 +49,7 @@ use App\Models\IslemModel;
 										$gelenYonetici = $Islem->getControlMemberID($anketKaydi->yoneticiID);
 										echo $gelenYonetici->emailAdresi;
 									?>
-								</d>
+								</div>
 							</div>
 							<div class="card-footer row m-0">
 								<?php
