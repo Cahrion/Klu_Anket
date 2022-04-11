@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
-<?php
-use App\Models\IslemModel;
-?>
+
 <head>
 	<title>Admin Panel</title>
 	<!-- Required meta tags -->
@@ -24,10 +22,17 @@ use App\Models\IslemModel;
 	<div class="row kluCenter">
 		<div class="col-1 col-md-2"></div>
 		<div class="col-10 col-md-8 pt-3">
-			<div class="adminButton"><a href="<?php echo base_url("ownerController"); ?>"><i class="fa-solid fa-circle-plus"></i> Yeni Anket Ekle</a></div>
 			<div class="row">
+				<div class="col-3 border text-center">
+					<img class="card-img-top w-50" src="<?php echo base_url("img/kluLogo.png"); ?>">
+				</div>
+				<div class="col-9 border p-3 text-center">
+					<h4>
+						<?php echo $gelenYonetici->emailAdresi; ?>
+					</h4>
+				</div>
 				<?php
-				foreach ($anketKayitlari as $anketKaydi) { // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
+				foreach ($anketKayitlarim as $anketKaydi) { // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
 				?>
 					<div class="col-12 col-md-6 col-xl-4 p-3">
 						<div class="card shadow-sm">
@@ -38,18 +43,15 @@ use App\Models\IslemModel;
 								<a class="btn col-12 mb-2" style="background-color:darkred;color:white" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
 									Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
 								</a>
-								<a class="btn col-12 mb-2"  style="background-color:#212529;color:white" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
+								<a class="btn btn-primary col-12 mb-2" style="background-color:#212529;color:white" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
 									<i class="fa-solid fa-link"></i>
 									Link
 								</a>
-								<a class="btn col-12 mb-2 text-center" style="border:1px solid grey;background-color:white;color:grey" href="<?php echo base_url("ownerController/adminProfil/" . $anketKaydi->yoneticiID); ?>" >
-									<i class="fa-solid fa-user"></i>
-									<?php
-										$Islem = new IslemModel();
-										$gelenYonetici = $Islem->getControlMemberID($anketKaydi->yoneticiID);
-										echo $gelenYonetici->emailAdresi;
-									?>
-								</a>
+								<?php
+								// Ternary yapısıyla anketin durumunu isimlendiriyorum.
+								$onayDurumu 	= $anketKaydi->onay ? "Onaylandı" : "Onay Bekleniyor";
+								$onayRenk	 	= $anketKaydi->onay ? "success" : "danger";
+								?>
 							</div>
 							<div class="card-footer row m-0">
 								<?php
@@ -69,13 +71,13 @@ use App\Models\IslemModel;
 									</a>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				<?php
 				}
 				?>
 			</div>
+
 		</div>
 		<div class="col-1 col-md-2"></div>
 	</div>

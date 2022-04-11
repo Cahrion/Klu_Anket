@@ -340,7 +340,7 @@ class ownerController extends Controller
                 $gelenVeri          = GuvenlikFiltresi($gelenVeri);
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
                 if ($anketBilgisi->onay or $yonetimBilgi->yonetimFaktoru) { // Onaylı değilse anket linki oluşturulmasın. (Yonetici oluşturma hakkı verdik.)
-                    if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                    if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { 
                         $seoLink = SEO($anketBilgisi->baslik, $anketBilgisi->id);
 
                         header("Location: " . base_url("publicAnketler/Anketler/" . $seoLink));
@@ -373,7 +373,7 @@ class ownerController extends Controller
             if ($gelenVeri != "") {
                 $gelenVeri          = GuvenlikFiltresi($gelenVeri);
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
-                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { 
                     $gelenVeri = $Islem->getAnketResult($anketBilgisi->id);
                     $data = array(
                         "yonetimBilgi" => $yonetimBilgi,
@@ -407,7 +407,7 @@ class ownerController extends Controller
             if ($gelenVeri != "") {
 
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
-                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { 
                     $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
 
 
@@ -514,7 +514,7 @@ class ownerController extends Controller
             if ($gelenVeri != "") {
 
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
-                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { 
                     $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
                     $Islem  = new IslemModel();
                     $anketBilgisi = $Islem->getAnketProject($gelenVeri);
@@ -612,7 +612,39 @@ class ownerController extends Controller
             exit();
         }
     }
+    // Admin Profil
+    public function adminProfil($gelenVeri = "")
+    {
+        helper("fonksiyonlar");
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            // Gelen veriyi güvenlik taramasından geçiriyoruz eğer gelmediyse geri gönderelim.
+            if ($gelenVeri != "") {
+                $gelenVeri          = GuvenlikFiltresi($gelenVeri);
+                if ($yonetimBilgi->yonetimFaktoru) { 
+                    $gelenYonetici = $Islem->getControlMemberID($gelenVeri);
+                    $data = array(
+                        "yonetimBilgi" => $yonetimBilgi,
+                        "gelenYonetici" => $gelenYonetici,
+                        "anketKayitlarim" => $Islem->getMyAnketProjects($gelenYonetici->id)
+                    );
 
+                    return view('adminProfil', $data);
+                } else {
+                    // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
+                    header("Location: " . base_url("ownerController/leave"));
+                    exit();
+                }
+            } else {
+                header("Location: " . base_url("ownerController/adminAnket"));
+                exit();
+            }
+        } else {
+            header("Location: " . base_url());
+            exit();
+        }
+    }
     // Çıkış yapma yapısı
     public function leave()
     {
