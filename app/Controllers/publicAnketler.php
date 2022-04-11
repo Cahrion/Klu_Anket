@@ -37,16 +37,16 @@ class publicAnketler extends Controller
                                 }
                             }
                             $gelenIP = $_SERVER["REMOTE_ADDR"];
-                            // if(!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)){ // Şimdilik kapatıyorum (Sisteme ait verileri düzeltince ve yayınlayınca açılacak.)
+                            if(!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)){ 
                                 $data = array(
                                     "anketKaydi" => $gelenAnket
                                 );
                                 return view('public/publicAnketler', $data);
-                            // }else{
-                            //     echo "<script>alert('Anketimize zaten önceden katılmıştınız...')</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
-                            //     header("Location: https://www.klu.edu.tr/");
-                            //     exit();
-                            // }
+                            }else{
+                                echo "<script>alert('Anketimize zaten önceden katılmıştınız...')</script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
+                                header("Location: https://www.klu.edu.tr/");
+                                exit();
+                            }
                         }
                     }
                 }

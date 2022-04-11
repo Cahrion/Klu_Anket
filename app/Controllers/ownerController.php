@@ -158,7 +158,7 @@ class ownerController extends Controller
                                     $degisimFlag = 1;
                                 }
                             }
-                            if(!$degisimFlag){
+                            if (!$degisimFlag) {
                                 if ($keyGroupIn == 1) {
                                     if (count($queryStringGroupIn) != count($gelenAnketUnserialize[$keyGroup][1])) {
                                         $degisimFlag = 1;
@@ -188,8 +188,8 @@ class ownerController extends Controller
 
                                     // Eğer kullanıcı yeni bir seçenek eklediyse sistemdeki önceki veriler silinsin.
                                     if (!$degisimFlag) {
-                                        if($keyGroupIn == 1){
-                                            if(!($queryStringDetay == $gelenAnketUnserialize[$keyGroup][$keyGroupIn][$keyGroupDetay])){
+                                        if ($keyGroupIn == 1) {
+                                            if (!($queryStringDetay == $gelenAnketUnserialize[$keyGroup][$keyGroupIn][$keyGroupDetay])) {
                                                 $degisimFlag = true;
                                             }
                                         }
@@ -387,9 +387,10 @@ class ownerController extends Controller
                     header("Location: " . base_url("ownerController/leave"));
                     exit();
                 }
+            } else {
+                header("Location: " . base_url("ownerController/adminAnket"));
+                exit();
             }
-            header("Location: " . base_url("ownerController/adminAnket"));
-            exit();
         } else {
             header("Location: " . base_url());
             exit();
@@ -398,176 +399,220 @@ class ownerController extends Controller
     public function anketAnalizExcel($gelenVeri = "")
     {
 
-        $Islem  = new IslemModel();
-        $anketBilgisi = $Islem->getAnketProject($gelenVeri);
-        $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
+        helper("fonksiyonlar");
+        if (isset($_SESSION["Yonetici"])) {
+
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            if ($gelenVeri != "") {
+
+                $anketBilgisi = $Islem->getAnketProject($gelenVeri);
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                    $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
 
 
-        $SoruGrouplari     = []; // Grouplar şeklinde datalarımızı tutalım
-        $SoruVerileri     = []; // Gelen soru şıklarını alalım
-        $SoruMetinleri     = []; // Gelen soru metinlerini alalım
-        $anketUnSerialize = unserialize($anketBilgisi->serialize);
-        foreach ($anketUnSerialize as $keyGroup => $anketGroup) { // Groupları aldık
-            foreach ($anketGroup[2] as $keySoru => $anketSorular) { // Group içinde soruları aldık.
-                $SoruMetinleri[$keySoru + 1] = $anketSorular;
-                foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Group içine seçenekleri yazdırdık ve puanları 0 yaptık (İşaretlenmemiş anlamında.)
-                    $SoruVerileri[$keySoru + 1][$gelenSoruSecenekler] = 0;
+                    $SoruGrouplari     = []; // Grouplar şeklinde datalarımızı tutalım
+                    $SoruVerileri     = []; // Gelen soru şıklarını alalım
+                    $SoruMetinleri     = []; // Gelen soru metinlerini alalım
+                    $anketUnSerialize = unserialize($anketBilgisi->serialize);
+                    foreach ($anketUnSerialize as $keyGroup => $anketGroup) { // Groupları aldık
+                        foreach ($anketGroup[2] as $keySoru => $anketSorular) { // Group içinde soruları aldık.
+                            $SoruMetinleri[$keySoru + 1] = $anketSorular;
+                            foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Group içine seçenekleri yazdırdık ve puanları 0 yaptık (İşaretlenmemiş anlamında.)
+                                $SoruVerileri[$keySoru + 1][$gelenSoruSecenekler] = 0;
+                            }
+                        }
+                        $SoruGrouplari[$keyGroup] = [$SoruMetinleri, $SoruVerileri]; // Elimizdeki verileri düzenli bir şekilde ana grup yapısına ekledik.
+                        $SoruVerileri             = [];
+                        $SoruMetinleri            = []; // Sistemde yeni veriler üst üste gelmesin diye eski verileri siliyoruz.
+                    }
+
+                    foreach ($publicVeri as $publicRowVeri) { // getResult() yapısıyla geldiği için öncelikle bir foreach döngüsüne girelim.
+                        $gelenUnSerializeVeri = unserialize($publicRowVeri->serialize);
+                        foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
+                            foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
+                                $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
+                                $SoruGrouplari[$keyGroup][1][$ayracSoru[0]][$ayracSoru[1]] += 1; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                            }
+                        }
+                    }
+
+                    $gelenSutunArray = []; // Gelen verileri sutunlar diye ayırdık.
+                    $gelenSatirArray = []; // Gelen verileri satırlar diye ayırdık.
+                    foreach ($anketUnSerialize as $keyGroup => $anketGroup) {
+                        $SutunArray = [];
+                        $SutunArray[] = $anketGroup[0][1]; // Grup başlık verisi
+                        foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Seçenekler oluyor.
+                            $SutunArray[] = $gelenSoruSecenekler;
+                        }
+                        $gelenSutunArray[$keyGroup] = $SutunArray;
+                        $SatirArray = [];
+                        foreach ($SoruGrouplari[$keyGroup][0] as $keySoru => $soru) {
+                            $SatirSoruArray = [];
+                            $SatirSoruArray[] = $soru[0];
+                            foreach ($SoruGrouplari[$keyGroup][1][$keySoru] as $secenekler) {
+                                $SatirSoruArray[] = $secenekler;
+                            }
+                            $SatirArray[$keySoru] = $SatirSoruArray;
+                        }
+                        $gelenSatirArray[$keyGroup] = $SatirArray;
+                    }
+                    $fileName = "klu_anket_" . $anketBilgisi->id . "_" . date('Y-m-d') . ".xls";
+
+                    // Headers for download 
+                    header("Content-Type: application/vnd.ms-excel");
+                    header("Content-Disposition: attachment; filename=\"$fileName\"");
+
+                    // Render excel data 
+                    foreach ($gelenSutunArray as $keyArr => $gelenSutunArr) {
+                        // Column names  
+                        echo "<table style='border:1px solid black;border-collapse: collapse;'>";
+                        echo "<tr>";
+                        foreach ($gelenSutunArr as $gelenSutunName) {
+                            $gelenSutunName = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8"); // Türkçe karakter oluştur.
+                            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
+                            echo $gelenSutunName;
+                            echo "</th>";
+                        }
+                        echo "</tr>";
+                        foreach ($gelenSatirArray[$keyArr] as $gelenSatirAlan) {
+                            echo "<tr>";
+                            foreach ($gelenSatirAlan as $gelenMetin) {
+                                echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
+                                $gelenMetin = mb_convert_encoding($gelenMetin, "windows-1254", "utf-8"); // Türkçe karakter oluştur.
+                                echo $gelenMetin;
+                                echo "</td>";
+                            }
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                        echo "<br>";
+                    }
+                    exit;
+                } else {
+                    // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
+                    header("Location: " . base_url("ownerController/leave"));
+                    exit();
                 }
+            } else {
+                header("Location: " . base_url("ownerController/adminAnket"));
+                exit();
             }
-            $SoruGrouplari[$keyGroup] = [$SoruMetinleri, $SoruVerileri]; // Elimizdeki verileri düzenli bir şekilde ana grup yapısına ekledik.
-            $SoruVerileri             = [];
-            $SoruMetinleri            = []; // Sistemde yeni veriler üst üste gelmesin diye eski verileri siliyoruz.
+        } else {
+            header("Location: " . base_url());
+            exit();
         }
-
-        foreach ($publicVeri as $publicRowVeri) { // getResult() yapısıyla geldiği için öncelikle bir foreach döngüsüne girelim.
-            $gelenUnSerializeVeri = unserialize($publicRowVeri->serialize);
-            foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
-                foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
-                    $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
-                    $SoruGrouplari[$keyGroup][1][$ayracSoru[0]][$ayracSoru[1]] += 1; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
-                }
-            }
-        }
-
-        $gelenSutunArray = []; // Gelen verileri sutunlar diye ayırdık.
-        $gelenSatirArray = []; // Gelen verileri satırlar diye ayırdık.
-        foreach ($anketUnSerialize as $keyGroup => $anketGroup) {
-            $SutunArray = [];
-            $SutunArray[] = $anketGroup[0][1]; // Grup başlık verisi
-            foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Seçenekler oluyor.
-                $SutunArray[] = $gelenSoruSecenekler;
-            }
-            $gelenSutunArray[$keyGroup] = $SutunArray;
-            $SatirArray = [];
-            foreach ($SoruGrouplari[$keyGroup][0] as $keySoru => $soru) {
-                $SatirSoruArray = [];
-                $SatirSoruArray[] = $soru[0];
-                foreach ($SoruGrouplari[$keyGroup][1][$keySoru] as $secenekler) {
-                    $SatirSoruArray[] = $secenekler;
-                }
-                $SatirArray[$keySoru] = $SatirSoruArray;
-            }
-            $gelenSatirArray[$keyGroup] = $SatirArray;
-        }
-        $fileName = "klu_anket_" . $anketBilgisi->id . "_" . date('Y-m-d') . ".xls";
-
-        // Headers for download 
-        header("Content-Type: application/vnd.ms-excel");
-        header("Content-Disposition: attachment; filename=\"$fileName\"");
-
-        // Render excel data 
-        foreach ($gelenSutunArray as $keyArr => $gelenSutunArr) {
-            // Column names  
-            echo "<table style='border:1px solid black;border-collapse: collapse;'>";
-            echo "<tr>";
-            foreach ($gelenSutunArr as $gelenSutunName) {
-                $gelenSutunName = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8"); // Türkçe karakter oluştur.
-                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
-                echo $gelenSutunName;
-                echo "</th>";
-            }
-            echo "</tr>";
-            foreach ($gelenSatirArray[$keyArr] as $gelenSatirAlan) {
-                echo "<tr>";
-                foreach ($gelenSatirAlan as $gelenMetin) {
-                    echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
-                    $gelenMetin = mb_convert_encoding($gelenMetin, "windows-1254", "utf-8"); // Türkçe karakter oluştur.
-                    echo $gelenMetin; 
-                    echo "</td>";
-                }
-                echo "</tr>";
-            }
-            echo "</table>";
-            echo "<br>";
-        }
-        exit;
     }
     public function anketAnalizExcelPlus($gelenVeri = "")
     {
 
-        $Islem  = new IslemModel();
-        $anketBilgisi = $Islem->getAnketProject($gelenVeri);
-        $publicVeri = $Islem->getAnketResultExcel($anketBilgisi->id);
+        helper("fonksiyonlar");
+        if (isset($_SESSION["Yonetici"])) {
+
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            if ($gelenVeri != "") {
+
+                $anketBilgisi = $Islem->getAnketProject($gelenVeri);
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { // Eğer yönetici istiyorsa silme hakkı verdik.
+                    $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
+                    $Islem  = new IslemModel();
+                    $anketBilgisi = $Islem->getAnketProject($gelenVeri);
+                    $publicVeri = $Islem->getAnketResultExcel($anketBilgisi->id);
 
 
-        $SoruGrouplari      = []; // Grouplar şeklinde datalarımızı tutalım
-        $SoruVerileri       = []; // Gelen soru şıklarını alalım
-        $SoruMetinleri      = []; // Gelen soru metinlerini alalım
-        $anketUnSerialize = unserialize($anketBilgisi->serialize);
-        foreach ($anketUnSerialize as $keyGroup => $anketGroup) { // Groupları aldık
-            foreach ($anketGroup[2] as $keySoru => $anketSorular) { // Group içinde soruları aldık.
-                $SoruMetinleri[$keySoru + 1] = $anketSorular[0];
-                $SoruVerileri[$keySoru + 1] = "Boş";
+                    $SoruGrouplari      = []; // Grouplar şeklinde datalarımızı tutalım
+                    $SoruVerileri       = []; // Gelen soru şıklarını alalım
+                    $SoruMetinleri      = []; // Gelen soru metinlerini alalım
+                    $anketUnSerialize = unserialize($anketBilgisi->serialize);
+                    foreach ($anketUnSerialize as $keyGroup => $anketGroup) { // Groupları aldık
+                        foreach ($anketGroup[2] as $keySoru => $anketSorular) { // Group içinde soruları aldık.
+                            $SoruMetinleri[$keySoru + 1] = $anketSorular[0];
+                            $SoruVerileri[$keySoru + 1] = "Boş";
+                        }
+                        $SoruGrouplari[$keyGroup] = [$SoruMetinleri, $SoruVerileri]; // Elimizdeki verileri düzenli bir şekilde ana grup yapısına ekledik.
+                        $SoruVerileri             = [];
+                        $SoruMetinleri            = []; // Sistemde yeni veriler üst üste gelmesin diye eski verileri siliyoruz.
+                    }
+
+                    $fileName = "klu_anket_plus_" . $anketBilgisi->id . "_" . date('Y-m-d') . ".xls";
+                    // Headers for download 
+                    header("Content-Type: application/vnd.ms-excel");
+                    header("Content-Disposition: attachment; filename=\"$fileName\"");
+
+                    foreach ($publicVeri as $publicRowVeri) { // getResult() yapısıyla geldiği için öncelikle bir foreach döngüsüne girelim.
+                        $gelenUnSerializeVeri = unserialize($publicRowVeri->serialize);
+                        $KullaniciIP      = $publicRowVeri->kullaniciIP;
+                        $bransTur         = $publicRowVeri->bransTur;
+                        $fakulteID        = $publicRowVeri->fakulteID;
+                        $birimID          = $publicRowVeri->birimID;
+                        $gonderimTarihi   = $publicRowVeri->gonderimTarihi;
+                        $anketGorus       = $publicRowVeri->anketGorus;
+                        echo "<table style='border:1px solid black;border-collapse: collapse;'>";
+                        echo "<tr>";
+                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>IP adresi</th>";
+                        foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
+                            foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
+                                $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
+
+                                $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                            }
+                            foreach ($SoruGrouplari[$keyGroup][0] as $gelenSutunName) {
+                                $gelenSutunNameTR = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8");
+                                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
+                                echo $gelenSutunNameTR;
+                                echo "</th>";
+                            }
+                        }
+                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Brans</th>";
+                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Fakulte ID</th>";
+                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Birim ID</th>";
+                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Gonderim Tarihi</th>";
+                        if ($anketBilgisi->anketGorus) {
+                            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Anket Gorusu</th>";
+                        }
+                        echo "</tr>";
+                        echo "<tr style='height:50px'>";
+                        echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $KullaniciIP . "</td>";
+                        foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
+                            foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
+                                $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
+                                $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                            }
+                            foreach ($SoruGrouplari[$keyGroup][1] as $gelenSatirAlan) {
+                                $gelenMetinTR = mb_convert_encoding($gelenSatirAlan, "windows-1254", "utf-8");
+                                echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
+                                echo $gelenMetinTR;
+                                echo "</td>";
+                            }
+                        }
+                        echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $bransTur . "</td>";
+                        echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $fakulteID . "</td>";
+                        echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $birimID . "</td>";
+                        echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $gonderimTarihi . "</td>";
+                        if ($anketBilgisi->anketGorus) {
+                            $anketGorusVeri = mb_convert_encoding($anketGorus, "windows-1254", "utf-8");
+                            echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $anketGorusVeri . "</td>";
+                        }
+                        echo "</tr>";
+                        echo "</table>";
+                    }
+                    exit;
+                } else {
+                    // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
+                    header("Location: " . base_url("ownerController/leave"));
+                    exit();
+                }
+            } else {
+                header("Location: " . base_url("ownerController/adminAnket"));
+                exit();
             }
-            $SoruGrouplari[$keyGroup] = [$SoruMetinleri, $SoruVerileri]; // Elimizdeki verileri düzenli bir şekilde ana grup yapısına ekledik.
-            $SoruVerileri             = [];
-            $SoruMetinleri            = []; // Sistemde yeni veriler üst üste gelmesin diye eski verileri siliyoruz.
+        } else {
+            header("Location: " . base_url());
+            exit();
         }
-
-        $fileName = "klu_anket_" . $anketBilgisi->id . "_" . date('Y-m-d') . ".xls";
-        // Headers for download 
-        header("Content-Type: application/vnd.ms-excel");
-        header("Content-Disposition: attachment; filename=\"$fileName\"");
-
-        foreach ($publicVeri as $publicRowVeri) { // getResult() yapısıyla geldiği için öncelikle bir foreach döngüsüne girelim.
-            $gelenUnSerializeVeri = unserialize($publicRowVeri->serialize);
-            $KullaniciIP      = $publicRowVeri->kullaniciIP;
-            $bransTur         = $publicRowVeri->bransTur;
-            $fakulteID        = $publicRowVeri->fakulteID;
-            $birimID          = $publicRowVeri->birimID;
-            $gonderimTarihi   = $publicRowVeri->gonderimTarihi;
-            $anketGorus       = $publicRowVeri->anketGorus;
-            echo "<table style='border:1px solid black;border-collapse: collapse;'>";
-            echo "<tr>";
-                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>IP adresi</th>";
-                foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
-                    foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
-                        $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
-                        
-                        $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
-                    }
-                    foreach ($SoruGrouplari[$keyGroup][0] as $gelenSutunName) {
-                        $gelenSutunNameTR = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8");
-                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
-                            echo $gelenSutunNameTR;
-                        echo "</th>";
-                    }
-                }
-                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Brans</th>";
-                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Fakulte ID</th>";
-                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Birim ID</th>";
-                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Gonderim Tarihi</th>";
-                if ($anketBilgisi->anketGorus) {
-                    echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Anket Gorusu</th>";
-                }
-            echo "</tr>";
-            echo "<tr style='height:50px'>";
-                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $KullaniciIP . "</td>";
-                foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
-                    foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
-                        $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
-                        $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
-                    }
-                    foreach ($SoruGrouplari[$keyGroup][1] as $gelenSatirAlan) {
-                        $gelenMetinTR = mb_convert_encoding($gelenSatirAlan, "windows-1254", "utf-8");
-                        echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
-                            echo $gelenMetinTR;
-                        echo "</td>";
-                    }
-                }
-                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $bransTur . "</td>";
-                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $fakulteID . "</td>";
-                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $birimID . "</td>";
-                echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $gonderimTarihi . "</td>";
-                if ($anketBilgisi->anketGorus) {
-                    $anketGorusVeri = mb_convert_encoding($anketGorus, "windows-1254", "utf-8");
-                    echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $anketGorusVeri . "</td>";
-                }
-            echo "</tr>";
-            echo "</table>";
-        }
-        exit;
     }
+
     // Çıkış yapma yapısı
     public function leave()
     {
