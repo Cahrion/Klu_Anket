@@ -60,7 +60,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="text-end ustVeriAlan">
+			<div class="text-end ustVeriAlan" style="display:none">
 				<button class="veriGuncelle btn btn-success mt-4" type="button"><i class="fa-solid fa-plus"></i> Anketi Güncelle</button>
 			</div>
 			<div class="row">

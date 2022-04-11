@@ -263,16 +263,16 @@ function anketGirisZorunluluk(node){
 $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $(".veriGonder").click(function(){
-        $(this).prop("disabled", true);
         var OncekiHal = $(this).html();
-        $(this).html('<i class="fa-solid fa-arrows-rotate"></i> Anket Oluşturuluyor...');
+        $(".veriGonder").prop("disabled", true);
+        $(".veriGonder").html('<i class="fa-solid fa-arrows-rotate"></i> Anket Oluşturuluyor...');
         // Üst anket verilerin alımı.
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children(".anketHeadCoveragerHeader").val(); // Anket Başlığı
         if(anketBaslik == ""){
             alert("Lütfen başlık kısmını doldurunuz.");
             $(".anketHeadCoverager").children(".baslik").children("input").focus();
-            $(this).prop("disabled", false);
-            $(this).html(OncekiHal);
+            $(".veriGonder").html(OncekiHal);
+            $(".veriGonder").prop("disabled", false);
             return $(".anketHeadCoverager").children(".baslik").children("input").attr("placeholder", "Burası boş geçilemez.");
         }
         var anketBaslikM    = $(".anketHeadCoverager").children(".baslikMetni").children(".anketHeadCoveragerHeadText").val(); // Anket Metni
@@ -283,8 +283,8 @@ $(document).ready(function(){
 
         if(anketKitle == ""){
             alert("Lütfen hitap edilen kitleyi seçiniz.");
-            $(this).prop("disabled", false);
-            $(this).html(OncekiHal);
+            $(".veriGonder").html(OncekiHal);
+            $(".veriGonder").prop("disabled", false);
             return $("#formKitleSelected").focus();
         }
         if(anketGiris){
@@ -345,14 +345,14 @@ $(document).ready(function(){
     // Gelen bir çok veriye karşılık bulabilmek amacıyla foreach yapısından gelen verileri alıyor ve bunlar serialize ederek sisteme eklemeye çalışıyoruz
     $(".veriGuncelle").click(function(){
         var OncekiHal = $(this).html();
-        $(this).prop( "disabled", true);
-        $(this).html('<i class="fa-solid fa-arrows-rotate"></i> Anket Güncelleniyor...');
+        $(".veriGuncelle").prop( "disabled", true);
+        $(".veriGuncelle").html('<i class="fa-solid fa-arrows-rotate"></i> Anket Güncelleniyor...');
         // Üst anket verilerin alımı.
         var anketBaslik     = $(".anketHeadCoverager").children(".baslik").children(".anketHeadCoveragerHeader").val(); // Anket Başlığı
         if(anketBaslik == ""){
             alert("Lütfen başlık kısmını doldurunuz.");
-            $(this).prop("disabled", false);
-            $(this).html(OncekiHal);
+            $(".veriGuncelle").prop("disabled", false);
+            $(".veriGuncelle").html(OncekiHal);
             $(".anketHeadCoverager").children(".baslik").children("input").focus();
             return $(".anketHeadCoverager").children(".baslik").children("input").attr("placeholder", "Burası boş geçilemez.");
         }
@@ -364,8 +364,8 @@ $(document).ready(function(){
         var anketID         = $(".anketHeadCoverager").attr("id"); // Anket Metni
         if(anketKitle == ""){
             alert("Lütfen hitap edilen kitleyi seçiniz.");
-            $(this).prop( "disabled", false);
-            $(this).html(OncekiHal);
+            $(".veriGuncelle").prop( "disabled", false);
+            $(".veriGuncelle").html(OncekiHal);
             return $("#formKitleSelected").focus();
         }
         if(anketGiris){
@@ -423,8 +423,8 @@ $(document).ready(function(){
             }
             });
         }else{
-            $(this).prop( "disabled", false);
-            return $(this).html(OncekiHal);
+            $(".veriGuncelle").prop( "disabled", false);
+            return $(".veriGuncelle").html(OncekiHal);
         }
     });
 });
