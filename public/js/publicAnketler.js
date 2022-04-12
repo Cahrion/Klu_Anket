@@ -139,6 +139,7 @@ function degistir() {
 
 function anketGorusKeyPress(node) {
     var uzunluk = $(node).val().length;
+    $(".Maks").text(maksimum);
 
     if (uzunluk >= maksimum) {
         var deger = $(node).val();

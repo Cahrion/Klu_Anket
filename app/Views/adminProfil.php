@@ -23,13 +23,22 @@
 		<div class="col-1 col-md-2"></div>
 		<div class="col-10 col-md-8 pt-3">
 			<div class="row">
-				<div class="col-3 border text-center">
+				<div class="col-12 col-sm-5 col-md-4 col-lg-3 text-center">
 					<img class="card-img-top w-50" src="<?php echo base_url("img/kluLogo.png"); ?>">
 				</div>
-				<div class="col-9 border p-3 text-center">
-					<h4>
-						<?php echo $gelenYonetici->emailAdresi; ?>
-					</h4>
+				<div class="col-12 col-sm-7 col-md-8 col-lg-9 p-3">
+					<div class="row border-bottom border-secondary pt-2" style="border-bottom-style: dashed!important;">
+						<div class="col-6">Yönetici id değeri</div>
+						<div class="col-6 text-muted"><?php echo $gelenYonetici->id?></div>
+					</div>
+					<div class="row border-bottom border-secondary pt-2" style="border-bottom-style: dashed!important;">
+						<div class="col-6">Email adresi</div>
+						<div class="col-6 text-muted"><?php echo $gelenYonetici->emailAdresi?></div>
+					</div>
+					<div class="row border-bottom border-secondary pt-2" style="border-bottom-style: dashed!important;">
+						<div class="col-6">Yönetim Faktoru</div>
+						<div class="col-6 text-muted"><?php echo $gelenYonetici->yonetimFaktoru?"Üst Düzey Yönetici":"Yönetici"?></div>
+					</div>
 				</div>
 				<?php
 				foreach ($anketKayitlarim as $anketKaydi) { // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.

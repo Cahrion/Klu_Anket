@@ -31,10 +31,10 @@
 					<input type="text" value="<?php echo $anketBilgisi->baslik ?>" placeholder="ANKET BAŞLIĞI" class="anketHeadCoveragerHeader">
 				</div>
 				<div class="baslikMetni">
-					<textarea class="text-muted anketHeadCoveragerHeadText" cols="30" rows="10" placeholder="Detay bilgisini giriniz."><?php echo $anketBilgisi->metin ?></textarea>
+					<textarea class="text-muted anketHeadCoveragerHeadText" cols="30" rows="10" placeholder="Anket üst bilgisi"><?php echo $anketBilgisi->metin ?></textarea>
 				</div>
 				<div class="aciklamaMetni">
-					<textarea class="text-muted anketHeadCoveragerExplanationText" cols="30" rows="10" placeholder="Anket hakkında açıklama yapınız."><?php echo $anketBilgisi->aciklama ?></textarea>
+					<textarea class="text-muted anketHeadCoveragerExplanationText" cols="30" rows="10" placeholder="Anketin açıklaması"><?php echo $anketBilgisi->aciklama ?></textarea>
 				</div>
 
 				<div class="row formAlanKapsayici">
@@ -84,7 +84,7 @@
 									<input type="text" value="<?php echo $gelenGroupCoveragerler[0][1] ?>" value="Group Başlığı" class="anketGroupHeadCoveragerHeader">
 								</div>
 								<div class="baslikMetni">
-									<textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Detay bilgisini giriniz."><?php echo $gelenGroupCoveragerler[0][2] ?></textarea>
+									<textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Grup detay bilgisi"><?php echo $gelenGroupCoveragerler[0][2] ?></textarea>
 								</div>
 								<?php
 								foreach ($gelenGroupCoveragerler[1] as $keyOne => $gelenAnketSecenekler) {

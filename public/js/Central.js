@@ -197,7 +197,7 @@ function anketGroupEkle(node){
                 <input type="text" placeholder="Grup Başlığı" class="anketGroupHeadCoveragerHeader">
             </div>
             <div class="baslikMetni">
-                <textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Detay bilgisini giriniz"></textarea>
+                <textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Grup detay bilgisi"></textarea>
             </div>
             <div class="anketSecenekler row" name="` + istenenName + `secenek1">
                 <div class="col-8 col-sm-6 col-md-7 col-lg-9 col-xl-10 anketSeceneklerIcAlan">

@@ -30,10 +30,10 @@
 					<input type="text" placeholder="ANKET BAŞLIĞI" class="anketHeadCoveragerHeader">
 				</div>
 				<div class="baslikMetni">
-					<textarea class="text-muted anketHeadCoveragerHeadText" cols="30" rows="10" placeholder="Anket üst bilgisini giriniz"></textarea>
+					<textarea class="text-muted anketHeadCoveragerHeadText" cols="30" rows="10" placeholder="Anket üst bilgisi"></textarea>
 				</div>
 				<div class="aciklamaMetni">
-					<textarea class="text-muted anketHeadCoveragerExplanationText" cols="30" rows="10" placeholder="Anket hakkında açıklama yapınız."></textarea>
+					<textarea class="text-muted anketHeadCoveragerExplanationText" cols="30" rows="10" placeholder="Anketin açıklaması"></textarea>
 				</div>
 				<div class="row formAlanKapsayici">
 					<div class="col-8 formKitle">
@@ -65,10 +65,10 @@
 						<div class="anketGroupHeadCoverager">
 							<div class="renkAlani" onclick='renkAlani(this)'></div>
 							<div class="baslik">
-								<input type="text" placeholder="Grup Başlığı" class="anketGroupHeadCoveragerHeader">
+								<input type="text" placeholder="Grup başlığı" class="anketGroupHeadCoveragerHeader">
 							</div>
 							<div class="baslikMetni">
-								<textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Detay bilgisini giriniz"></textarea>
+								<textarea class="text-muted anketGroupHeadCoveragerHeadText" cols="30" rows="10" placeholder="Grup detay bilgisi"></textarea>
 							</div>
 							<div class="anketSecenekler row" name="1secenek1">
 								<div class="col-8 col-sm-6 col-md-7 col-lg-9 col-xl-10 anketSeceneklerIcAlan">

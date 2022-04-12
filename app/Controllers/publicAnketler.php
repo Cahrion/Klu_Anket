@@ -45,7 +45,7 @@ class publicAnketler extends Controller
                             }else{
                                 echo "
                                 <script>
-                                    alert('Anketimize zaten önceden katılmıştınız...');
+                                    alert('Anketimize zaten katılmıştınız...');
                                     window.location = 'https://www.klu.edu.tr/';
                                 </script>"; // Aynı IP adresli veriyi direkt olarak klu adresine yolluyor.
                                 exit();

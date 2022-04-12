@@ -27,9 +27,9 @@ use App\Models\IslemModel;
 		<div class="col-1 col-md-2"></div>
 		<div class="col-10 col-md-8 pt-3">
 			<div class="row">
-				<div class="col-10">
+				<div class="col-12 col-lg-8 col-xl-9">
 					<div class="mb-3">
-					  <input type="text" class="form-control" onkeyup="lookupFunction(this.value)" aria-describedby="helpId" placeholder="">
+					  <input type="text" class="form-control" onkeyup="lookupFunction(this.value)" aria-describedby="helpId" placeholder="Kullanıcı email adresini buradan aratabilirsiniz.">
 					</div>
 					<div class="suggestionsBox" id="suggestions" style="display: none;">
 						<div class="suggestionList" id="autoSuggestionsList">
@@ -37,7 +37,7 @@ use App\Models\IslemModel;
 						</div>
 					</div>
 				</div>
-				<div class="col-2">
+				<div class="col-12 col-lg-4 col-xl-3">
 					<div class="adminButton"><a href="<?php echo base_url("ownerController"); ?>"><i class="fa-solid fa-circle-plus"></i> Yeni Anket Ekle</a></div>
 				</div>
 			</div>
