@@ -28,9 +28,9 @@
 				<?php
 				foreach ($anketKayitlarim as $anketKaydi) { // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
 				?>
-					<div class="col-12 col-md-6 col-xl-4 p-3">
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 p-3">
 						<div class="card shadow-sm">
-							<div class="card-header" style="height:120px;overflow-y:hidden">
+							<div class="card-header" style="height:100px;overflow-y:hidden">
 								<?php echo $anketKaydi->baslik; ?>
 							</div>
 							<div class="card-body">

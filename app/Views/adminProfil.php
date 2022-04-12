@@ -34,9 +34,9 @@
 				<?php
 				foreach ($anketKayitlarim as $anketKaydi) { // Yoneticiler Kayitları bize arka plandan gelmişti onu kullandık.
 				?>
-					<div class="col-12 col-md-6 col-xl-4 p-3">
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 p-3">
 						<div class="card shadow-sm">
-							<div class="card-header" style="height:120px;overflow-y:hidden">
+							<div class="card-header" style="height:100px;overflow-y:hidden">
 								<?php echo $anketKaydi->baslik; ?>
 							</div>
 							<div class="card-body">
@@ -54,22 +54,20 @@
 								?>
 							</div>
 							<div class="card-footer row m-0">
-								<div class="card-footer row m-0">
-									<?php
-									// Ternary yapısıyla anketin durumunu isimlendiriyorum.
-									$onayDurumu     = $anketKaydi->onay ? "Onaylandı" : "Onaylanmadı";
-									$onayRenk       = $anketKaydi->onay ? "success" : "danger";
-									$title          = $anketKaydi->onay ? "Onay kaldır." : "Onayla";
-									?>
-									<div class="col-12 text-center pt-2">
-										<a class="btn border border-<?php echo $onayRenk ?> col-12 text-<?php echo $onayRenk ?>" style="border-style: dashed!important;font-weight: bold;display:block" role="button" title="<?php echo $title ?>"  href="<?php echo base_url("ownerController/anketOnay/" . $anketKaydi->id); ?>">
-											<?php echo $onayDurumu; ?>
-										</a>
-									</div>
-									<div class="col-12 pt-2 d-flex justify-content-between">
-										<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
-										<a href="<?php echo base_url("ownerController/ustAdminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
-									</div>
+								<?php
+								// Ternary yapısıyla anketin durumunu isimlendiriyorum.
+								$onayDurumu     = $anketKaydi->onay ? "Onaylandı" : "Onaylanmadı";
+								$onayRenk       = $anketKaydi->onay ? "success" : "danger";
+								$title          = $anketKaydi->onay ? "Onay kaldır." : "Onayla";
+								?>
+								<div class="col-12 text-center pt-2">
+									<a class="btn border border-<?php echo $onayRenk ?> col-12 text-<?php echo $onayRenk ?>" style="border-style: dashed!important;font-weight: bold;display:block" role="button" title="<?php echo $title ?>" href="<?php echo base_url("ownerController/anketOnay/" . $anketKaydi->id); ?>">
+										<?php echo $onayDurumu; ?>
+									</a>
+								</div>
+								<div class="col-12 pt-2 d-flex justify-content-between">
+									<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
+									<a href="<?php echo base_url("ownerController/ustAdminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
 								</div>
 							</div>
 						</div>

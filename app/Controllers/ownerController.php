@@ -61,10 +61,10 @@ class ownerController extends Controller
 
                     $Islem->setAnketProjectUpdOnay($gelenID, $gelenTersOnay);
                 }
-                if(isset($_SESSION["link"])){
+                if (isset($_SESSION["link"])) {
                     header("Location: " . $_SESSION["link"]);
                     exit();
-                }else{
+                } else {
                     header("Location: " . base_url("ownerController/anketler"));
                     exit();
                 }
@@ -346,7 +346,7 @@ class ownerController extends Controller
                 $gelenVeri          = GuvenlikFiltresi($gelenVeri);
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
                 if ($anketBilgisi->onay or $yonetimBilgi->yonetimFaktoru) { // Onaylı değilse anket linki oluşturulmasın. (Yonetici oluşturma hakkı verdik.)
-                    if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { 
+                    if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) {
                         $seoLink = SEO($anketBilgisi->baslik, $anketBilgisi->id);
 
                         header("Location: " . base_url("publicAnketler/Anketler/" . $seoLink));
@@ -379,7 +379,7 @@ class ownerController extends Controller
             if ($gelenVeri != "") {
                 $gelenVeri          = GuvenlikFiltresi($gelenVeri);
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
-                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { 
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) {
                     $gelenVeri = $Islem->getAnketResult($anketBilgisi->id);
                     $data = array(
                         "yonetimBilgi" => $yonetimBilgi,
@@ -413,7 +413,7 @@ class ownerController extends Controller
             if ($gelenVeri != "") {
 
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
-                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { 
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) {
                     $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
 
 
@@ -425,6 +425,7 @@ class ownerController extends Controller
                         foreach ($anketGroup[2] as $keySoru => $anketSorular) { // Group içinde soruları aldık.
                             $SoruMetinleri[$keySoru + 1] = $anketSorular;
                             foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Group içine seçenekleri yazdırdık ve puanları 0 yaptık (İşaretlenmemiş anlamında.)
+                                $gelenSoruSecenekler = GuvenlikFiltresi($gelenSoruSecenekler);
                                 $SoruVerileri[$keySoru + 1][$gelenSoruSecenekler] = 0;
                             }
                         }
@@ -520,7 +521,7 @@ class ownerController extends Controller
             if ($gelenVeri != "") {
 
                 $anketBilgisi = $Islem->getAnketProject($gelenVeri);
-                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) { 
+                if (($yonetimBilgi->id == $anketBilgisi->yoneticiID) or $yonetimBilgi->yonetimFaktoru) {
                     $publicVeri = $Islem->getAnketResult($anketBilgisi->id);
                     $Islem  = new IslemModel();
                     $anketBilgisi = $Islem->getAnketProject($gelenVeri);
@@ -628,7 +629,7 @@ class ownerController extends Controller
             // Gelen veriyi güvenlik taramasından geçiriyoruz eğer gelmediyse geri gönderelim.
             if ($gelenVeri != "") {
                 $gelenVeri          = GuvenlikFiltresi($gelenVeri);
-                if ($yonetimBilgi->yonetimFaktoru) { 
+                if ($yonetimBilgi->yonetimFaktoru) {
                     $gelenYonetici = $Islem->getControlMemberID($gelenVeri);
                     $data = array(
                         "yonetimBilgi" => $yonetimBilgi,
@@ -649,6 +650,23 @@ class ownerController extends Controller
         } else {
             header("Location: " . base_url());
             exit();
+        }
+    }
+    public function anketorList()
+    {
+        helper("fonksiyonlar");
+        if (isset($_SESSION["Yonetici"])) {
+            $Islem  = new IslemModel();
+            $yonetimBilgi = $Islem->getControlMember($_SESSION["Yonetici"]);
+            if ($yonetimBilgi->yonetimFaktoru) {
+                if (isset($_POST["queryString"])) {
+                    $gelenYoneticiLike = GuvenlikFiltresi($_POST["queryString"]);
+                    $yoneticiler = $Islem->getControlMembersLike($gelenYoneticiLike);
+                    foreach ($yoneticiler as $yoneticilerV) {
+                        echo '<div style="border: 1px solid grey;padding:15px;border-radius:5px;margin-bottom:4px;cursor:pointer" onClick="systemPost(\'' . $yoneticilerV->id . '\');">' . $yoneticilerV->emailAdresi . '</div>';
+                    }
+                }
+            }
         }
     }
     // Çıkış yapma yapısı

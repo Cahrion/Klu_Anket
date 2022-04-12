@@ -32,6 +32,7 @@
 				foreach ($anketGroup[2] as $keySoru => $anketSorular) { // Group içinde soruları aldık.
 					$SoruMetinleri[$keySoru + 1] = $anketSorular;
 					foreach ($anketGroup[1] as $gelenSoruSecenekler) { // Group içine seçenekleri yazdırdık ve puanları 0 yaptık (İşaretlenmemiş anlamında.)
+						$gelenSoruSecenekler = GuvenlikFiltresi($gelenSoruSecenekler);
 						$SoruVerileri[$keySoru + 1][$gelenSoruSecenekler] = 0;
 					}
 				}

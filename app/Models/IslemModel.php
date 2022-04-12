@@ -27,6 +27,11 @@ class IslemModel extends Model {
         $result = $db->table("uyeler")->get()->getResult();
         return $result;
     }
+    public function getControlMembersLike($like){
+        $db = \Config\Database::connect();
+        $result = $db->table("uyeler")->like("emailAdresi", $like)->get()->getResult();
+        return $result;
+    }
     public function setControlMemberNew($email, $Faktor){
         // Email adresi ve Yönetim Rolu girilerek ekleme işlemi yapılabilir.
         $db = \Config\Database::connect();
