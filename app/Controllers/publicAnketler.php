@@ -7,7 +7,7 @@ use App\Models\IslemModel;
 
 \Config\Services::session();
 
-class publicAnketler extends Controller
+class PublicAnketler extends Controller
 {
     public function Anketler($gelenLink = "")
     {
@@ -41,7 +41,7 @@ class publicAnketler extends Controller
                                 $data = array(
                                     "anketKaydi" => $gelenAnket
                                 );
-                                return view('public/publicAnketler', $data);
+                                return view('public/PublicAnketler', $data);
                             }else{
                                 echo "
                                 <script>

@@ -1,0 +1,8 @@
+CRITICAL - 2022-04-23 12:59:00 --> Undefined array key 1
+#0 C:\xampp\htdocs\Klu_Anket\system\Router\Router.php(429): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 429)
+#1 C:\xampp\htdocs\Klu_Anket\system\Router\Router.php(154): CodeIgniter\Router\Router->checkRoutes('/')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('/')
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\Klu_Anket\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}

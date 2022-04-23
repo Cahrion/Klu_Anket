@@ -13,7 +13,7 @@ class Home extends BaseController
             );
             return view('welcome',$data);
         }else{
-            header("Location: " . base_url("ownerController/adminAnket"));
+            header("Location: " . base_url("OwnerController/adminAnket"));
             exit();
         }
     }
@@ -25,7 +25,7 @@ class Home extends BaseController
             );
             return view('welcome', $data);
         }else{
-            header("Location: " . base_url("ownerController/adminAnket"));
+            header("Location: " . base_url("OwnerController/adminAnket"));
             exit();
         }
     }

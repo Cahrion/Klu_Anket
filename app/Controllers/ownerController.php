@@ -7,7 +7,7 @@ use App\Models\IslemModel;
 
 \Config\Services::session();
 
-class ownerController extends Controller
+class OwnerController extends Controller
 {
     // Ana yapıda sitenin merkez kısmına erişimi koydum kişi buradan öncelikle anket ekleme bölümüne giriş yapar.
     public function index()
@@ -37,7 +37,7 @@ class ownerController extends Controller
                 $_SESSION["link"] = $_SERVER["PHP_SELF"];
                 return view('adminAnketler', $data);
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -65,11 +65,11 @@ class ownerController extends Controller
                     header("Location: " . $_SESSION["link"]);
                     exit();
                 } else {
-                    header("Location: " . base_url("ownerController/anketler"));
+                    header("Location: " . base_url("OwnerController/anketler"));
                     exit();
                 }
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -128,7 +128,7 @@ class ownerController extends Controller
 
                 echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -226,7 +226,7 @@ class ownerController extends Controller
 
                 echo "Onaylandı."; // AJAX yapısı olduğundan dolayı geriye veri göndermek için kullanalım.
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -269,11 +269,11 @@ class ownerController extends Controller
                     $Islem->setAnketProjectDel($gelenVeri); // ID değerine göre anketi sildik.
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . base_url("ownerController/leave"));
+                    header("Location: " . base_url("OwnerController/leave"));
                     exit();
                 }
             }
-            header("Location: " . base_url("ownerController/adminAnket"));
+            header("Location: " . base_url("OwnerController/adminAnket"));
             exit();
         } else {
             header("Location: " . base_url());
@@ -292,10 +292,10 @@ class ownerController extends Controller
                     $gelenVeri          = GuvenlikFiltresi($gelenVeri);
                     $Islem->setAnketProjectDel($gelenVeri); // ID değerine göre anketi sildik.
                 }
-                header("Location: " . base_url("ownerController/anketler"));
+                header("Location: " . base_url("OwnerController/anketler"));
                 exit();
             } else {
-                header("Location: " . base_url("ownerController/adminAnket"));
+                header("Location: " . base_url("OwnerController/adminAnket"));
                 exit();
             }
         } else {
@@ -324,11 +324,11 @@ class ownerController extends Controller
                     return view('adminAnketGuncelle', $data);
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . base_url("ownerController/leave"));
+                    header("Location: " . base_url("OwnerController/leave"));
                     exit();
                 }
             }
-            header("Location: " . base_url("ownerController/adminAnket"));
+            header("Location: " . base_url("OwnerController/adminAnket"));
             exit();
         } else {
             header("Location: " . base_url());
@@ -353,16 +353,16 @@ class ownerController extends Controller
                         exit();
                     } else {
                         // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                        header("Location: " . base_url("ownerController/leave"));
+                        header("Location: " . base_url("OwnerController/leave"));
                         exit();
                     }
                 } else {
                     // Eğer kişi onaysız açmaya çalışıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . base_url("ownerController/leave"));
+                    header("Location: " . base_url("OwnerController/leave"));
                     exit();
                 }
             }
-            header("Location: " . base_url("ownerController/adminAnket"));
+            header("Location: " . base_url("OwnerController/adminAnket"));
             exit();
         } else {
             header("Location: " . base_url());
@@ -390,11 +390,11 @@ class ownerController extends Controller
                     return view('adminAnketAnaliz', $data);
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . base_url("ownerController/leave"));
+                    header("Location: " . base_url("OwnerController/leave"));
                     exit();
                 }
             } else {
-                header("Location: " . base_url("ownerController/adminAnket"));
+                header("Location: " . base_url("OwnerController/adminAnket"));
                 exit();
             }
         } else {
@@ -498,11 +498,11 @@ class ownerController extends Controller
                     exit;
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . base_url("ownerController/leave"));
+                    header("Location: " . base_url("OwnerController/leave"));
                     exit();
                 }
             } else {
-                header("Location: " . base_url("ownerController/adminAnket"));
+                header("Location: " . base_url("OwnerController/adminAnket"));
                 exit();
             }
         } else {
@@ -607,11 +607,11 @@ class ownerController extends Controller
                     exit;
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . base_url("ownerController/leave"));
+                    header("Location: " . base_url("OwnerController/leave"));
                     exit();
                 }
             } else {
-                header("Location: " . base_url("ownerController/adminAnket"));
+                header("Location: " . base_url("OwnerController/adminAnket"));
                 exit();
             }
         } else {
@@ -640,11 +640,11 @@ class ownerController extends Controller
                     return view('adminProfil', $data);
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
-                    header("Location: " . base_url("ownerController/leave"));
+                    header("Location: " . base_url("OwnerController/leave"));
                     exit();
                 }
             } else {
-                header("Location: " . base_url("ownerController/adminAnket"));
+                header("Location: " . base_url("OwnerController/adminAnket"));
                 exit();
             }
         } else {

@@ -31,7 +31,7 @@ class Data extends Controller
                 $_SESSION["Yonetici"]	=	$gelenEmail;
                 // Buralarda CURL bağlantısıyla true geldiğini varsayıyorum ve yeni sayfaya aktarıyorum.
                 // Şifre yapıları elimizde olmayacağından dolayı veritabanında da sadece email adresi bıraktım.
-                header("Location: " . base_url("ownerController/adminAnket"));
+                header("Location: " . base_url("OwnerController/adminAnket"));
                 exit();
 
             }else{

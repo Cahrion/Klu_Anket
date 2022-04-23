@@ -57,8 +57,8 @@
 					<div class="border border-secondary p-4">Toplam <?php echo count($publicVeri)?> kişi anket doldurmuştur. Sonuçları aşağıdaki gibidir.</div>
 				</div>
 				<div class="col-2 text-center">
-					<a href="<?php echo base_url("ownerController/anketAnalizExcel/" . $anketBilgisi->id);?>" class="btn btn-success mt-2"><i class="fa-solid fa-file-export"></i> Excel </a>
-					<a href="<?php echo base_url("ownerController/anketAnalizExcelPlus/" . $anketBilgisi->id);?>" class="btn btn-success mt-2"><i class="fa-solid fa-file-export"></i> Excel+ </a>
+					<a href="<?php echo base_url("OwnerController/anketAnalizExcel/" . $anketBilgisi->id);?>" class="btn btn-success mt-2"><i class="fa-solid fa-file-export"></i> Excel </a>
+					<a href="<?php echo base_url("OwnerController/anketAnalizExcelPlus/" . $anketBilgisi->id);?>" class="btn btn-success mt-2"><i class="fa-solid fa-file-export"></i> Excel+ </a>
 				</div>
 			</div>
 

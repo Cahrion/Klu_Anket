@@ -22,8 +22,8 @@
 	<div class="row kluCenter">
 		<div class="col-2"></div>
 		<div class="col-8 pt-3">			
-			<div class="adminButton"><a href="<?php echo base_url("adminController"); ?>"><i class="fa-solid fa-list"></i> Yöneticiler Listesi</a></div>
-			<form action="<?php echo base_url("adminController/adminPanelGuncelle/" . $yoneticiBilgileri->id);?>" method="post">
+			<div class="adminButton"><a href="<?php echo base_url("AdminController"); ?>"><i class="fa-solid fa-list"></i> Yöneticiler Listesi</a></div>
+			<form action="<?php echo base_url("AdminController/adminPanelGuncelle/" . $yoneticiBilgileri->id);?>" method="post">
 				<div class="mb-3">
 					<label for="emailAdresi" class="form-label">Email Adresi</label>
 					<input type="email" class="form-control" name="emailAdresi" id="emailAdresi" aria-describedby="helpId" placeholder="Email Adresini giriniz" value="<?php echo $yoneticiBilgileri->emailAdresi?>">

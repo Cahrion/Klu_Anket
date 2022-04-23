@@ -49,10 +49,10 @@
 								<?php echo $anketKaydi->baslik; ?>
 							</div>
 							<div class="card-body">
-								<a class="btn col-12 mb-2" style="background-color:darkred;color:white" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
+								<a class="btn col-12 mb-2" style="background-color:darkred;color:white" href="<?php echo base_url("OwnerController/AnketAnaliz/" . $anketKaydi->id); ?>">
 									Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
 								</a>
-								<a class="btn btn-primary col-12 mb-2" style="background-color:#212529;color:white" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
+								<a class="btn btn-primary col-12 mb-2" style="background-color:#212529;color:white" href="<?php echo base_url("OwnerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
 									<i class="fa-solid fa-link"></i>
 									Link
 								</a>
@@ -70,13 +70,13 @@
 								$title          = $anketKaydi->onay ? "Onay kaldır." : "Onayla";
 								?>
 								<div class="col-12 text-center pt-2">
-									<a class="btn border border-<?php echo $onayRenk ?> col-12 text-<?php echo $onayRenk ?>" style="border-style: dashed!important;font-weight: bold;display:block" role="button" title="<?php echo $title ?>" href="<?php echo base_url("ownerController/anketOnay/" . $anketKaydi->id); ?>">
+									<a class="btn border border-<?php echo $onayRenk ?> col-12 text-<?php echo $onayRenk ?>" style="border-style: dashed!important;font-weight: bold;display:block" role="button" title="<?php echo $title ?>" href="<?php echo base_url("OwnerController/anketOnay/" . $anketKaydi->id); ?>">
 										<?php echo $onayDurumu; ?>
 									</a>
 								</div>
 								<div class="col-12 pt-2 d-flex justify-content-between">
-									<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
-									<a href="<?php echo base_url("ownerController/ustAdminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
+									<a href="<?php echo base_url("OwnerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
+									<a href="<?php echo base_url("OwnerController/ustAdminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
 								</div>
 							</div>
 						</div>

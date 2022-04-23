@@ -22,7 +22,7 @@
 	<div class="row kluCenter">
 		<div class="col-2"></div>
 		<div class="col-8 pt-3">
-			<div class="adminButton"><a href="<?php echo base_url("adminController/adminEkle");?>"><i class="fa-solid fa-circle-plus"></i> Yeni Yönetici Ekle</a></div>
+			<div class="adminButton"><a href="<?php echo base_url("AdminController/adminEkle");?>"><i class="fa-solid fa-circle-plus"></i> Yeni Yönetici Ekle</a></div>
             <?php 
 					foreach($YoneticilerKayitlari as $YoneticilerSatirlari){
 			?>	
@@ -35,8 +35,8 @@
 					<div class="col-4 p-4"><i class="fa-solid fa-person-circle-check"></i> <?php echo $yonetimDurumu; ?> </div>
 					
 					<div class="col-4 p-4" style="text-align:right">
-						<a href="<?php echo base_url("adminController/adminGuncelle/" . $YoneticilerSatirlari->id); ?>" style="color: #0000FF; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
-						<a href="<?php echo base_url("adminController/adminPanelSil/" . $YoneticilerSatirlari->id);?>" style="color: #FF0000; text-decoration: none;"><i class="fa-solid fa-ban" style="color:red"></i> Sil</a>
+						<a href="<?php echo base_url("AdminController/adminGuncelle/" . $YoneticilerSatirlari->id); ?>" style="color: #0000FF; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
+						<a href="<?php echo base_url("AdminController/adminPanelSil/" . $YoneticilerSatirlari->id);?>" style="color: #FF0000; text-decoration: none;"><i class="fa-solid fa-ban" style="color:red"></i> Sil</a>
 					</div>
 				</div>
 			<?php

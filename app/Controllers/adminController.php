@@ -7,7 +7,7 @@ use App\Models\IslemModel;
 
 \Config\Services::session();
 
-class adminController extends Controller
+class AdminController extends Controller
 {
 
     // ----------------------------------------------
@@ -29,7 +29,7 @@ class adminController extends Controller
 
                 return view('adminPanel', $data);
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -51,7 +51,7 @@ class adminController extends Controller
                 );
                 return view('adminPanelEkle', $data);
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -79,11 +79,11 @@ class adminController extends Controller
 
                     return view('adminPanelGuncelle', $data);
                 } else {
-                    header("Location: " . base_url("adminController"));
+                    header("Location: " . base_url("AdminController"));
                     exit();
                 }
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -114,14 +114,14 @@ class adminController extends Controller
                 }
                 if ($gelenEmail != "" and $gelenFaktor != "") {
                     $Islem->setControlMemberNew($gelenEmail, $gelenFaktor); // ilk kısma Email adresi ve ikinci kısma Faktörü (Rolü)
-                    header("Location: " . base_url("adminController"));
+                    header("Location: " . base_url("AdminController"));
                     exit();
                 } else {
-                    header("Location: " . base_url("adminController/adminEkle"));
+                    header("Location: " . base_url("AdminController/adminEkle"));
                     exit();
                 }
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -156,18 +156,18 @@ class adminController extends Controller
                         }
 
                         $Islem->setControlMemberUpd($gelenVeri, $gelenEmail, $gelenFaktor); // Birinci kısma ID değerini, ikinci kısma Email adresi ve üçüncü kısma Faktörü (Rolü)
-                        header("Location: " . base_url("adminController"));
+                        header("Location: " . base_url("AdminController"));
                         exit();
                     } else {
-                        header("Location: " . base_url("adminController/adminGuncelle"));
+                        header("Location: " . base_url("AdminController/adminGuncelle"));
                         exit();
                     }
                 } else {
-                    header("Location: " . base_url("adminController"));
+                    header("Location: " . base_url("AdminController"));
                     exit();
                 }
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {
@@ -190,10 +190,10 @@ class adminController extends Controller
                         $Islem->setControlMemberDel($gelenVeri); // ID değerine göre kişinin uyeliğini sildik.
                     }
                 }
-                header("Location: " . base_url("adminController"));
+                header("Location: " . base_url("AdminController"));
                 exit();
             } else {
-                header("Location: " . base_url("ownerController"));
+                header("Location: " . base_url("OwnerController"));
                 exit();
             }
         } else {

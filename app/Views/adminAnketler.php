@@ -38,7 +38,7 @@ use App\Models\IslemModel;
 					</div>
 				</div>
 				<div class="col-12 col-lg-4 col-xl-3">
-					<div class="adminButton"><a href="<?php echo base_url("ownerController"); ?>"><i class="fa-solid fa-circle-plus"></i> Yeni Anket Ekle</a></div>
+					<div class="adminButton"><a href="<?php echo base_url("OwnerController"); ?>"><i class="fa-solid fa-circle-plus"></i> Yeni Anket Ekle</a></div>
 				</div>
 			</div>
 			<div class="row">
@@ -51,14 +51,14 @@ use App\Models\IslemModel;
 								<?php echo $anketKaydi->baslik; ?>
 							</div>
 							<div class="card-body">
-								<a class="btn col-12 mb-2" style="background-color:darkred;color:white" href="<?php echo base_url("ownerController/AnketAnaliz/" . $anketKaydi->id); ?>">
+								<a class="btn col-12 mb-2" style="background-color:darkred;color:white" href="<?php echo base_url("OwnerController/AnketAnaliz/" . $anketKaydi->id); ?>">
 									Analiz <i class="fa-solid fa-magnifying-glass-chart"></i>
 								</a>
-								<a class="btn col-12 mb-2"  style="background-color:#212529;color:white" href="<?php echo base_url("ownerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
+								<a class="btn col-12 mb-2"  style="background-color:#212529;color:white" href="<?php echo base_url("OwnerController/adminAnketLinkOlustur/" . $anketKaydi->id); ?>" role="button">
 									<i class="fa-solid fa-link"></i>
 									Link
 								</a>
-								<a class="btn col-12 mb-2 text-center" style="border:1px solid grey;background-color:white;color:grey" href="<?php echo base_url("ownerController/adminProfil/" . $anketKaydi->yoneticiID); ?>" >
+								<a class="btn col-12 mb-2 text-center" style="border:1px solid grey;background-color:white;color:grey" href="<?php echo base_url("OwnerController/adminProfil/" . $anketKaydi->yoneticiID); ?>" >
 									<i class="fa-solid fa-user"></i>
 									<?php
 										$Islem = new IslemModel();
@@ -75,13 +75,13 @@ use App\Models\IslemModel;
 								$title          = $anketKaydi->onay ? "Onay kaldır." : "Onayla";
 								?>
 								<div class="col-12 text-center pt-2">
-									<a class="btn border border-<?php echo $onayRenk ?> col-12 text-<?php echo $onayRenk ?>" style="border-style: dashed!important;font-weight: bold;display:block" role="button" title="<?php echo $title ?>"  href="<?php echo base_url("ownerController/anketOnay/" . $anketKaydi->id); ?>">
+									<a class="btn border border-<?php echo $onayRenk ?> col-12 text-<?php echo $onayRenk ?>" style="border-style: dashed!important;font-weight: bold;display:block" role="button" title="<?php echo $title ?>"  href="<?php echo base_url("OwnerController/anketOnay/" . $anketKaydi->id); ?>">
 										<?php echo $onayDurumu; ?>
 									</a>
 								</div>
 								<div class="col-12 pt-2 d-flex justify-content-between">
-									<a href="<?php echo base_url("ownerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
-									<a href="<?php echo base_url("ownerController/ustAdminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
+									<a href="<?php echo base_url("OwnerController/adminAnketGuncelle/" . $anketKaydi->id); ?>" style="color: #05056a; text-decoration: none;"><i class="fa-solid fa-marker"></i> Güncelle</a>
+									<a href="<?php echo base_url("OwnerController/ustAdminAnketSil/" . $anketKaydi->id); ?>" style="color: darkred; text-decoration: none;"><i class="fa-solid fa-ban"></i> Sil</a>
 								</div>
 							</div>
 
