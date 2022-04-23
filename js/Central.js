@@ -1,5 +1,5 @@
 var base_url = $("base").attr("href");
-var renkler = ["rgb(168, 234, 135)","rgb(234, 228, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)","rgb(204, 169, 126)", "rgb(32, 39, 43)","rgb(99, 36, 81)"];
+var renkler = ["rgb(168, 234, 135)","rgb(234, 228, 135)","rgb(234, 144, 135)", "rgb(135, 234, 193)", "rgb(126, 189, 255)","rgb(204, 169, 126)", "rgb(11, 94, 215)"];
 
 function scrollSelector(){
     var hesapla 		= $("body").get(0).scrollHeight;

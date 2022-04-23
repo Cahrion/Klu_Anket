@@ -37,7 +37,7 @@ class PublicAnketler extends Controller
                                 }
                             }
                             $gelenIP = $_SERVER["REMOTE_ADDR"];
-                            if(!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)){ 
+                            if((!$Islem->getAnketIpReport($gelenAnket->id,$gelenIP)) or isset($_SESSION["Yonetici"])){ 
                                 $data = array(
                                     "anketKaydi" => $gelenAnket
                                 );

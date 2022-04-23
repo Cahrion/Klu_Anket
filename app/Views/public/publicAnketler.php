@@ -148,7 +148,7 @@
                 <div style="font-weight: bold;border-bottom: 1px dotted grey;" class="mb-2">Diğer Bilgiler</div>
                 <div>
                     <div>
-                      <label for="anketGorus" class="form-label">Ayrıca belirtmek istediğiniz bir konu varsa görüş ve önerilerinizi kısaca yazınız.</label>
+                      <label for="anketGorus" class="form-label">Ayrıca belirtmek istediğiniz bir görüşünüz veya önerileriniz varsa kısaca yazınız.</label>
                       <textarea class="form-control" name="anketGorus" id="anketGorus" rows="3" onkeypress="anketGorusKeyPress(this)" onkeyup="anketGorusKeyPress(this)" onkeydown="anketGorusKeyPress(this)"></textarea>
                     </div>
                     <div class="text-end mb-3" style="font-size: 13px;">
