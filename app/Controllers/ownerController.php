@@ -581,10 +581,12 @@ class OwnerController extends Controller
                         echo "</tr>";
                         echo "<tr style='height:50px'>";
                         echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $KullaniciIP . "</td>";
-                        foreach ($gelenUnSerializeVeri as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
-                            foreach ($gelenGroupVeri as $keySoru => $gelenSoruVeri) { // Soruları alalım.
-                                $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
-                                $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                        foreach ($SoruGrouplari as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
+                            if(isset($gelenUnSerializeVeri[$keyGroup])){
+                                foreach ($gelenUnSerializeVeri[$keyGroup] as $keySoru => $gelenSoruVeri) { // Soruları alalım.
+                                    $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
+                                    $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                                }
                             }
                             foreach ($SoruGrouplari[$keyGroup][1] as $gelenSatirAlan) {
                                 $gelenMetinTR = mb_convert_encoding($gelenSatirAlan, "windows-1254", "utf-8");

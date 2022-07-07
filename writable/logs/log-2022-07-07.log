@@ -1,0 +1,63 @@
+CRITICAL - 2022-07-07 10:34:48 --> Undefined array key 9
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(592): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 592)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-07-07 10:34:49 --> Undefined array key 9
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(592): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 592)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-07-07 10:34:52 --> Undefined array key 9
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(592): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 592)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-07-07 10:34:57 --> Undefined array key 9
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(590): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 590)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-07-07 10:34:57 --> Undefined array key 9
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(590): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 590)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-07-07 10:47:51 --> Undefined array key 5
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(585): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 585)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-07-07 10:47:52 --> Undefined array key 5
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(585): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 585)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-07-07 10:47:57 --> Undefined array key 5
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(585): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 585)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-07-07 10:48:08 --> Undefined array key 5
+#0 C:\xampp\htdocs\Klu_Anket\app\Controllers\OwnerController.php(585): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 585)
+#1 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\OwnerController->anketAnalizExcelPlus('92')
+#2 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnerController))
+#3 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

@@ -1,0 +1,48 @@
+ERROR - 2022-05-18 13:49:38 --> Error connecting to the database: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı
+CRITICAL - 2022-05-18 13:49:38 --> Unable to connect to the database.
+Main connection [MySQLi]: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı
+#0 C:\xampp\htdocs\Klu_Anket\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\Klu_Anket\system\Database\BaseBuilder.php(1588): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\Klu_Anket\app\Models\IslemModel.php(14): CodeIgniter\Database\BaseBuilder->getWhere(Array)
+#3 C:\xampp\htdocs\Klu_Anket\app\Controllers\Data.php(29): App\Models\IslemModel->getControlMember('icabikrz@gmail....')
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\Data->yn_giris()
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2022-05-18 13:51:04 --> Error connecting to the database: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı
+CRITICAL - 2022-05-18 13:51:04 --> Unable to connect to the database.
+Main connection [MySQLi]: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı
+#0 C:\xampp\htdocs\Klu_Anket\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\Klu_Anket\system\Database\BaseBuilder.php(1588): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\Klu_Anket\app\Models\IslemModel.php(14): CodeIgniter\Database\BaseBuilder->getWhere(Array)
+#3 C:\xampp\htdocs\Klu_Anket\app\Controllers\Data.php(29): App\Models\IslemModel->getControlMember('icabikrz@gmail....')
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\Data->yn_giris()
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2022-05-18 13:52:08 --> Error connecting to the database: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı
+CRITICAL - 2022-05-18 13:52:08 --> Unable to connect to the database.
+Main connection [MySQLi]: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı
+#0 C:\xampp\htdocs\Klu_Anket\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\Klu_Anket\system\Database\BaseBuilder.php(1588): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\Klu_Anket\app\Models\IslemModel.php(14): CodeIgniter\Database\BaseBuilder->getWhere(Array)
+#3 C:\xampp\htdocs\Klu_Anket\app\Controllers\Data.php(29): App\Models\IslemModel->getControlMember('icabikrz@gmail....')
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\Data->yn_giris()
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2022-05-18 13:52:15 --> Error connecting to the database: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı
+CRITICAL - 2022-05-18 13:52:15 --> Unable to connect to the database.
+Main connection [MySQLi]: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı
+#0 C:\xampp\htdocs\Klu_Anket\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\Klu_Anket\system\Database\BaseBuilder.php(1588): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\Klu_Anket\app\Models\IslemModel.php(14): CodeIgniter\Database\BaseBuilder->getWhere(Array)
+#3 C:\xampp\htdocs\Klu_Anket\app\Controllers\Data.php(29): App\Models\IslemModel->getControlMember('icabikrz@gmail....')
+#4 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(832): App\Controllers\Data->yn_giris()
+#5 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Data))
+#6 C:\xampp\htdocs\Klu_Anket\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\Klu_Anket\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
