@@ -544,10 +544,30 @@ class OwnerController extends Controller
 
                     $fileName = "klu_anket_plus_" . $anketBilgisi->id . "_" . date('Y-m-d') . ".xls";
                     // Headers for download 
-                    // header("Content-Type: application/vnd.ms-excel");
-                    // header("Content-Disposition: attachment; filename=\"$fileName\"");
+                    header("Content-Type: application/vnd.ms-excel");
+                    header("Content-Disposition: attachment; filename=\"$fileName\"");
 
+                    echo "<table style='border:1px solid black;border-collapse: collapse;'>";
+                    echo "<tr>";
+                    echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>IP adresi</th>";
+                    foreach ($SoruGrouplari as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
+                        foreach ($SoruGrouplari[$keyGroup][0] as $gelenSutunName) {
+                            $gelenSutunNameTR = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8");
+                            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
+                            echo $gelenSutunNameTR;
+                            echo "</th>";
+                        }
+                    }
+                    echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Brans</th>";
+                    echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Fakulte ID</th>";
+                    echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Birim ID</th>";
+                    echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Gonderim Tarihi</th>";
+                    if ($anketBilgisi->anketGorus) {
+                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Anket Gorusu</th>";
+                    }
+                    echo "</tr>";
                     foreach ($publicVeri as $publicRowVeri) { // getResult() yapısıyla geldiği için öncelikle bir foreach döngüsüne girelim.
+                        echo "<tr style='height:50px'>";
                         $gelenUnSerializeVeri = unserialize($publicRowVeri->serialize);
                         $KullaniciIP      = $publicRowVeri->kullaniciIP;
                         $bransTur         = $publicRowVeri->bransTur;
@@ -555,26 +575,6 @@ class OwnerController extends Controller
                         $birimID          = $publicRowVeri->birimID;
                         $gonderimTarihi   = $publicRowVeri->gonderimTarihi;
                         $anketGorus       = $publicRowVeri->anketGorus;
-                        echo "<table style='border:1px solid black;border-collapse: collapse;'>";
-                        echo "<tr>";
-                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>IP adresi</th>";
-                        foreach ($SoruGrouplari as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
-                            foreach ($SoruGrouplari[$keyGroup][0] as $gelenSutunName) {
-                                $gelenSutunNameTR = mb_convert_encoding($gelenSutunName, "windows-1254", "utf-8");
-                                echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>";
-                                echo $gelenSutunNameTR;
-                                echo "</th>";
-                            }
-                        }
-                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Brans</th>";
-                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Fakulte ID</th>";
-                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Birim ID</th>";
-                        echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Gonderim Tarihi</th>";
-                        if ($anketBilgisi->anketGorus) {
-                            echo "<th style='border: 1px solid black;border-collapse: collapse;background-color:#D7D1CB'>Anket Gorusu</th>";
-                        }
-                        echo "</tr>";
-                        echo "<tr style='height:50px'>";
                         echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $KullaniciIP . "</td>";
                         foreach ($SoruGrouplari as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
                             if(isset($gelenUnSerializeVeri[$keyGroup])){
@@ -599,8 +599,8 @@ class OwnerController extends Controller
                             echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $anketGorusVeri . "</td>";
                         }
                         echo "</tr>";
-                        echo "</table>";
                     }
+                    echo "</table>";
                     exit;
                 } else {
                     // Eğer kişi farklı bir ID değerine saldırıyorsa veya bug deniyorsa onun şuanki kaydını otomatikmen çıkartalım.
