@@ -575,15 +575,18 @@ class OwnerController extends Controller
                         $birimID          = $publicRowVeri->birimID;
                         $gonderimTarihi   = $publicRowVeri->gonderimTarihi;
                         $anketGorus       = $publicRowVeri->anketGorus;
-                        echo "<td style='border: 1px solid black;border-collapse: collapse;'>" . $KullaniciIP . "</td>";
+                        echo "<td style='border: 1px solid blac k;border-collapse: collapse;'>" . $KullaniciIP . "</td>";
+                        $SoruGrouplariK = $SoruGrouplari;
                         foreach ($SoruGrouplari as $keyGroup => $gelenGroupVeri) { // İlk döngüde Grouplar geldiği için grupları alalım.
                             if(isset($gelenUnSerializeVeri[$keyGroup])){
                                 foreach ($gelenUnSerializeVeri[$keyGroup] as $keySoru => $gelenSoruVeri) { // Soruları alalım.
-                                    $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
-                                    $SoruGrouplari[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                                    if($gelenSoruVeri != ""){
+                                        $ayracSoru = explode("-", $gelenSoruVeri); // Sorular (SoruNumarası-SoruCevabı) olarak geldiği için explode() ile bölelim
+                                        $SoruGrouplariK[$keyGroup][1][$ayracSoru[0]] = $ayracSoru[1]; // Burada soru numarası ve soru cevabına eşit gelen değere ekleme yaptık.
+                                    }
                                 }
                             }
-                            foreach ($SoruGrouplari[$keyGroup][1] as $gelenSatirAlan) {
+                            foreach ($SoruGrouplariK[$keyGroup][1] as $gelenSatirAlan) {
                                 $gelenMetinTR = mb_convert_encoding($gelenSatirAlan, "windows-1254", "utf-8");
                                 echo "<td style='border: 1px solid black;border-collapse: collapse;'>";
                                 echo $gelenMetinTR;
